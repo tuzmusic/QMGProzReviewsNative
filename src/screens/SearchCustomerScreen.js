@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { View, KeyboardAvoidingView } from "react-native";
 import { Text, Input, Button, Overlay, Image } from "react-native-elements";
 import { connect } from "react-redux";

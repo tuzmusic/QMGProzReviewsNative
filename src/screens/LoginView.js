@@ -9,7 +9,6 @@ import {
   cancelLogin,
   clearAuthError
 } from "../redux/actions/authActions";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
 import { validate } from "email-validator";
