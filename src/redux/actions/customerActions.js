@@ -1,9 +1,5 @@
 // @flow
-import type {
-  CustomerState,
-  CustomerAction,
-  CustomerSearchParams
-} from "../reducers/customerReducer";
+import * as Types from "../CustomerTypes";
 import { call, put, select, takeEvery, all } from "redux-saga/effects";
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
@@ -96,11 +92,13 @@ export function addReviewApi(review: Review) {
   return Review.fromApi(result);
 }
 
+import { getCustomersSaga } from "./customerActions2";
 export default function* customerSaga(): Saga<void> {
   yield all([
     yield takeEvery("NEW_CUSTOMER_START", createCustomerSaga),
     yield takeEvery("CUSTOMER_SEARCH_START", searchSaga),
-    yield takeEvery("CUSTOMER_ADD_REVIEW_START", addReviewSaga)
+    yield takeEvery("CUSTOMER_ADD_REVIEW_START", addReviewSaga),
+    yield takeEvery("GET_CUSTOMERS_START", getCustomersSaga)
   ]);
 }
 

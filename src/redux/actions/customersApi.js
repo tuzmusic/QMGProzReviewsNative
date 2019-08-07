@@ -1,6 +1,6 @@
 // @flow
 import axios from "axios";
-import ApiUrls from "../../constants/apiConstants";
+import { ApiUrls } from "../../constants/apiConstants";
 
 export type CustomerApiPostPayload = {
   name: string,
@@ -10,12 +10,14 @@ export type CustomerApiPostPayload = {
 
 // #region Custom API
 
-async function createCustomerApi(customer: CustomerApiPostPayload): Object {
+export async function createCustomerApi(
+  customer: CustomerApiPostPayload
+): Object {
   const res = await axios.post(ApiUrls.customer, customer);
   return res.data;
 }
 
-async function getCustomersApi(): Object {
+export async function getCustomersApi(): Object {
   const res = await axios.get(ApiUrls.customer);
   return res.data;
 }

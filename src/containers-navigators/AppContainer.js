@@ -13,6 +13,8 @@ import {
 } from "react-navigation";
 import AuthStack from "../containers-navigators/AuthNavigator";
 import DrawerContentView from "../screens/DrawerContentView";
+import { connect } from "react-redux";
+import { getCustomers } from "../redux/action-creators/customerActionCreators";
 
 const NewCustomerStack = createStackNavigator(
   {
@@ -81,11 +83,28 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 
-const SwitchNavigator = createSwitchNavigator({
-  Auth: AuthStack,
-  Main: DrawerNavigator
-});
+class DrawerContainer extends Component {
+  componentDidMount = async () => {
+    this.props.getCustomers();
+  };
 
+  static router = DrawerNavigator.router;
+  render() {
+    return <DrawerNavigator navigation={this.props.navigation} />;
+  }
+}
+
+const ConnectedDrawerContainer = connect(
+  null,
+  { getCustomers }
+)(DrawerContainer);
+
+const Stacks = {
+  Auth: AuthStack,
+  Main: ConnectedDrawerContainer
+};
+// if (__DEV__) delete Stacks.Auth;
+const SwitchNavigator = createSwitchNavigator(Stacks);
 const AppNavigator = SwitchNavigator;
 
 export default AppContainer = createAppContainer(AppNavigator);

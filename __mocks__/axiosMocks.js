@@ -6,7 +6,7 @@ import {
   registerResponse,
   registration
 } from "./auth/authResponses";
-
+import { customerIndexResponse } from "./apiResponses/customers";
 const DELAY = 1000;
 
 export function setupMockAdapter({
@@ -17,7 +17,7 @@ export function setupMockAdapter({
   let mock = new MockAdapter(axios, { delayResponse: DELAY });
   if (customers || auth)
     console.log("WARNING: Using mock api - not connecting to the internet!");
-  // if (customers) setupCustomersMockAdapter(mock);
+  if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
   mock.onAny().passThrough();
@@ -95,5 +95,5 @@ export function setupAuthMockAdapter(mock) {
 }
 
 export function setupCustomersMockAdapter(mock) {
-  mock.onGet();
+  mock.onGet(ApiUrls.customers).reply(200, customerIndexResponse);
 }
