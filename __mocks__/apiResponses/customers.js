@@ -675,3 +675,31 @@ export const customerIndexResponse = [
     }
   }
 ];
+
+export const createCustomerResponse = {
+  id: 15347,
+  title: "Mr. Google",
+  description: "This dude knows everything!",
+  address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+  location: {
+    // latitude: "37.32246610000001",
+    // longitude: "-122.0444706"
+    latitude: "",
+    longitude: ""
+  },
+  galleryImage: {
+    url: ""
+  },
+  owner: {
+    id: null,
+    username: null,
+    email: null,
+    url: null,
+    registered: null,
+    firstName: null,
+    lastName: null,
+    description: null,
+    capabilities: null,
+    avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+  }
+};

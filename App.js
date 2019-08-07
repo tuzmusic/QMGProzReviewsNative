@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import AppContainer from "./src/containers-navigators/AppContainer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -19,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
-// setupMockAdapter({ letMeIn: true, customers: true });
+setupMockAdapter({ letMeIn: true, customers: __DEV__ });
 
 console.disableYellowBox = true;
 
@@ -35,12 +34,3 @@ function* rootSaga() {
   sagaMiddleware.run(authSaga);
   sagaMiddleware.run(customerSaga);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});

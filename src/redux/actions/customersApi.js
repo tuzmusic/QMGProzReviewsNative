@@ -5,7 +5,8 @@ import { ApiUrls } from "../../constants/apiConstants";
 export type CustomerApiPostPayload = {
   name: string,
   description: string,
-  address: string
+  address: string,
+  location?: { longitude: number, latitude: number }
 };
 
 // #region Custom API

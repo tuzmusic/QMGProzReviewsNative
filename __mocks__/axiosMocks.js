@@ -6,7 +6,10 @@ import {
   registerResponse,
   registration
 } from "./auth/authResponses";
-import { customerIndexResponse } from "./apiResponses/customers";
+import {
+  customerIndexResponse,
+  createCustomerResponse
+} from "./apiResponses/customers";
 const DELAY = 1000;
 
 export function setupMockAdapter({
@@ -96,4 +99,15 @@ export function setupAuthMockAdapter(mock) {
 
 export function setupCustomersMockAdapter(mock) {
   mock.onGet(ApiUrls.customers).reply(200, customerIndexResponse);
+  mock
+    .onPost(ApiUrls.customers, {
+      title: "Mr. Google",
+      description: "This dude knows everything!",
+      address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+      location: {
+        latitude: "",
+        longitude: ""
+      }
+    })
+    .reply(200, createCustomerResponse);
 }
