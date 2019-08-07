@@ -11,7 +11,7 @@ import {
   registerWithApi,
   clearAuthError
 } from "../src/redux/actions/authActions";
-import { ApiUrls } from "../constants";
+import { ApiUrls } from "../src/constants/apiConstants";
 import {
   loginResponse,
   registerResponse,
@@ -21,7 +21,7 @@ import {
 } from "../__mocks__/auth/authResponses";
 import SagaTester from "redux-saga-tester";
 import authSaga from "../src/redux/actions/authActions";
-import { setupAuthMockAdapter } from "../__mocks__/auth/axiosMocks";
+import { setupAuthMockAdapter } from "../__mocks__/axiosMocks";
 import Sugar from "sugar";
 let mock = setupAuthMockAdapter();
 

@@ -1,14 +1,20 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { ApiUrls } from "../../constants";
-import { loginResponse, registerResponse, registration } from "./authResponses";
+import { ApiUrls } from "../src/constants/apiConstants";
+import {
+  loginResponse,
+  registerResponse,
+  registration
+} from "./auth/authResponses";
+
+const DELAY = 1000;
 
 export function setupMockAdapter({
   customers = false,
   auth = false,
   letMeIn = true
 }) {
-  let mock = new MockAdapter(axios, { delayResponse: 1000 });
+  let mock = new MockAdapter(axios, { delayResponse: DELAY });
   if (customers || auth)
     console.log("WARNING: Using mock api - not connecting to the internet!");
   // if (customers) setupCustomersMockAdapter(mock);
@@ -86,4 +92,8 @@ export function setupAuthMockAdapter(mock) {
     // logout
     .onGet(ApiUrls.logout)
     .reply(200, loginResponse.logout);
+}
+
+export function setupCustomersMockAdapter(mock) {
+  mock.onGet();
 }

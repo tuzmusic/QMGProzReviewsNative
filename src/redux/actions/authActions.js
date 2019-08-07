@@ -1,9 +1,9 @@
 import axios from "axios";
 import { put, call, takeEvery, all } from "redux-saga/effects";
-import { ApiUrls } from "../../../constants";
+import { ApiUrls } from "../../constants/apiConstants";
 import User from "../../models/User";
-import Sugar from "sugar";
-Sugar.extend();
+// import Sugar from "sugar";
+// Sugar.extend();
 
 export async function registerWithApi({ email, username, password }) {
   const nonce = (await axios.get(ApiUrls.nonce)).data.nonce;
@@ -20,6 +20,8 @@ export async function registerWithApi({ email, username, password }) {
 }
 
 export async function loginWithApi(creds) {
+  const url = ApiUrls.login;
+  debugger;
   const res = await axios.get(ApiUrls.login, { params: creds });
   // console.log("login response:", res.data);
   return res.data;

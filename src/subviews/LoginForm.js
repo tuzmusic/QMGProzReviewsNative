@@ -11,6 +11,14 @@ class LoginForm extends Component {
     // password: "123123"
   };
 
+  componentDidMount() {
+    if (__DEV__)
+      this.setState({
+        username: "testuser1",
+        password: "123123"
+      });
+  }
+
   render() {
     const regUrl = "https://www.prozreviews.com/subscriber-new/";
     return (
