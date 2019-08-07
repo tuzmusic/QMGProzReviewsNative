@@ -21,7 +21,6 @@ export default function customerReducer(
   // logActionTypes(action);
   switch (action.type) {
     case "GET_CUSTOMERS_SUCCESS":
-      console.log("Got customers:", action.customers);
       return { ...state, customers: action.customers };
     case "GET_CUSTOMERS_FAILURE":
       return { ...state, error: action.error };

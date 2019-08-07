@@ -9,29 +9,37 @@ import { createCustomerApi } from "./customersApi";
 export function* createCustomerSaga({
   customer: cust
 }: CreateArgs): Saga<void> {
+  let action: Types.NEW_CUSTOMER_SUCCESS | Types.NEW_CUSTOMER_FAILURE;
   try {
-    const { customer, error } = yield call(
-      createCustomerApi,
-      Customer.toApi(cust)
-    );
+    const data = yield call(createCustomerApi, Customer.toApi(cust));
     debugger;
-    if (customer) {
-      yield put({
-        type: "NEW_CUSTOMER_SUCCESS",
-        customer: Customer.fromApi(customer)
-      });
-    } else if (error) {
-      yield put({
-        type: "NEW_CUSTOMER_FAILURE",
-        error
-      });
-    }
+    action = { type: "NEW_CUSTOMER_SUCCESS", customer: Customer.fromApi(data) };
+    // #region old implementation
+    // const { customer, error } = yield call(
+    //   createCustomerApi,
+    //   Customer.toApi(cust)
+    // );
+    // debugger;
+    // if (customer) {
+    //   yield put({
+    //     type: "NEW_CUSTOMER_SUCCESS",
+    //     customer: Customer.fromApi(customer)
+    //   });
+    // } else if (error) {
+    //   yield put({
+    //     type: "NEW_CUSTOMER_FAILURE",
+    //     error
+    //   });
+    // }
+    // #endregion
   } catch (error) {
-    yield put({
-      type: "NEW_CUSTOMER_FAILURE",
-      error
-    });
+    const err = error;
+    console.log(error);
+    console.log(error.config);
+    debugger;
+    action = { type: "NEW_CUSTOMER_FAILURE", error: error.message };
   }
+  yield put(action);
 }
 
 export function _createCustomerApi(customer: Customer): Object {

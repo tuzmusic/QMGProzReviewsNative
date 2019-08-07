@@ -16,11 +16,14 @@ class NewCustomerScreen extends Component {
 
   componentDidMount = () => {
     if (__DEV__)
-      this.setState({
-        name: "Mr. Google",
-        description: "This dude knows everything!",
-        address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
-      });
+      this.setState(
+        {
+          name: "Mr. Google",
+          description: "This dude knows everything!",
+          address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+        },
+        this.saveCustomer
+      );
   };
 
   static navigationOptions = {
@@ -37,6 +40,7 @@ class NewCustomerScreen extends Component {
       ...this.state,
       reviews: this.state.showReview ? [review] : []
     });
+    /* THIS DOESN'T WORK BECAUSE WE HAVEN'T REFRESHED THE STORE YET. I think. */
     if ((customer = this.props.currentCustomer)) {
       this.props.navigation.navigate("Customer", { customer });
     } else if ((error = this.props.error)) {

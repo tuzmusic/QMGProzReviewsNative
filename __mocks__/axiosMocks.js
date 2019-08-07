@@ -10,7 +10,7 @@ import {
   customerIndexResponse,
   createCustomerResponse
 } from "./apiResponses/customers";
-const DELAY = 1000;
+const DELAY = 0;
 
 export function setupMockAdapter({
   customers = false,
@@ -23,7 +23,7 @@ export function setupMockAdapter({
   if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
-  mock.onAny().passThrough();
+  // mock.onAny().passThrough();
   return mock;
 }
 
@@ -98,16 +98,16 @@ export function setupAuthMockAdapter(mock) {
 }
 
 export function setupCustomersMockAdapter(mock) {
+  const params = {
+    name: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    reviews: []
+    // location: {
+    //   latitude: "",
+    //   longitude: ""
+    // }
+  };
   mock.onGet(ApiUrls.customers).reply(200, customerIndexResponse);
-  mock
-    .onPost(ApiUrls.customers, {
-      title: "Mr. Google",
-      description: "This dude knows everything!",
-      address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
-      location: {
-        latitude: "",
-        longitude: ""
-      }
-    })
-    .reply(200, createCustomerResponse);
+  mock.onPost(ApiUrls.customers, params).reply(200, createCustomerResponse);
 }

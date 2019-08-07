@@ -15,13 +15,18 @@ export async function createCustomerApi(
   customer: CustomerApiPostPayload
 ): Object {
   const res = await axios.post(ApiUrls.customer, customer);
-  debugger;
   return res.data;
 }
 
 export async function getCustomersApi(): Object {
-  const res = await axios.get(ApiUrls.customer);
-  return res.data;
+  try {
+    const res = await axios.get(ApiUrls.customer);
+    return res.data;
+  } catch (error) {
+    const err = error;
+    console.log(err);
+    debugger;
+  }
 }
 
 // #endregion
