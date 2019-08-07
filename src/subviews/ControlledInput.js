@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { Input } from "react-native-elements";
+import Sugar from "sugar";
+Sugar.extend();
 
 export default ControlledInput = ({ binder, ...props }) => {
   return (

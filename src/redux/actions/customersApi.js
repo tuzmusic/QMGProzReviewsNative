@@ -15,6 +15,7 @@ export async function createCustomerApi(
   customer: CustomerApiPostPayload
 ): Object {
   const res = await axios.post(ApiUrls.customer, customer);
+  debugger;
   return res.data;
 }
 

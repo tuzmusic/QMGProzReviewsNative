@@ -4,12 +4,17 @@ import { call, put, select, takeEvery, all } from "redux-saga/effects";
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
 import type { Saga } from "redux-saga";
+import { createCustomerApi } from "./customersApi";
 
 export function* createCustomerSaga({
   customer: cust
 }: CreateArgs): Saga<void> {
   try {
-    const { customer, error } = createCustomerApi(cust);
+    const { customer, error } = yield call(
+      createCustomerApi,
+      Customer.toApi(cust)
+    );
+    debugger;
     if (customer) {
       yield put({
         type: "NEW_CUSTOMER_SUCCESS",
@@ -29,7 +34,7 @@ export function* createCustomerSaga({
   }
 }
 
-export function createCustomerApi(customer: Customer): Object {
+export function _createCustomerApi(customer: Customer): Object {
   // Create an API-friendly payload
   const payload = Customer.toApi(customer);
   // Post using the online API and return the result

@@ -688,7 +688,7 @@ export const createCustomerResponse = {
     longitude: ""
   },
   galleryImage: {
-    url: ""
+    url: "helloFromMockApi"
   },
   owner: {
     id: null,

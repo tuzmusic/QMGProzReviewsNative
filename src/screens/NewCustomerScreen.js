@@ -9,35 +9,23 @@ import { createCustomer } from "../redux/action-creators/customerActionCreators"
 
 class NewCustomerScreen extends Component {
   state = {
-    firstName: "Someone",
-    lastName: "New",
-    address: "123 State St.",
-    phone: "987-765-6543",
-    email: "butt@poop.fart",
-    showReview: false,
-    review: {
-      content: "Review for this new dude",
-      rating: 4
-    },
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-    email: "",
-    showReview: false,
-    review: {
-      content: "",
-      rating: 4
-    }
+    name: "",
+    description: "",
+    address: ""
+  };
+
+  componentDidMount = () => {
+    if (__DEV__)
+      this.setState({
+        name: "Mr. Google",
+        description: "This dude knows everything!",
+        address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+      });
   };
 
   static navigationOptions = {
     drawerLabel: "New Customer"
   };
-
-  Input = ({ propName }) => (
-    <ControlledInput binder={this} propName={propName} />
-  );
 
   toggleReviewing() {
     this.setState({ showReview: !this.state.showReview });
@@ -66,11 +54,9 @@ class NewCustomerScreen extends Component {
         <SafeAreaView style={{ margin: 20 }}>
           <ScrollView>
             <Text h2>New Customer</Text>
-            <ControlledInput binder={this} propName={"firstName"} />
-            <ControlledInput binder={this} propName={"lastName"} />
+            <ControlledInput binder={this} propName={"name"} />
             <ControlledInput binder={this} propName={"address"} />
-            <ControlledInput binder={this} propName={"phone"} />
-            <ControlledInput binder={this} propName={"email"} />
+            <ControlledInput binder={this} propName={"description"} />
 
             {this.state.showReview && (
               <NewReviewScreen showButtons={false} parent={this} />
