@@ -1,6 +1,7 @@
-export const ApiUrls = {};
+// @flow
+export const ApiUrls: { [string]: string | (() => string) } = {};
 
-const url = (...components: string[]) => components.join("/");
+const url = (...components: string[]): string => components.join("/");
 
 const baseUrl = "https://www.prozreviews.com";
 const jsonApiBase = url(baseUrl, "t5ej61G4r62301i");
@@ -14,4 +15,4 @@ ApiUrls.logout = url(baseUrl, "wp-json/auth/logout");
 
 ApiUrls.getNonce = url(jsonApiBase, "get_nonce");
 ApiUrls.createPostJsonApi = url(jsonApiBase, "posts", "create_post");
-ApiUrls.createCustomer = url(customApiBase, "customers");
+ApiUrls.customer = url(customApiBase, "customers");

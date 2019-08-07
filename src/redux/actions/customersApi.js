@@ -8,6 +8,21 @@ export type CustomerApiPostPayload = {
   address: string
 };
 
+// #region Custom API
+
+async function createCustomerApi(customer: CustomerApiPostPayload): Object {
+  const res = await axios.post(ApiUrls.customer, customer);
+  return res.data;
+}
+
+async function getCustomersApi(): Object {
+  const res = await axios.get(ApiUrls.customer);
+  return res.data;
+}
+
+// #endregion
+
+// #region JSON API
 async function _createCustomerApi({ name, description, address }) {
   // uses JSON API, but I can't figure out how to add the _job_location meta field
   const nonce = await getNonce(nonces.createPost);
@@ -21,11 +36,6 @@ async function _createCustomerApi({ name, description, address }) {
   };
   const res = await axios.post(ApiUrls.createPost, params);
   return res;
-}
-
-async function createCustomerApi(customer: CustomerApiPostPayload): Object {
-  const res = await axios.post(ApiUrls.createCustomer, customer);
-  return res.data;
 }
 
 async function getNonce(type) {
@@ -49,3 +59,4 @@ const Constants = {
   postType: "job_listing",
   postStatus: "publish"
 };
+// #endregion

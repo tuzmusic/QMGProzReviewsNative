@@ -1,4 +1,5 @@
 // @flow
+import type { CustomerAction, CustomerState } from "../CustomerTypes";
 
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
@@ -48,62 +49,8 @@ export default function customerReducer(
   }
 }
 
-export type CustomerState = {
-  +customers: { [key: number]: Customer },
-  +currentCustomer: ?Customer,
-  +searchResults: ?(Customer[]),
-  +error: ?string
-};
-
-export type CustomerAction =
-  | CustomerSearchAction
-  | CustomerReviewAction
-  | CustomerNewAction;
-
 export type CustomerSearchParams = {
   text: string,
   searchField: string,
   customers?: { [key: number]: Customer }
 };
-
-type CustomerNewAction =
-  | {
-      type: "NEW_CUSTOMER_START",
-      customer: Customer
-    }
-  | {
-      type: "NEW_CUSTOMER_SUCCESS",
-      customer: Customer
-    }
-  | {
-      type: "NEW_CUSTOMER_FAILURE",
-      error: string
-    };
-
-type CustomerSearchAction =
-  | {
-      type: "CUSTOMER_SEARCH_START",
-      searchParams: CustomerSearchParams
-    }
-  | {
-      type: "CUSTOMER_SEARCH_SUCCESS",
-      results: Customer[]
-    }
-  | {
-      type: "CUSTOMER_SEARCH_FAILURE",
-      error: string
-    };
-
-type CustomerReviewAction =
-  | {
-      type: "CUSTOMER_ADD_REVIEW_START",
-      review: Review
-    }
-  | {
-      type: "CUSTOMER_ADD_REVIEW_SUCCESS",
-      review: Review
-    }
-  | {
-      type: "CUSTOMER_ADD_REVIEW_FAILURE",
-      error: string
-    };
