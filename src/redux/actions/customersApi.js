@@ -8,18 +8,17 @@ import { ApiUrls } from "../../constants/apiConstants";
 export async function createCustomerApi(
   customer: CustomerApiPostPayload
 ): Object {
-  const res = await axios.post(ApiUrls.customer, customer);
+  const res = await axios.post(ApiUrls.customers, customer);
   return res.data;
 }
 
 export async function getCustomersApi(): Object {
   try {
-    const res = await axios.get(ApiUrls.customer);
+    const res = await axios.get(ApiUrls.customers);
     return res.data;
   } catch (error) {
     const err = error;
     console.log(err);
-    debugger;
   }
 }
 

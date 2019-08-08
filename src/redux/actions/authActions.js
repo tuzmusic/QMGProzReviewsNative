@@ -21,9 +21,7 @@ export async function registerWithApi({ email, username, password }) {
 
 export async function loginWithApi(creds) {
   const url = ApiUrls.login;
-  debugger;
   const res = await axios.get(ApiUrls.login, { params: creds });
-  // console.log("login response:", res.data);
   return res.data;
 }
 
@@ -35,7 +33,6 @@ export async function logoutWithApi() {
 export function* loginSaga({ creds }) {
   try {
     const { error, ...user } = yield call(loginWithApi, creds);
-
     if (error) {
       yield put({ type: "LOGIN_FAILURE", error });
     } else {
@@ -52,9 +49,10 @@ export function* loginSaga({ creds }) {
 }
 
 function parseError(error) {
-  if (error.stack?.includes("TypeError"))
-    return "Login/Registration Error.\nThis is probably a problem with the website.";
-  else return error.message;
+  // if (error.stack?.includes("TypeError"))
+  //   return "Login/Registration Error.\nThis is probably a problem with the website.";
+  // else
+  return error.message;
 }
 
 export function* logoutSaga() {

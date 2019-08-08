@@ -17,7 +17,6 @@ export function* createCustomerSaga({
   } catch (error) {
     const err = error;
     console.log(err.config);
-    debugger;
     action = { type: "NEW_CUSTOMER_FAILURE", error: error.message };
   }
   yield put(action);

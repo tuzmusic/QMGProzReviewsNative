@@ -15,7 +15,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
-setupMockAdapter({ letMeIn: true, customers: __DEV__ });
+setupMockAdapter({ letMeIn: true, auth: true, customers: __DEV__ });
 
 console.disableYellowBox = true;
 

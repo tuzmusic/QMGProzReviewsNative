@@ -23,7 +23,7 @@ export function setupMockAdapter({
   if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
-  mock.onAny().passThrough();
+  // mock.onAny().passThrough();
   return mock;
 }
 

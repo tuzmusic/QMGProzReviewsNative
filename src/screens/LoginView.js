@@ -70,11 +70,11 @@ class LoginView extends Component {
   }
 
   async shouldComponentUpdate(nextProps, nextState) {
-    if (!newProps.user) return true;
+    if (!nextProps.user) return true;
     try {
       await AsyncStorage.setItem(
         "prozreviews_logged_in_user",
-        JSON.stringify(newProps.user)
+        JSON.stringify(nextProps.user)
       );
     } catch (error) {
       console.warn("Couldn't write user to storage.", error);
@@ -93,7 +93,6 @@ class LoginView extends Component {
   }
 
   render() {
-    debugger;
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
