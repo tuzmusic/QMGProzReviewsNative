@@ -69,19 +69,18 @@ class LoginView extends Component {
     await this.props.register({ username, email, password });
   }
 
-  async componentWillReceiveProps(newProps) {
-    if (newProps.user) {
-      try {
-        await AsyncStorage.setItem(
-          "prozreviews_logged_in_user",
-          JSON.stringify(newProps.user)
-        );
-      } catch (error) {
-        console.warn("Couldn't write user to storage.", error);
-      }
-
-      this.props.navigation.navigate("Main");
+  async shouldComponentUpdate(nextProps, nextState) {
+    if (!newProps.user) return true;
+    try {
+      await AsyncStorage.setItem(
+        "prozreviews_logged_in_user",
+        JSON.stringify(newProps.user)
+      );
+    } catch (error) {
+      console.warn("Couldn't write user to storage.", error);
     }
+    this.props.navigation.navigate("Main");
+    return false;
   }
 
   toggleForm() {
