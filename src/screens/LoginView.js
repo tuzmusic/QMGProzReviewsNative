@@ -144,10 +144,10 @@ class LoginView extends Component {
 }
 
 export default connect(
-  ({ authReducer }) => ({
-    isLoading: authReducer.isLoading,
-    user: authReducer.user,
-    error: authReducer.error
+  ({ authReducer: isLoading, user, error }) => ({
+    isLoading,
+    user,
+    error
   }),
   { login, register, cancelLogin, clearAuthError }
 )(LoginView);

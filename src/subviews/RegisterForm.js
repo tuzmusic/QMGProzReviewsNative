@@ -78,9 +78,9 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(({ authReducer }) => ({
-  isLoading: authReducer.isLoading
-}))(RegisterForm);
+export default connect(({ authReducer: isLoading }) => ({ isLoading }))(
+  RegisterForm
+);
 
 const theme = {
   Input: {
