@@ -42,10 +42,8 @@ export class AutoFillMapSearch extends Component<Props, State> {
   }
 
   async handleAddressChange() {
-    // I'm using fetch for this because axios hits the mocks (returns "get customers" response)
-    // no idea why!!!
     try {
-      const res = await fetch(ApiUrls.mapsSearch(this.state.address));
+      const res = await axios.get(ApiUrls.mapsSearch(this.state.address));
       const { predictions, error_message } = await res.json()
       if (error_message) throw new Error(error_message);
       this.setState({ addressPredictions: predictions });
