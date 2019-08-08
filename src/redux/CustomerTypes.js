@@ -51,10 +51,7 @@ export type GET_CUSTOMERS_SUCCESS = {
   type: "GET_CUSTOMERS_SUCCESS",
   customers: CustomerCollection
 };
-export type GET_CUSTOMERS_FAILURE = {
-  type: "GET_CUSTOMERS_FAILURE",
-  error: string
-};
+export type GET_CUSTOMERS_FAILURE = FailureActionType<"GET_CUSTOMERS_FAILURE">;
 
 export type NEW_CUSTOMER_START = {
   type: "NEW_CUSTOMER_START",
@@ -64,25 +61,19 @@ export type NEW_CUSTOMER_SUCCESS = {
   type: "NEW_CUSTOMER_SUCCESS",
   customer: Customer
 };
-export type NEW_CUSTOMER_FAILURE = {
-  type: "NEW_CUSTOMER_FAILURE",
-  error: string
-};
+export type NEW_CUSTOMER_FAILURE = FailureActionType<"NEW_CUSTOMER_FAILURE">;
 
 export type CUSTOMER_SEARCH_START = {
   type: "CUSTOMER_SEARCH_START",
   searchParams: CustomerSearchParams
 };
-
 export type CUSTOMER_SEARCH_SUCCESS = {
   type: "CUSTOMER_SEARCH_SUCCESS",
   results: Customer[]
 };
-
-export type CUSTOMER_SEARCH_FAILURE = {
-  type: "CUSTOMER_SEARCH_FAILURE",
-  error: string
-};
+export type CUSTOMER_SEARCH_FAILURE = FailureActionType<
+  "CUSTOMER_SEARCH_FAILURE"
+>;
 
 export type CUSTOMER_ADD_REVIEW_START = {
   type: "CUSTOMER_ADD_REVIEW_START",
@@ -92,10 +83,22 @@ export type CUSTOMER_ADD_REVIEW_SUCCESS = {
   type: "CUSTOMER_ADD_REVIEW_SUCCESS",
   review: Review
 };
-export type CUSTOMER_ADD_REVIEW_FAILURE = {
-  type: "CUSTOMER_ADD_REVIEW_FAILURE",
-  error: string
+export type CUSTOMER_ADD_REVIEW_FAILURE = FailureActionType<
+  "CUSTOMER_ADD_REVIEW_FAILURE"
+>;
+
+export type ADDRESS_SEARCH_START = {
+  type: "ADDRESS_SEARCH_START",
+  text: string
 };
+export type ADDRESS_SEARCH_SUCCESS = {
+  type: "ADDRESS_SEARCH_SUCCESS",
+  predictions: string[]
+};
+export type ADDRESS_SEARCH_FAILURE = FailureActionType<"ADDRESS_SEARCH_START">;
+
+type SuccessActionType<T: string, K: string, Y: mixed> = { type: T, [K]: Y };
+type FailureActionType<T: string> = { type: T, error: string };
 
 export type CustomerAction =
   | GET_CUSTOMERS_START
