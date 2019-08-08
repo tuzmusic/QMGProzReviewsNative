@@ -22,6 +22,6 @@ ApiUrls.customers = url(customApiBase, "customers");
 
 /* GOOGLE MAPS API CALLS */
 ApiUrls.mapsSearch = (address: string) =>
-  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GoogleMapsApiKey}&input=${address}`;
+  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GoogleMapsApiKey}&input=${address}&types=address`;
 ApiUrls.mapsDetails = (placeId: string) =>
   `https://maps.googleapis.com/maps/api/place/details/json?key=${GoogleMapsApiKey}&placeid=${placeId}&fields=geometry`;

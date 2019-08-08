@@ -66,19 +66,11 @@ export class SearchCustomerScreen extends Component {
             inputContainerStyle={{ width: full }}
             onPredictionSelect={text => this.setState({ text })}
           />
-          {/*  <Input
-            inputStyle={styles.input}
-            clearButtonMode={"while-editing"}
-            placeholder={"Enter address"}
-            value={this.state.text}
-            onChangeText={text => this.setState({ text })}
-          /> */}
           <Button
             title="Search"
             type="outline"
             onPress={this.handleSearch.bind(this)}
           />
-          <Text>{this.state.text}</Text>
         </KeyboardAvoidingView>
         <SwipeTip />
       </View>
@@ -108,7 +100,7 @@ const styles = {
   container: {
     width: "100%",
     height: "100%",
-    // position: "absolute",
+    position: "absolute",
     alignItems: "center",
     justifyContent: "flex-start",
     top: 70,

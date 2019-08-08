@@ -1,5 +1,155 @@
 export const customerIndexResponse = [
   {
+    id: 15353,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "123 Mountain Road, Concord, NH, USA",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
+    id: 15352,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
+    id: 15351,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
+    id: 15350,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
+    id: 15349,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
+    id: 15348,
+    title: "Mr. Google",
+    description: "This dude knows everything!",
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+    location: {
+      latitude: "",
+      longitude: ""
+    },
+    galleryImage: {
+      url: ""
+    },
+    owner: {
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+    }
+  },
+  {
     id: 15347,
     title: "John Doe",
     description: "1565197451",
