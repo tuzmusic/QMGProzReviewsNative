@@ -42,13 +42,14 @@ export function searchApi({
   text,
   customers,
   searchField
-}: Types.CustomerSearchParams): Object[] {
+}: Types.CustomerSearchParams): Customer[] {
+  console.log(arguments);
+
   // Perform search using online API
   const results = Object.values(customers).filter(
     (c: Object) => c[searchField] === text
   );
-  // Convert API results to Customer objects
-  return results.map(c => Customer.fromApi(c));
+  return results;
 }
 
 export function* addReviewSaga({ review }: AddReviewArgs): Saga<void> {

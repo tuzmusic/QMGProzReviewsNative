@@ -16,12 +16,10 @@ export class CustomerSearchResultScreen extends Component {
   }
 
   render() {
-    const { results } = this.props;
+    const results = this.props.results;
 
     return !results.length ? (
-      <View style={styles.container}>
-        <Text h4>Couldn't find any clients at that address.</Text>
-      </View>
+      <EmptyResults />
     ) : (
       <View style={styles.container}>
         <View style={{ justifyContent: "center", padding: 15 }}>
@@ -56,15 +54,52 @@ const CustomerCell = ({ customer, onPress }) => (
       onPress={onPress.bind(this, customer)}
       style={styles.opacity}
     >
-      <Text style={styles.result}>{customer.fullName}</Text>
+      <Text style={styles.result}>{customer.name}</Text>
       <Text style={styles.arrow}>></Text>
     </TouchableOpacity>
   </View>
 );
 
+const EmptyResults = props => {
+  const masterStyle = { paddingVertical: 10, fontSize: 20 };
+  Txt = ({ style, ...props }) => (
+    <Text style={[style, masterStyle]} {...props}>
+      {props.children}
+    </Text>
+  );
+  return (
+    <View style={styles.emptyResultsContainer}>
+      <Txt h4 style={{ textAlign: "center" }}>
+        Sorry, we couldn't find any customers at that address.
+      </Txt>
+      <Txt>
+        If you expected different results, try selecting a different version of
+        the address.
+      </Txt>
+      <Txt>For instance, Google's Headquarters, at</Txt>
+
+      <Txt style={{ fontWeight: "bold", textAlign: "center" }}>
+        1600 Amphitheatre Parkway, Mountain View, CA, USA
+      </Txt>
+      <Txt>is also listed in the search as</Txt>
+      <Txt style={{ fontWeight: "bold", textAlign: "center" }}>
+        1600 Amphitheatre Pkwy, Mountain View, CA, USA.
+      </Txt>
+
+      <Txt>
+        If the customer's address was stored as "1600 Amphitheatre Pkwy",
+        selecting "1600 Amphitheatre Parkway" will not find the customer.
+      </Txt>
+    </View>
+  );
+};
+
 export default CustomerSearchResultScreen;
 
 const styles = {
+  emptyResultsContainer: {
+    margin: 20
+  },
   listContainer: {
     width: "97%",
     alignItems: "center",

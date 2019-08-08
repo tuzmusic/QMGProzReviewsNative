@@ -37,6 +37,7 @@ export class SearchCustomerScreen extends Component {
   };
 
   async handleSearch() {
+    if (!this.state.text) return;
     await this.props.searchCustomers({
       customers: this.props.customers,
       ...this.state

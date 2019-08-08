@@ -34,15 +34,16 @@ export class AutoFillMapSearch extends Component<Props, State> {
 
   async setSamplePrediction() {
     await this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" });
-    // await this.handleAddressChange();
+    this.selectPrediction(this.state.address);
     // this.selectPrediction(this.state.addressPredictions[0]);
+    // await this.handleAddressChange();
   }
 
   async componentDidMount() {
-    // setTimeout(this.setSamplePrediction.bind(this), 100);
-    if (__DEV__) this.setState({
-      // address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
-    })
+    if (__DEV__) {
+      setTimeout(this.setSamplePrediction.bind(this), 100);
+      // this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" })
+    }
   }
 
   async handleAddressChange() {
