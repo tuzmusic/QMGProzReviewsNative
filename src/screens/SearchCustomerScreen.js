@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView } from "react-native";
 import { Text, Input, Button, Overlay, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
+import AutoFillMapSearch from "../subviews/AutoFillMapSearch";
 
 const SwipeTip = props => {
   return (
@@ -46,7 +47,7 @@ export class SearchCustomerScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, width: "100%" }}>
         <KeyboardAvoidingView
           style={styles.container}
           enabled
@@ -57,20 +58,27 @@ export class SearchCustomerScreen extends Component {
             style={styles.image}
           />
           <Text h4>Search for your Client </Text>
-          <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
-          <Input
+          <Text>What's your client's address?</Text>
+          <AutoFillMapSearch
+            placeholder="Enter address"
             inputStyle={styles.input}
-            inputContainerStyle={styles.inputContainer}
+            clearButtonMode={"while-editing"}
+            inputContainerStyle={{ width: full }}
+            onPredictionSelect={text => this.setState({ text })}
+          />
+          {/*  <Input
+            inputStyle={styles.input}
             clearButtonMode={"while-editing"}
             placeholder={"Enter address"}
             value={this.state.text}
             onChangeText={text => this.setState({ text })}
-          />
+          /> */}
           <Button
             title="Search"
             type="outline"
             onPress={this.handleSearch.bind(this)}
           />
+          <Text>{this.state.text}</Text>
         </KeyboardAvoidingView>
         <SwipeTip />
       </View>
@@ -86,6 +94,7 @@ export default connect(
   { searchCustomers }
 )(SearchCustomerScreen);
 
+const full = "100%";
 const borderWidth = 0.5;
 const borderRadius = 30;
 const transform = [{ rotateX: "180deg" }];
@@ -99,23 +108,24 @@ const styles = {
   container: {
     width: "100%",
     height: "100%",
-    position: "absolute",
+    // position: "absolute",
     alignItems: "center",
-    justifyContent: "center",
-    top: -70,
+    justifyContent: "flex-start",
+    top: 70,
     paddingHorizontal: 10
   },
   input: {
     borderColor: "grey",
     borderWidth: borderWidth,
     borderRadius: borderRadius,
+    marginVertical: 15,
     paddingHorizontal: 15,
     paddingVertical: 10
   },
   inputContainer: {
     borderBottomWidth: 0,
     marginVertical: 15,
-    marginHorizontal: 5
+    marginHorizontal: 15
   },
   tipContainer: {
     position: "absolute",

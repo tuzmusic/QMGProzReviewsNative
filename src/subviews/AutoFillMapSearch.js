@@ -41,7 +41,7 @@ export class AutoFillMapSearch extends Component<Props, State> {
   async componentDidMount() {
     // setTimeout(this.setSamplePrediction.bind(this), 100);
     if (__DEV__) this.setState({
-      address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+      // address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
     })
   }
 
@@ -87,11 +87,11 @@ export class AutoFillMapSearch extends Component<Props, State> {
       <View>
         <Input
           label={this.props.label}
+          placeholder="HELLO"
           ref={ref => (this.textInput = ref)}
           onChangeText={this.onChangeText}
           value={this.state.address}
           style={[styles.input, this.props.style]}
-          // containerStyle={styles.input}
           placeholderTextColor={"grey"}
           autoCorrect={false}
           clearButtonMode={"while-editing"}
@@ -116,7 +116,7 @@ const text = {
 };
 const styles = {
   input: {
-    fontSize: 16, padding: 5
+      fontSize: 16, padding: 5
   },
   prediction: {
     padding: 4,

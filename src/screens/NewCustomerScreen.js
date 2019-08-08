@@ -63,6 +63,7 @@ class NewCustomerScreen extends Component {
         {...props}
       />
     );
+    // Wrapping the AvoidingView in a ScrollView BREAKS the onPress for the address search. No clue why.
     return (
       <KeyboardAvoidingView
         style={{ flex: 1, justifyContent: "flex-start" }}
@@ -103,7 +104,6 @@ class NewCustomerScreen extends Component {
               </Text>
             )}
           </View>
-          <Text>{this.state.address}</Text>
         </SafeAreaView>
       </KeyboardAvoidingView>
     );
@@ -121,8 +121,7 @@ export default connect(
 )(NewCustomerScreen);
 
 const styles = {
-  rootContainer: { margin: 20, paddingBottom: 40 },
-  inputContainer: { padding: 5 },
+  inputContainer: { paddingVertical: 5 },
   leftButton: { width: "100%", marginBottom: 20, borderWidth: 1.5 },
   rightbutton: { width: "100%" },
   buttonsContainer: {
