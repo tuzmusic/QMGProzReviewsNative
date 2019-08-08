@@ -87,16 +87,6 @@ export type CUSTOMER_ADD_REVIEW_FAILURE = FailureActionType<
   "CUSTOMER_ADD_REVIEW_FAILURE"
 >;
 
-export type ADDRESS_SEARCH_START = {
-  type: "ADDRESS_SEARCH_START",
-  text: string
-};
-export type ADDRESS_SEARCH_SUCCESS = {
-  type: "ADDRESS_SEARCH_SUCCESS",
-  predictions: string[]
-};
-export type ADDRESS_SEARCH_FAILURE = FailureActionType<"ADDRESS_SEARCH_START">;
-
 type SuccessActionType<T: string, K: string, Y: mixed> = { type: T, [K]: Y };
 type FailureActionType<T: string> = { type: T, error: string };
 

@@ -79,9 +79,9 @@ export class SearchCustomerScreen extends Component {
 }
 
 export default connect(
-  ({ customerReducer: customers, searchResults }) => ({
-    customers,
-    searchResults
+  ({ customerReducer }) => ({
+    customers: customerReducer.customers,
+    searchResults: customerReducer.searchResults
   }),
   { searchCustomers }
 )(SearchCustomerScreen);

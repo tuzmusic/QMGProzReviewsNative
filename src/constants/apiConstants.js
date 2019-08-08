@@ -1,5 +1,8 @@
 // @flow
-export const ApiUrls: { [string]: string | (() => string) } = {};
+import { GoogleMapsApiKey } from "../../secrets";
+
+// export const ApiUrls: { [string]: string | (any => string) } = {};
+export const ApiUrls = {};
 
 const url = (...components: string[]): string => components.join("/");
 
@@ -16,3 +19,9 @@ ApiUrls.logout = url(baseUrl, "wp-json/auth/logout");
 ApiUrls.getNonce = url(jsonApiBase, "get_nonce");
 ApiUrls.createPostJsonApi = url(jsonApiBase, "posts", "create_post");
 ApiUrls.customer = url(customApiBase, "customers");
+
+/* GOOGLE MAPS API CALLS */
+ApiUrls.mapsSearch = (address: string) =>
+  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GoogleMapsApiKey}&input=${address}`;
+ApiUrls.mapsDetails = (placeId: string) =>
+  `https://maps.googleapis.com/maps/api/place/details/json?key=${GoogleMapsApiKey}&placeid=${placeId}&fields=geometry`;

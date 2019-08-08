@@ -94,6 +94,7 @@ class LoginView extends Component {
   }
 
   render() {
+    debugger;
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
@@ -144,10 +145,10 @@ class LoginView extends Component {
 }
 
 export default connect(
-  ({ authReducer: isLoading, user, error }) => ({
-    isLoading,
-    user,
-    error
+  ({ authReducer }) => ({
+    isLoading: authReducer.isLoading,
+    user: authReducer.user,
+    error: authReducer.error
   }),
   { login, register, cancelLogin, clearAuthError }
 )(LoginView);

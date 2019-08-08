@@ -26,20 +26,6 @@ export async function getCustomersApi(): Object {
 // #endregion
 
 // #region JSON API
-async function _createCustomerApi({ name, description, address }) {
-  // uses JSON API, but I can't figure out how to add the _job_location meta field
-  const nonce = await getNonce(nonces.createPost);
-  const params = {
-    title: name,
-    content: description,
-    type: Constants.postType,
-    _job_location: address, // <<-- this doesn't work. also doesn't work without the leading underscore. uh oh. (note that _job_location is part of the meta field)
-    status: Constants.postStatus,
-    nonce
-  };
-  const res = await axios.post(ApiUrls.createPost, params);
-  return res;
-}
 
 async function getNonce(type) {
   let params;

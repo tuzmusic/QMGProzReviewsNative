@@ -18,12 +18,12 @@ export default function customerReducer(
   state: CustomerState = initialState,
   action: CustomerAction
 ) {
-  // logActionTypes(action);
   switch (action.type) {
     case "GET_CUSTOMERS_SUCCESS":
       return { ...state, customers: action.customers };
     case "GET_CUSTOMERS_FAILURE":
       return { ...state, error: action.error };
+
     case "NEW_CUSTOMER_START":
       return { ...state, currentCustomer: null, error: null };
     case "NEW_CUSTOMER_SUCCESS":

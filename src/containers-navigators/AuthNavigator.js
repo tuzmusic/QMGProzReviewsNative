@@ -25,6 +25,6 @@ export class AuthNavigator extends Component {
 }
 
 export default connect(
-  ({ authReducer: user }) => ({ user }),
+  ({ authReducer }) => ({ user: authReducer.user }),
   { setUser }
 )(AuthNavigator);

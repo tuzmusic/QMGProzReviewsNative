@@ -62,9 +62,9 @@ class LoginForm extends Component {
   }
 }
 
-export default connect(({ authReducer: isLoading }) => ({ isLoading }))(
-  LoginForm
-);
+export default connect(({ authReducer }) => ({
+  isLoading: authReducer.isLoading
+}))(LoginForm);
 
 const theme = {
   Input: {
