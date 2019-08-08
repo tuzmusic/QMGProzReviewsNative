@@ -44,5 +44,3 @@ export default class Review {
     return new Review(json);
   }
 }
-
-// type OpenObject = { [key: string]: any };

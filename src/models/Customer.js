@@ -13,28 +13,29 @@ export default class Customer {
   description: string;
   location: { latitude: string, longitude: string };
   reviews: Review[];
-  avatarUrl: string;
+  avatarUrl: string; // almost definitely won't be showing a picture
 
   owner: Object; // should be User
 
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
+  // firstName: string;
+  // lastName: string;
+  // phone: string;
+  // email: string;
 
   constructor(obj: Object) {
     if (!obj) return;
     this.id = obj.id;
-    this.firstName = obj.firstName;
-    this.lastName = obj.lastName;
     this.address = obj.address;
     this.reviews = obj.reviews;
-    this.phone = obj.phone;
-    this.email = obj.email;
+
+    // this.firstName = obj.firstName;
+    // this.lastName = obj.lastName;
+    // this.phone = obj.phone;
+    // this.email = obj.email;
   }
-  get fullName(): string {
-    return [this.firstName, this.lastName].join(" ");
-  }
+  // get fullName(): string {
+  //   return [this.firstName, this.lastName].join(" ");
+  // }
   get averageRating(): number {
     const ratings = this.reviews.map(r => r.rating);
     return Sugar.Array.average(ratings);
@@ -51,6 +52,7 @@ export default class Customer {
     customer.owner = obj.owner; // should be transformed to user, TO DO
     customer.location = obj.location;
     customer.avatarUrl = obj.galleryImage.url;
+    customer.reviews = obj.reviews || []; // should be handled correctly, not an empty array placeholder TO DO
 
     return customer;
   }

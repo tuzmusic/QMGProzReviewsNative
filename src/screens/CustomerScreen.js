@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -15,12 +16,19 @@ import {
 } from "react-native-elements";
 import Customer from "../models/Customer";
 import Review from "../models/Review";
+import User from "../models/User";
 import ReviewView from "../subviews/ReviewView";
 import ReviewsList from "../subviews/ReviewsList";
 import NewReviewScreen from "./NewReviewScreen";
 import { addNewReview } from "../redux/action-creators/customerActionCreators";
+import * as Types from "../redux/CustomerTypes"
 
-export class CustomerScreen extends Component {
+type Props = { customer: Customer,
+  addNewReview: function, allCustomers: Types.CustomerCollection, user: User
+ };
+type State = { isReviewing: boolean };
+
+export class CustomerScreen extends Component<Props, State> {
   state = { isReviewing: false };
 
   async automate() {
@@ -30,7 +38,7 @@ export class CustomerScreen extends Component {
     // this.automate();
   }
 
-  createReview({ content, rating }) {
+  createReview({ content, rating }: Review) {
     const review = new Review({
       id: Math.floor(1000 + Math.random() * 9000),
       user: { firstName: "Sample", lastName: "User" },
@@ -43,13 +51,9 @@ export class CustomerScreen extends Component {
     this.setState({ isReviewing: false });
   }
 
-  startReview() {
-    this.setState({ isReviewing: true });
-  }
+  startReview = () => this.setState({ isReviewing: true })
 
-  cancelReview() {
-    this.setState({ isReviewing: false });
-  }
+  cancelReview = () => this.setState({ isReviewing: false })
 
   render() {
     const customer = this.props.allCustomers[this.props.customer.id];
@@ -94,10 +98,9 @@ export default connect(
 const CustomerInfo = ({ customer }) => {
   return (
     <View>
-      <Text h1>{customer.fullName}</Text>
+      <Text h1>{customer.name}</Text>
       <Text style={styles.detailText}>{customer.address}</Text>
-      <Text style={styles.detailText}>{customer.phone}</Text>
-      <Text style={styles.detailText}>{customer.email}</Text>
+      <Text style={styles.customerDescription}>{customer.description}</Text>
       {customer.reviews.length > 0 && (
         <View>
           <Text style={styles.detailText}>
@@ -122,11 +125,13 @@ const styles = {
     justifyContent: "flex-start",
     alignItems: "flex-start"
   },
+  container:{},
   divider: {
     backgroundColor: "black",
     height: 50
   },
   detailText: { paddingTop: 5 },
+  customerDescription: { marginTop: 25, textAlign:"center" },
   rating: { padding: 5, alignItems: "flex-start" }
 };
 
