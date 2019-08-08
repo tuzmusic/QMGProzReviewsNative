@@ -44,7 +44,7 @@ export class AutoFillMapSearch extends Component<Props, State> {
   async handleAddressChange() {
     try {
       const res = await axios.get(ApiUrls.mapsSearch(this.state.address));
-      const { predictions, error_message } = await res.json()
+      const { predictions, error_message } = res.data
       if (error_message) throw new Error(error_message);
       this.setState({ addressPredictions: predictions });
     } catch (err) {
@@ -60,7 +60,8 @@ export class AutoFillMapSearch extends Component<Props, State> {
   };
 
   async onPredictionSelect(prediction: Object) {
-    debugger
+    console.log("hello from onPredictionSelect");
+    
     this.textInput && this.textInput.blur();
     this.setState({ address: prediction.description, showPredictions: false });
     // propagate the address to the form's address field
@@ -72,7 +73,7 @@ export class AutoFillMapSearch extends Component<Props, State> {
         style={styles.prediction}
         key={prediction.id}
         onPress={() => {
-          debugger
+          console.log("hello from onPress");
           // this.props.beforeOnPress();
           this.onPredictionSelect(prediction);
         }}
@@ -90,7 +91,6 @@ export class AutoFillMapSearch extends Component<Props, State> {
           value={this.state.address}
           style={[styles.input, this.props.style]}
           // containerStyle={styles.input}
-          // placeholder={"Search..."}
           placeholderTextColor={"grey"}
           autoCorrect={false}
           clearButtonMode={"while-editing"}

@@ -63,6 +63,11 @@ class NewCustomerScreen extends Component {
         {...props}
       />
     );
+    return    <AutoFillMapSearch
+      label="Address"
+      containerStyle={styles.inputContainer}
+    />;
+
     return (
       <KeyboardAvoidingView
         style={{ flex: 1, justifyContent: "flex-start" }}
