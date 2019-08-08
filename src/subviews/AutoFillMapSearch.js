@@ -19,7 +19,8 @@ type Props = {
   style: Object,
   beforeOnPress: function,
   label: string,
-  searchAddress: string => Object
+  searchAddress: string => Object,
+  onPredictionSelect: string => void
 };
 // #endregion
 
@@ -32,13 +33,16 @@ export class AutoFillMapSearch extends Component<Props, State> {
   };
 
   async setSamplePrediction() {
-    await this.setState({ address: "88 n spring st 03301" });
-    await this.handleAddressChange();
-    // this.onPredictionSelect(this.state.addressPredictions[0]);
+    await this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" });
+    // await this.handleAddressChange();
+    // this.selectPrediction(this.state.addressPredictions[0]);
   }
 
   async componentDidMount() {
-    setTimeout(this.setSamplePrediction.bind(this), 100);
+    // setTimeout(this.setSamplePrediction.bind(this), 100);
+    if (__DEV__) this.setState({
+      address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+    })
   }
 
   async handleAddressChange() {
@@ -59,9 +63,7 @@ export class AutoFillMapSearch extends Component<Props, State> {
     );
   };
 
-  async onPredictionSelect(prediction: Object) {
-    console.log("hello from onPredictionSelect");
-    
+  async selectPrediction(prediction: Object) {
     this.textInput && this.textInput.blur();
     this.setState({ address: prediction.description, showPredictions: false });
     // propagate the address to the form's address field
@@ -73,9 +75,8 @@ export class AutoFillMapSearch extends Component<Props, State> {
         style={styles.prediction}
         key={prediction.id}
         onPress={() => {
-          console.log("hello from onPress");
-          // this.props.beforeOnPress();
-          this.onPredictionSelect(prediction);
+          this.props.onPredictionSelect(prediction.description);
+          this.selectPrediction(prediction);
         }}
       >
         <Text style={text.prediction}>{prediction.description}</Text>

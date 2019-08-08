@@ -63,11 +63,6 @@ class NewCustomerScreen extends Component {
         {...props}
       />
     );
-    return    <AutoFillMapSearch
-      label="Address"
-      containerStyle={styles.inputContainer}
-    />;
-
     return (
       <KeyboardAvoidingView
         style={{ flex: 1, justifyContent: "flex-start" }}
@@ -75,24 +70,19 @@ class NewCustomerScreen extends Component {
         behavior="position"
       >
         <SafeAreaView style={{ margin: 20 }}>
-          <ScrollView>
-            <Text h2>New Customer</Text>
-            <Input propName={"name"} />
-
-            <AutoFillMapSearch
-              label="Address"
-              containerStyle={styles.inputContainer}
-            />
-
-            <Input propName={"address"} />
-            <Input propName={"description"} />
-
-            {this.state.showReview && (
-              <NewReviewScreen showButtons={false} parent={this} />
-            )}
-
-            <View style={styles.buttonsContainer}>
-              {/* <Button
+          <Text h2>New Customer</Text>
+          <Input propName={"name"} />
+          <AutoFillMapSearch
+            label="Address"
+            containerStyle={styles.inputContainer}
+            onPredictionSelect={address => this.setState({ address })}
+          />
+          <Input propName={"description"} />
+          {this.state.showReview && (
+            <NewReviewScreen showButtons={false} parent={this} />
+          )}
+          <View style={styles.buttonsContainer}>
+            {/* <Button
                 type="outline"
                 buttonStyle={styles.leftButton}
                 title={
@@ -100,20 +90,20 @@ class NewCustomerScreen extends Component {
                 }
                 onPress={this.toggleReviewing.bind(this)}
               /> */}
-              <Button
-                buttonStyle={styles.rightButton}
-                title={"Save New Customer"}
-                loading={this.state.isLoading}
-                // loading={true}
-                onPress={this.saveCustomer.bind(this)}
-              />
-              {this.props.error && (
-                <Text style={styles.errorText}>
-                  Failed to save. Try again later.
-                </Text>
-              )}
-            </View>
-          </ScrollView>
+            <Button
+              buttonStyle={styles.rightButton}
+              title={"Save New Customer"}
+              loading={this.state.isLoading}
+              // loading={true}
+              onPress={this.saveCustomer.bind(this)}
+            />
+            {this.props.error && (
+              <Text style={styles.errorText}>
+                Failed to save. Try again later.
+              </Text>
+            )}
+          </View>
+          <Text>{this.state.address}</Text>
         </SafeAreaView>
       </KeyboardAvoidingView>
     );
