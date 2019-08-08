@@ -64,7 +64,7 @@ export class SearchCustomerScreen extends Component {
             placeholder="Enter address"
             inputStyle={styles.input}
             clearButtonMode={"while-editing"}
-            inputContainerStyle={{ width: full }}
+            inputContainerStyle={styles.inputContainer}
             onPredictionSelect={text => this.setState({ text })}
           />
           <Button
@@ -108,17 +108,20 @@ const styles = {
     paddingHorizontal: 10
   },
   input: {
-    borderColor: "grey",
-    borderWidth: borderWidth,
-    borderRadius: borderRadius,
-    marginVertical: 15,
-    paddingHorizontal: 15,
+    // I can't figure out how to get rid of the line under the input!
+    // So I'm getting rid of the round outline so that the line under looks like it's supposed to be there.
+    // borderColor: "grey",
+    // borderWidth: borderWidth,
+    // borderRadius: borderRadius,
+    // marginVertical: 15,
+    paddingHorizontal: 5,
     paddingVertical: 10
   },
   inputContainer: {
-    borderBottomWidth: 0,
+    width: "95%",
     marginVertical: 15,
-    marginHorizontal: 15
+    marginHorizontal: 15,
+    borderWidth: 0
   },
   tipContainer: {
     position: "absolute",

@@ -83,12 +83,10 @@ export class AutoFillMapSearch extends Component<Props, State> {
         <Text style={text.prediction}>{prediction.description}</Text>
       </TouchableOpacity>
     ));
-        // debugger
     return (
       <View>
         <Input
           label={this.props.label}
-          placeholder="HELLO"
           ref={ref => (this.textInput = ref)}
           onChangeText={this.onChangeText}
           value={this.state.address}
@@ -110,15 +108,9 @@ export class AutoFillMapSearch extends Component<Props, State> {
 }
 export default AutoFillMapSearch;
 
-const text = {
-  prediction: {
-    fontWeight: "100"
-  }
-};
+const text = { prediction: { fontWeight: "100" }};
 const styles = {
-  input: {
-      fontSize: 16, padding: 5
-  },
+  input: { fontSize: 16, padding: 5 },
   prediction: {
     padding: 4,
     paddingTop: 10,
