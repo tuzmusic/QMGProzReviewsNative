@@ -21,8 +21,10 @@ export function addNewReview(review: Review): Types.CUSTOMER_ADD_REVIEW_START {
   };
 }
 
-export function createCustomer(customer: Customer): Types.NEW_CUSTOMER_START {
-  return { type: "NEW_CUSTOMER_START", customer };
+export function createCustomer(
+  customerInfo: Types.CustomerApiPostPayload
+): Types.NEW_CUSTOMER_START {
+  return { type: "NEW_CUSTOMER_START", customerInfo };
 }
 
 export function getCustomers(): Types.GET_CUSTOMERS_START {

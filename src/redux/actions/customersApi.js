@@ -1,13 +1,7 @@
 // @flow
 import axios from "axios";
+import type { CustomerApiPostPayload } from "../CustomerTypes";
 import { ApiUrls } from "../../constants/apiConstants";
-
-export type CustomerApiPostPayload = {
-  name: string,
-  description: string,
-  address: string,
-  location?: { longitude: number, latitude: number }
-};
 
 // #region Custom API
 

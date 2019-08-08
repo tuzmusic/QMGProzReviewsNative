@@ -7,47 +7,17 @@ import type { Saga } from "redux-saga";
 import { createCustomerApi } from "./customersApi";
 
 export function* createCustomerSaga({
-  customer: cust
-}: CreateArgs): Saga<void> {
+  customerInfo
+}: Types.NEW_CUSTOMER_START): Saga<void> {
   let action: Types.NEW_CUSTOMER_SUCCESS | Types.NEW_CUSTOMER_FAILURE;
   try {
-    const data = yield call(createCustomerApi, Customer.toApi(cust));
-    debugger;
-    action = { type: "NEW_CUSTOMER_SUCCESS", customer: Customer.fromApi(data) };
-    // #region old implementation
-    // const { customer, error } = yield call(
-    //   createCustomerApi,
-    //   Customer.toApi(cust)
-    // );
-    // debugger;
-    // if (customer) {
-    //   yield put({
-    //     type: "NEW_CUSTOMER_SUCCESS",
-    //     customer: Customer.fromApi(customer)
-    //   });
-    // } else if (error) {
-    //   yield put({
-    //     type: "NEW_CUSTOMER_FAILURE",
-    //     error
-    //   });
-    // }
-    // #endregion
+    const data = yield call(createCustomerApi, customerInfo); // post request returns the new customer info
+    const customer = Customer.fromApi(data); // convert to customer object
+    action = { type: "NEW_CUSTOMER_SUCCESS", customer };
   } catch (error) {
-    const err = error;
-    console.log(error);
-    console.log(error.config);
-    debugger;
     action = { type: "NEW_CUSTOMER_FAILURE", error: error.message };
   }
   yield put(action);
-}
-
-export function _createCustomerApi(customer: Customer): Object {
-  // Create an API-friendly payload
-  const payload = Customer.toApi(customer);
-  // Post using the online API and return the result
-  // currently a dummy response (success)
-  return { customer: payload };
 }
 
 export function* searchSaga({ searchParams }: SearchArgs): Saga<void> {
@@ -70,7 +40,7 @@ export function searchApi({
   text,
   customers,
   searchField
-}: CustomerSearchParams): Object[] {
+}: Types.CustomerSearchParams): Object[] {
   // Perform search using online API
   const results = Object.values(customers).filter(
     (c: Object) => c[searchField] === text
@@ -117,6 +87,6 @@ export default function* customerSaga(): Saga<void> {
 
 type CreateArgs = { customer: Customer };
 type SearchArgs = {
-  searchParams: CustomerSearchParams
+  searchParams: Types.CustomerSearchParams
 };
 type AddReviewArgs = { review: Review };

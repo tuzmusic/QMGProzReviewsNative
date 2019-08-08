@@ -11,10 +11,39 @@ export type CustomerState = {
   +error: ?string
 };
 
+export type CustomerApiGetPayload = {
+  id: number,
+  title: string,
+  description: string,
+  address: string,
+  location: { latitude: string, longitude: string },
+  galleryImage: { url: string },
+  owner: {
+    id: ?number,
+    username: ?string,
+    email: ?string,
+    url: ?string,
+    registered: ?string,
+    firstName: ?string,
+    lastName: ?string,
+    description: ?string,
+    capabilities: ?Object,
+    avatar: string
+  }
+};
+
+export type CustomerApiPostPayload = {
+  name: string,
+  description: string,
+  address: string,
+  location?: { longitude: number, latitude: number },
+  review?: Review[]
+};
+
 export type CustomerSearchParams = {
   text: string,
   searchField: string,
-  customers?: CustomerCollection
+  customers: CustomerCollection
 };
 
 export type GET_CUSTOMERS_START = { type: "GET_CUSTOMERS_START" };
@@ -29,7 +58,7 @@ export type GET_CUSTOMERS_FAILURE = {
 
 export type NEW_CUSTOMER_START = {
   type: "NEW_CUSTOMER_START",
-  customer: Customer
+  customerInfo: CustomerApiPostPayload
 };
 export type NEW_CUSTOMER_SUCCESS = {
   type: "NEW_CUSTOMER_SUCCESS",

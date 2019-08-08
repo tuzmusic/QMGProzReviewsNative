@@ -1,6 +1,9 @@
 // @flow
 import Review from "./Review";
-import type { CustomerCollection } from "../redux/CustomerTypes";
+import type {
+  CustomerCollection,
+  CustomerApiPostPayload
+} from "../redux/CustomerTypes";
 import Sugar from "sugar";
 
 export default class Customer {
@@ -52,7 +55,9 @@ export default class Customer {
     return customer;
   }
 
-  static toApi(customer: Customer): CustomerApiPayload {
+  // This function may be completely unnecessary (if we're just creating a customer from a form)
+  // But we might need it for an update?
+  static toApi(customer: CustomerApiPostPayload): CustomerApiPostPayload {
     // TO-DO: Convert constructor properties to API properties
     return { ...customer };
   }
@@ -63,5 +68,3 @@ export default class Customer {
     return obj;
   }
 }
-
-type CustomerApiPayload = { [string]: any }; // TBD!
