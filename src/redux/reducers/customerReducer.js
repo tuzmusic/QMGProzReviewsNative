@@ -27,6 +27,7 @@ export default function customerReducer(
     case "NEW_CUSTOMER_START":
       return { ...state, currentCustomer: null, error: null };
     case "NEW_CUSTOMER_SUCCESS":
+      console.log(action.customer);
       return {
         ...state,
         currentCustomer: action.customer,
@@ -47,6 +48,7 @@ export default function customerReducer(
     case "NEW_CUSTOMER_FAILURE":
     case "CUSTOMER_SEARCH_FAILURE":
     case "CUSTOMER_ADD_REVIEW_FAILURE":
+      console.log("from reducer:", action.error);
       return { ...state, currentCustomer: null, error: action.error };
     default:
       return state;

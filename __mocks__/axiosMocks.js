@@ -10,7 +10,7 @@ import {
   customerIndexResponse,
   createCustomerResponse
 } from "./apiResponses/customers";
-const DELAY = 0;
+const DELAY = 500;
 
 export function setupMockAdapter({
   customers = false,

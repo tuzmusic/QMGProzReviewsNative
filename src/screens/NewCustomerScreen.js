@@ -11,7 +11,9 @@ class NewCustomerScreen extends Component {
   state = {
     name: "",
     description: "",
-    address: ""
+    address: "",
+    review: {},
+    isLoading: false
   };
 
   componentDidMount = () => {
@@ -34,18 +36,22 @@ class NewCustomerScreen extends Component {
     this.setState({ showReview: !this.state.showReview });
   }
 
-  async saveCustomer() {
-    const review = { ...this.state.review, user: this.props.user };
-    await this.props.createCustomer({
-      ...this.state,
-      reviews: this.state.showReview ? [review] : []
-    });
-    /* THIS DOESN'T WORK BECAUSE WE HAVEN'T REFRESHED THE STORE YET. I think. */
-    if ((customer = this.props.currentCustomer)) {
+  componentDidUpdate(prevProps, prevState) {
+    if ((customer = this.props.currentCustomer) && this.state.isLoading) {
+      this.setState({ isLoading: false });
       this.props.navigation.navigate("Customer", { customer });
-    } else if ((error = this.props.error)) {
-      console.log("Error saving new customer.");
     }
+    if (this.props.error && this.state.isLoading) {
+      this.setState({ isLoading: false });
+    }
+    return true;
+  }
+
+  async saveCustomer() {
+    this.setState({ isLoading: true });
+    const { review, isLoading, ...customer } = this.state;
+    customer.reviews = this.state.showReview ? [review] : [];
+    await this.props.createCustomer(customer);
   }
 
   render() {
@@ -66,22 +72,27 @@ class NewCustomerScreen extends Component {
               <NewReviewScreen showButtons={false} parent={this} />
             )}
 
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-around" }}
-            >
-              <Button
+            <View style={styles.buttonsContainer}>
+              {/* <Button
                 type="outline"
-                buttonStyle={styles.button}
+                buttonStyle={[styles.button, styles.leftButton]}
                 title={
                   !this.state.showReview ? "Add a review" : "Cancel review"
                 }
                 onPress={this.toggleReviewing.bind(this)}
-              />
+              /> */}
               <Button
-                buttonStyle={styles.button}
+                buttonStyle={[styles.button, styles.rightButton]}
                 title={"Save New Customer"}
+                loading={this.state.isLoading}
+                // loading={true}
                 onPress={this.saveCustomer.bind(this)}
               />
+              {this.props.error && (
+                <Text style={styles.errorText}>
+                  Failed to save. Try again later.
+                </Text>
+              )}
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -102,15 +113,23 @@ export default connect(
 
 const styles = {
   rootContainer: { margin: 20, paddingBottom: 40 },
-  button: {
-    marginVertical: 30,
+  button: {},
+  leftButton: { width: "100%", marginBottom: 20, borderWidth: 1.5 },
+  rightbutton: { width: "100%" },
+  buttonsContainer: {
     marginHorizontal: 40,
-    borderWidth: 1.5
+    marginVertical: 25
   },
   divider: {
     margin: 15,
     height: 4,
     borderRadius: 15,
     backgroundColor: "lightblue"
+  },
+  errorText: {
+    color: "red",
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 15
   }
 };
