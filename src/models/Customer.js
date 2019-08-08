@@ -11,7 +11,6 @@ export default class Customer {
   name: string;
   address: string;
   description: string;
-  location: { latitude: string, longitude: string };
   reviews: Review[];
   avatarUrl: string; // almost definitely won't be showing a picture
 
@@ -50,7 +49,6 @@ export default class Customer {
     customer.description = obj.description;
     customer.address = obj.address;
     customer.owner = obj.owner; // should be transformed to user, TO DO
-    customer.location = obj.location;
     customer.avatarUrl = obj.galleryImage.url;
     customer.reviews = obj.reviews || []; // should be handled correctly, not an empty array placeholder TO DO
 

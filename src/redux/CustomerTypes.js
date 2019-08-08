@@ -16,7 +16,6 @@ export type CustomerApiGetPayload = {
   title: string,
   description: string,
   address: string,
-  location: { latitude: string, longitude: string },
   galleryImage: { url: string },
   owner: {
     id: ?number,
@@ -36,7 +35,6 @@ export type CustomerApiPostPayload = {
   name: string,
   description: string,
   address: string,
-  location?: { longitude: number, latitude: number },
   review?: Review[]
 };
 

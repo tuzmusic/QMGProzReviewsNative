@@ -28,7 +28,7 @@ export const customerIndexResponse = [
     id: 15352,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
     location: {
       latitude: "",
       longitude: ""
@@ -53,7 +53,7 @@ export const customerIndexResponse = [
     id: 15351,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
     location: {
       latitude: "",
       longitude: ""
@@ -78,7 +78,7 @@ export const customerIndexResponse = [
     id: 15350,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
     location: {
       latitude: "",
       longitude: ""
@@ -103,7 +103,7 @@ export const customerIndexResponse = [
     id: 15349,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
     location: {
       latitude: "",
       longitude: ""
@@ -128,7 +128,7 @@ export const customerIndexResponse = [
     id: 15348,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
     location: {
       latitude: "",
       longitude: ""
@@ -830,7 +830,7 @@ export const createCustomerResponse = {
   id: 15347,
   title: "Mr. Google",
   description: "This dude knows everything!",
-  address: "1600 Amphitheatre Pkwy, Mountain View, CA, USA",
+  address: "1600 Amphitheatre Parkway, Mountain View, CA, USA",
   location: {
     // latitude: "37.32246610000001",
     // longitude: "-122.0444706"
