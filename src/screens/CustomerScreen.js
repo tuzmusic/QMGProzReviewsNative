@@ -88,9 +88,9 @@ export class CustomerScreen extends Component<Props, State> {
 }
 
 export default connect(
-  ({ customers, auth }) => ({
-    allCustomers: customers.customers,
-    user: auth.user.user
+  ({ customerReducer, authReducer }) => ({
+    allCustomers: customerReducer.customers,
+    user: authReducer.user.user
   }),
   { addNewReview }
 )(CustomerScreen);

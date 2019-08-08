@@ -62,8 +62,8 @@ class LoginForm extends Component {
   }
 }
 
-export default connect(state => ({
-  isLoading: state.auth.isLoading
+export default connect(({ authReducer }) => ({
+  isLoading: authReducer.isLoading
 }))(LoginForm);
 
 const theme = {

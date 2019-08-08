@@ -24,11 +24,7 @@ export class AuthNavigator extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { user: state.auth.user };
-};
-
 export default connect(
-  mapStateToProps,
+  ({ authReducer }) => ({ user: authReducer.user }),
   { setUser }
 )(AuthNavigator);
