@@ -6,6 +6,7 @@ import NewReviewScreen from "./NewReviewScreen";
 import { SafeAreaView } from "react-native";
 import ControlledInput from "../subviews/ControlledInput";
 import { createCustomer } from "../redux/action-creators/customerActionCreators";
+import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
 
 class NewCustomerScreen extends Component {
   state = {
@@ -23,8 +24,8 @@ class NewCustomerScreen extends Component {
           name: "Mr. Google",
           description: "This dude knows everything!",
           address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
-        },
-        this.saveCustomer
+        }
+        // this.saveCustomer
       );
   };
 
@@ -55,6 +56,13 @@ class NewCustomerScreen extends Component {
   }
 
   render() {
+    const Input = props => (
+      <ControlledInput
+        binder={this}
+        containerStyle={styles.inputContainer}
+        {...props}
+      />
+    );
     return (
       <KeyboardAvoidingView
         style={{ flex: 1, justifyContent: "flex-start" }}
@@ -64,9 +72,15 @@ class NewCustomerScreen extends Component {
         <SafeAreaView style={{ margin: 20 }}>
           <ScrollView>
             <Text h2>New Customer</Text>
-            <ControlledInput binder={this} propName={"name"} />
-            <ControlledInput binder={this} propName={"address"} />
-            <ControlledInput binder={this} propName={"description"} />
+            <Input propName={"name"} />
+
+            <AutoFillMapSearch
+              label="Address"
+              containerStyle={styles.inputContainer}
+            />
+
+            <Input propName={"address"} />
+            <Input propName={"description"} />
 
             {this.state.showReview && (
               <NewReviewScreen showButtons={false} parent={this} />
@@ -75,14 +89,14 @@ class NewCustomerScreen extends Component {
             <View style={styles.buttonsContainer}>
               {/* <Button
                 type="outline"
-                buttonStyle={[styles.button, styles.leftButton]}
+                buttonStyle={styles.leftButton}
                 title={
                   !this.state.showReview ? "Add a review" : "Cancel review"
                 }
                 onPress={this.toggleReviewing.bind(this)}
               /> */}
               <Button
-                buttonStyle={[styles.button, styles.rightButton]}
+                buttonStyle={styles.rightButton}
                 title={"Save New Customer"}
                 loading={this.state.isLoading}
                 // loading={true}
@@ -116,7 +130,7 @@ export default connect(
 
 const styles = {
   rootContainer: { margin: 20, paddingBottom: 40 },
-  button: {},
+  inputContainer: { padding: 5 },
   leftButton: { width: "100%", marginBottom: 20, borderWidth: 1.5 },
   rightbutton: { width: "100%" },
   buttonsContainer: {

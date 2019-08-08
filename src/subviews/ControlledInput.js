@@ -6,9 +6,9 @@ Sugar.extend();
 
 export default ControlledInput = ({ binder, ...props }) => {
   return (
-    <View style={[styles.inputContainer, props.containerStyle]}>
+    <View style={[props.containerStyle]}>
       <Input
-        style={[props.inputStyle, styles.input]}
+        style={[props.inputStyle]}
         placeholder={props.placeholder || props.propName.titleize()}
         label={
           binder.state[props.propName] &&

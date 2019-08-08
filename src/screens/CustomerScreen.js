@@ -56,7 +56,8 @@ export class CustomerScreen extends Component<Props, State> {
   cancelReview = () => this.setState({ isReviewing: false })
 
   render() {
-    const customer = this.props.allCustomers[this.props.customer.id];
+    // const customer = this.props.allCustomers[this.props.customer.id];
+    const customer = this.props.customer // provided by container
     return (
       <ThemeProvider theme={theme}>
         <KeyboardAvoidingView
@@ -88,7 +89,7 @@ export class CustomerScreen extends Component<Props, State> {
 }
 
 export default connect(
-  ({ customerReducer: { customers }, authReducer: user }) => ({
+  ({ customerReducer: customers, authReducer: user }) => ({
     allCustomers: customers,
     user: user.user
   }),
