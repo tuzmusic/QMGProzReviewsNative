@@ -37,7 +37,7 @@ export default function customerReducer(
       return { ...state, searchResults: action.results };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
       const review = action.review;
-      const id = review.customerId;
+      const id: number = review.customerId;
       const oldCustomer = state.customers[id];
       const newReviews = [...oldCustomer.reviews, review];
       const newCustomer = new Customer({ ...oldCustomer, reviews: newReviews });

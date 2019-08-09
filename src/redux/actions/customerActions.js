@@ -47,7 +47,7 @@ export function searchApi({
 
   // Perform search using online API
   const results = Object.values(customers).filter(
-    (c: Object) => c[searchField] === text
+    (c: Customer) => c[searchField] === text
   );
   return results;
 }

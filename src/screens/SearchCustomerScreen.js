@@ -19,20 +19,25 @@ export class SearchCustomerScreen extends Component {
     headerTitle: "Search"
   });
 
-  automate() {
-    this.setState({ text: "123 Main St" });
-    this.handleSearch();
-    // this.props.navigation.toggleDrawer();
-  }
+  automate = {
+    mapSearch: () =>
+      this.setState(
+        { text: "123 Mountain Road, Concord, NH, USA" },
+        this.handleSearch.bind(this)
+      ),
+    executeSearch: () => this.handleSearch(),
+    toggleDrawer: () => this.props.navigation.toggleDrawer()
+  };
 
   componentDidMount = () => {
-    // setTimeout(this.automate.bind(this), 100);
+    // setTimeout(this.automate.mapSearch.bind(this), 200);
   };
 
   state = {
     text: "55-57 59th St",
     text: "123 Main St",
     text: "",
+    text: "123 Mountain Road, Concord, NH, USA",
     searchField: "address"
   };
 
@@ -62,6 +67,7 @@ export class SearchCustomerScreen extends Component {
           <Text>What's your client's address?</Text>
           <AutoFillMapSearch
             placeholder="Enter address"
+            value={this.state.text}
             inputStyle={styles.input}
             clearButtonMode={"while-editing"}
             inputContainerStyle={styles.inputContainer}

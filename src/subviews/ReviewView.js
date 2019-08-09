@@ -4,7 +4,7 @@ import { Rating } from "react-native-elements";
 import User from "../models/User";
 
 export default ReviewView = ({ review }) => {
-  const user = new User(review.user);
+  const user = User.fromCustomApi(review.author);
   return (
     <View style={styles.reviewContainer}>
       <Rating

@@ -36,7 +36,7 @@ export function* loginSaga({ creds }) {
     if (error) {
       yield put({ type: "LOGIN_FAILURE", error });
     } else {
-      const newUser = User.fromApi(user.user);
+      const newUser = fromJsonApi(user.user);
       yield put({
         type: "LOGIN_SUCCESS",
         // user

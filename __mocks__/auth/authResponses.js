@@ -30,7 +30,7 @@ export const loginResponse = {
       "testuser1|1560779545|rpqX0H4wlBHdQ1ww6Raon3VqRFRJBEBJjB9WC3Y631t|8a12ba20e3c71c13f1d5bac2b7eced8a13bdb999c1e364ef0f9565a6c3ca5932",
     cookie_name: "wordpress_logged_in_de35f4716c74f1f80e223057c4a2042e",
     // this mock ideally should be a User where every property is explicitly set; not leaving to the fromApi implementation to be correct. or, whatever or something.
-    // user: User.fromApi({
+    // user: fromJsonApi({
     //   id: 6,
     //   username: "testuser1",
     //   nicename: "testuser1",
