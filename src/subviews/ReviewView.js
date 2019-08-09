@@ -24,13 +24,13 @@ export default ReviewView = ({ review }) => {
 
 const styles = {
   reviewContainer: {
-    paddingVertical: 10,
+    paddingVertical: 15,
     width: "100%",
     borderBottomWidth: 0.5,
     borderColor: "lightgrey"
   },
-  contentText: { fontStyle: "italic", fontSize: 18 },
+  contentText: { fontStyle: "italic", fontSize: 18, marginVertical: 15 },
   userText: { fontSize: 18, textAlign: "right" },
   dateText: { fontSize: 18, textAlign: "left" },
-  rating: { padding: 5, alignItems: "flex-start" }
+  rating: { paddingBottom: 5, alignItems: "flex-start" }
 };

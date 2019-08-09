@@ -6,25 +6,25 @@ export default ReviewsList = ({ customer, onStartReviewPress }) => {
   const { reviews } = customer;
   return (
     <View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: reviews.length ? 15 : 30
-        }}
-      >
+      <View style={styles.headerSection(reviews)}>
         <Text h2>Reviews</Text>
         <Button title="Leave a Review" onPress={onStartReviewPress} />
       </View>
-      {!reviews.length && (
-        <Text style={{ textAlign: "left", paddingTop: 20, paddingLeft: 5 }}>
-          No reviews yet.
-        </Text>
+      {!reviews.length ? (
+        <Text style={styles.noReviewsText}>No reviews yet.</Text>
+      ) : (
+        reviews.map((review, i) => <ReviewView review={review} key={i} />)
       )}
-      {reviews.map((review, i) => (
-        <ReviewView review={review} key={i} />
-      ))}
     </View>
   );
+};
+
+const styles = {
+  headerSection: reviews => ({
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: reviews.length ? 15 : 30
+  }),
+  noReviewsText: { textAlign: "left", paddingTop: 20, paddingLeft: 5 }
 };
