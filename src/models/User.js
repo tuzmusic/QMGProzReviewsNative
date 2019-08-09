@@ -8,18 +8,18 @@ export default class User {
   dateCreated: Sugar.Date;
   username: string;
   email: string;
+  url: ?string;
+  description: ?string;
+  avatarUrl: ?string;
 
   constructor(obj: Object) {
+    if (!obj) return;
     this.id = obj.id;
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
     this.email = obj.email;
     this.username = obj.username;
-    this.dateCreated = !obj.dateCreated
-      ? new Sugar.Date()
-      : obj.dateCreated.raw // should only happen if obj has already been created as a Review (I think?)
-      ? new Sugar.Date(obj.dateCreated.raw)
-      : new Sugar.Date(obj.dateCreated);
+    this.dateCreated = dateFrom(!obj.dateCreated);
   }
 
   get fullName(): string {
@@ -27,7 +27,7 @@ export default class User {
     return [this.firstName, this.lastName].join(" ");
   }
 
-  static fromApi(json: Object) {
+  static fromJsonApi(json: Object) {
     const userObject = {
       ...json,
       dateCreated: json.registered,
@@ -37,16 +37,28 @@ export default class User {
     // TO-DO: Convert API properties to constructor properties
     return new User(userObject);
   }
+
+  static fromCustomApi(obj: Object): User {
+    const user = new User();
+    user.id = obj.id;
+    user.username = obj.username;
+    user.email = obj.email;
+    user.url = obj.url;
+    user.dateCreated = dateFrom(obj.registered);
+    user.firstName = obj.firstName;
+    user.lastName = obj.lastName;
+    user.description = obj.description;
+    // user.capabilities = obj.capabilities;
+    user.avatarUrl = obj.avatar;
+
+    return user;
+  }
 }
 
-/* 
-type UserObject = {
-  id: number,
-  firstName: string,
-  lastName: string,
-  dateCreated?: string | { raw: string },
-  username: string,
-  email: string
-};
-// type OpenObject = { [key: string]: any };
- */
+function dateFrom(stringOrDate: Object | string) {
+  return !stringOrDate
+    ? new Sugar.Date()
+    : stringOrDate.raw // should only happen if obj has already been created (I think?)
+    ? new Sugar.Date(stringOrDate.raw)
+    : new Sugar.Date(stringOrDate);
+}

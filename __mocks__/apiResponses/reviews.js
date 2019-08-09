@@ -1,4 +1,4 @@
-export const postReviewResponse = {
+export const getReviewResponse = {
   id: "62",
   customer_id: "15272",
   date: "2019-07-12 18:46:47",

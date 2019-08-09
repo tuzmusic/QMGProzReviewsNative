@@ -34,8 +34,6 @@ export class SearchCustomerScreen extends Component {
   };
 
   state = {
-    text: "55-57 59th St",
-    text: "123 Main St",
     text: "",
     text: "123 Mountain Road, Concord, NH, USA",
     searchField: "address"
