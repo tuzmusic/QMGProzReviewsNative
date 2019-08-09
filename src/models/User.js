@@ -1,6 +1,6 @@
-// @flow
+\// @flow
 import Sugar from "sugar";
-
+import { dateFrom } from "../utility/functions";
 export default class User {
   id: number;
   firstName: string;
@@ -53,12 +53,4 @@ export default class User {
 
     return user;
   }
-}
-
-function dateFrom(stringOrDate: Object | string) {
-  return !stringOrDate
-    ? new Sugar.Date()
-    : stringOrDate.raw // should only happen if obj has already been created (I think?)
-    ? new Sugar.Date(stringOrDate.raw)
-    : new Sugar.Date(stringOrDate);
 }

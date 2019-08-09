@@ -4,7 +4,7 @@ import { Rating } from "react-native-elements";
 import User from "../models/User";
 
 export default ReviewView = ({ review }) => {
-  const user = User.fromCustomApi(review.author);
+  const author = User.fromCustomApi(review.author);
   return (
     <View style={styles.reviewContainer}>
       <Rating
@@ -15,7 +15,9 @@ export default ReviewView = ({ review }) => {
       />
       {<Text style={styles.dateText}>{review.timePast}</Text>}
       <Text style={styles.contentText}>{review.content}</Text>
-      <Text style={styles.userText}>– {user.fullName || user.username}</Text>
+      <Text style={styles.userText}>
+        – {author.fullName || author.username}
+      </Text>
     </View>
   );
 };

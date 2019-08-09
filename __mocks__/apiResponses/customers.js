@@ -19,14 +19,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -42,14 +43,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -65,14 +67,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -87,14 +90,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -110,14 +114,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -133,14 +138,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -156,14 +162,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -179,14 +186,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -202,14 +210,15 @@ export const customerIndexResponse = [
           review_stars: ["stars placeholder"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -225,14 +234,15 @@ export const customerIndexResponse = [
           review_stars: ["2"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -247,14 +257,15 @@ export const customerIndexResponse = [
           review_average: ["2"]
         },
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -267,14 +278,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -287,14 +299,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -307,14 +320,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -327,14 +341,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -347,14 +362,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -367,14 +383,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -387,14 +404,15 @@ export const customerIndexResponse = [
         rating: null,
         rating_info: [],
         author: {
-          id: null,
-          username: null,
-          email: null,
-          url: null,
-          registered: null,
-          firstName: null,
-          lastName: null,
-          description: null,
+              id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
           capabilities: null,
           avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
@@ -453,14 +471,15 @@ export const customerIndexResponse = [
       }
     ],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -476,14 +495,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -499,14 +519,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -522,14 +543,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -545,14 +567,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -568,14 +591,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -591,14 +615,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -614,14 +639,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -637,14 +663,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -660,14 +687,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
@@ -735,14 +763,15 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: null,
-      username: null,
-      email: null,
-      url: null,
-      registered: null,
-      firstName: null,
-      lastName: null,
-      description: null,
+          id: 11,
+    username: "tuzmusic",
+    email: "tuzmusic@gmail.com",
+    url: "",
+    registered: "2019-08-06 17:17:14",
+    firstName: "Jonathan",
+    lastName: "Tuzman",
+    description: "",
+
       capabilities: null,
       avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
