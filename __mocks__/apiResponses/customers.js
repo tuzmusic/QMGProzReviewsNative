@@ -9,207 +9,215 @@ export const customerIndexResponse = [
     },
     reviews: [
       {
+        id: "95",
+        customer_id: "15353",
+        content: "review posted at 1565368368",
+        date: "2019-08-09 16:33:04",
+        rating: "4",
+        rating_info: {
+          review_average: ["4"],
+          review_stars: ["stars placeholder"]
+        },
+        author: {
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
+        }
+      },
+      {
         id: "94",
         customer_id: "15353",
+        content: "1565302606",
         date: "2019-08-08 22:16:48",
         rating: "4",
         rating_info: {
           review_average: ["4"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "93",
         customer_id: "15353",
+        content: "1565301210",
         date: "2019-08-08 21:53:32",
         rating: "4",
         rating_info: {
           review_average: ["4"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "92",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:52:54",
         rating: null,
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "91",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:32:40",
         rating: "4",
         rating_info: {
           review_average: ["4"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "90",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:31:58",
         rating: "4",
         rating_info: {
           review_average: ["4"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "89",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:31:04",
         rating: "4",
         rating_info: {
           review_average: ["4"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "88",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:19:54",
         rating: "2",
         rating_info: {
           review_average: ["2"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "87",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:19:18",
         rating: "2",
         rating_info: {
           review_average: ["2"],
-          review_stars: ["review-stars-mock-placeholder"]
+          review_stars: ["stars placeholder"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "86",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:17:30",
         rating: "2",
         rating_info: {
@@ -217,202 +225,184 @@ export const customerIndexResponse = [
           review_stars: ["2"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "85",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:16:45",
         rating: "2",
         rating_info: {
           review_average: ["2"]
         },
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "84",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:15:50",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "83",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:10:57",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "82",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:09:43",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "81",
         customer_id: "15353",
+        content: "API Comment",
         date: "2019-08-08 21:03:19",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "80",
         customer_id: "15353",
+        content: "Hippy",
         date: "2019-08-08 20:57:19",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "79",
         customer_id: "15353",
+        content: "Hippy",
         date: "2019-08-08 20:56:16",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "78",
         customer_id: "15353",
+        content: "",
         date: "2019-08-08 20:43:29",
         rating: null,
         rating_info: [],
         author: {
-          id: 11,
-          username: "tuzmusic",
-          email: "tuzmusic@gmail.com",
-          url: "",
-          registered: "2019-08-06 17:17:14",
-          firstName: "Jonathan",
-          lastName: "Tuzman",
-          description: "",
-          capabilities: {
-            administrator: true
-          },
-          avatar:
-            "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g"
+          id: null,
+          username: null,
+          email: null,
+          url: null,
+          registered: null,
+          firstName: null,
+          lastName: null,
+          description: null,
+          capabilities: null,
+          avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g"
         }
       },
       {
         id: "76",
         customer_id: "15353",
+        content: "Hi",
         date: "2019-08-08 19:58:11",
         rating: null,
         rating_info: {
@@ -437,10 +427,11 @@ export const customerIndexResponse = [
       {
         id: "72",
         customer_id: "15353",
+        content: "Here's a rating from the website itself.",
         date: "2019-08-08 19:27:38",
         rating: "3",
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"],
+          review_stars: ["stars placeholder"],
           review_average: ["3"],
           rate: [""]
         },
@@ -462,19 +453,16 @@ export const customerIndexResponse = [
       }
     ],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -488,19 +476,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -514,19 +499,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -540,19 +522,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -566,19 +545,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -592,19 +568,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -618,19 +591,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -644,19 +614,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -670,19 +637,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -696,19 +660,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -774,19 +735,16 @@ export const customerIndexResponse = [
     },
     reviews: [],
     owner: {
-      id: 11,
-      username: "tuzmusic",
-      email: "tuzmusic@gmail.com",
-      url: "",
-      registered: "2019-08-06 17:17:14",
-      firstName: "Jonathan",
-      lastName: "Tuzman",
-      description: "",
-      capabilities: {
-        administrator: true
-      },
-      avatar:
-        "https://secure.gravatar.com/avatar/7a3141f59381a3f73564dfa63e849be0?s=96&d=mm&r=g",
+      id: null,
+      username: null,
+      email: null,
+      url: null,
+      registered: null,
+      firstName: null,
+      lastName: null,
+      description: null,
+      capabilities: null,
+      avatar: "https://secure.gravatar.com/avatar/?s=96&d=mm&r=g",
       NOTE: "owner assignment not implemented into mobile app yet"
     }
   },
@@ -1088,10 +1046,11 @@ export const customerIndexResponse = [
       {
         id: "68",
         customer_id: "15326",
+        content: "This is a review of listing #15326",
         date: "2019-08-06 21:44:40",
         rating: "5",
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"],
+          review_stars: ["stars placeholder"],
           review_average: ["5"],
           rate: [""]
         },
@@ -1254,10 +1213,11 @@ export const customerIndexResponse = [
       {
         id: "64",
         customer_id: "15273",
+        content: "Great Client...",
         date: "2019-07-12 19:08:30",
         rating: "5",
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"],
+          review_stars: ["stars placeholder"],
           review_average: ["5"],
           rate: [""]
         },
@@ -1280,10 +1240,11 @@ export const customerIndexResponse = [
       {
         id: "63",
         customer_id: "15273",
+        content: "okaz",
         date: "2019-07-12 19:02:34",
         rating: "2.6666666666667",
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"],
+          review_stars: ["stars placeholder"],
           review_average: ["2.6666666666667"],
           rate: [""]
         },
@@ -1334,10 +1295,11 @@ export const customerIndexResponse = [
       {
         id: "62",
         customer_id: "15272",
+        content: "Its Okay",
         date: "2019-07-12 18:46:47",
         rating: "5",
         rating_info: {
-          review_stars: ["review-stars-mock-placeholder"],
+          review_stars: ["stars placeholder"],
           review_average: ["5"],
           rate: [""]
         },
