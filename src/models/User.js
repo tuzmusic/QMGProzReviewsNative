@@ -1,4 +1,4 @@
-\// @flow
+// @flow
 import Sugar from "sugar";
 import { dateFrom } from "../utility/functions";
 export default class User {

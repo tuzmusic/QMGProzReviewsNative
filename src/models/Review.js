@@ -28,7 +28,6 @@ export default class Review {
 
   get timePast(): string {
     // console.log("inside timePast. date:", this.date);
-
     return this.date.relative().raw;
   }
 
@@ -41,6 +40,7 @@ export default class Review {
     review.customerId = Number(obj.customer_id);
     review.rating = Number(obj.rating);
     review.author = User.fromCustomApi(obj.author);
+    review.date = dateFrom(obj.date);
     return review;
   }
 }
