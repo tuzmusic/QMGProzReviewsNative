@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, FlatList } from "react-native";
 import { Text, Button } from "react-native-elements";
 
 export default ReviewsList = ({ customer, onStartReviewPress }) => {
@@ -13,7 +13,10 @@ export default ReviewsList = ({ customer, onStartReviewPress }) => {
       {!reviews.length ? (
         <Text style={styles.noReviewsText}>No reviews yet.</Text>
       ) : (
-        reviews.map((review, i) => <ReviewView review={review} key={i} />)
+        <FlatList
+          data={reviews}
+          renderItem={({ item }) => <ReviewView review={item} key={item.id} />}
+        />
       )}
     </View>
   );
