@@ -15,8 +15,8 @@ import {
 
 export default class NewReviewScreen extends Component {
   state = {
-    // content: "Here's another review.",
     content: " ",
+    content: __DEV__ ? "review posted at 1565652383" : "",
     rating: 4
   };
 

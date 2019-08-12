@@ -35,7 +35,7 @@ export class CustomerScreen extends Component<Props, State> {
     await setTimeout(this.startReview.bind(this), 10);
   }
   componentDidMount() {
-    // this.automate();
+    this.automate();
   }
 
   createReview({ content, rating }: Review) {
@@ -124,7 +124,7 @@ const styles = {
     margin: 20,
     marginBottom: 100,
     justifyContent: "flex-start",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   container:{},
   divider: {

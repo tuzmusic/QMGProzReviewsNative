@@ -10,6 +10,8 @@ import {
   customerIndexResponse,
   createCustomerResponse
 } from "./apiResponses/customers";
+import { postReviewResponse } from "./apiResponses/reviews";
+
 const DELAY = 500;
 
 export function setupMockAdapter({
@@ -23,7 +25,7 @@ export function setupMockAdapter({
   if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
-  mock.onAny().passThrough();
+  // mock.onAny().passThrough();
   return mock;
 }
 
@@ -103,11 +105,15 @@ export function setupCustomersMockAdapter(mock) {
     description: "This dude knows everything!",
     address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
     reviews: []
-    // location: {
-    //   latitude: "",
-    //   longitude: ""
-    // }
   };
   mock.onGet(ApiUrls.customers).reply(200, customerIndexResponse);
   mock.onPost(ApiUrls.customers, params).reply(200, createCustomerResponse);
+
+  const reviewParams = {
+    post_id: 15353,
+    content: "review posted at 1565652383",
+    user_id: 8,
+    rating: 4
+  };
+  mock.onPost(ApiUrls.reviews, reviewParams).reply(200, postReviewResponse);
 }

@@ -7,10 +7,6 @@ import customerSaga, {
   createCustomerSaga
 } from "../src/redux/actions/customerActions";
 import recordSaga from "../recordSaga";
-import type {
-  CustomerAction,
-  CustomerState
-} from "../src/redux/reducers/customerReducer";
 import Customer from "../src/models/Customer";
 
 describe("creating a customer", () => {
@@ -21,7 +17,7 @@ describe("creating a customer", () => {
     type: "NEW_CUSTOMER_START",
     customer: customerWithoutId
   };
-  const successAction: CustomerAction = {
+  const successAction: Object = {
     type: "NEW_CUSTOMER_SUCCESS",
     customer: customerWithId
   };

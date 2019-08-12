@@ -18,7 +18,9 @@ ApiUrls.logout = url(baseUrl, "wp-json/auth/logout");
 
 ApiUrls.getNonce = url(jsonApiBase, "get_nonce");
 ApiUrls.createPostJsonApi = url(jsonApiBase, "posts", "create_post");
+
 ApiUrls.customers = url(customApiBase, "customers");
+ApiUrls.reviews = url(customApiBase, "reviews");
 
 /* GOOGLE MAPS API CALLS */
 ApiUrls.mapsSearch = (address: string) =>
