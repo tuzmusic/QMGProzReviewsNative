@@ -7,7 +7,7 @@ export type CustomerCollection = { [number]: Customer };
 
 export type CustomerState = {
   +customers: ?CustomerCollection,
-  +addedItem: ?(Customer | Review),
+  +newItem: ?(Customer | Review),
   +searchResults: ?(Customer[]),
   +error: ?string,
   +isLoading: boolean

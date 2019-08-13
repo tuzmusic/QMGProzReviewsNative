@@ -31,12 +31,9 @@ type State = { isReviewing: boolean, isLoading: boolean };
 export class CustomerScreen extends Component<Props, State> {
   state = { isReviewing: false, isLoading: false };
 
-  async automate() {
-    await setTimeout(this.startReview.bind(this), 10);
-  }
-  componentDidMount() {
-    this.automate();
-  }
+  automate = async() => await setTimeout(this.startReview.bind(this), 10)
+
+  componentDidMount = () => this.automate()
 
   createReview({ content, rating }: Review) {
     const review = {

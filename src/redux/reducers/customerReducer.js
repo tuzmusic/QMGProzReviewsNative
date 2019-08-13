@@ -1,5 +1,9 @@
 // @flow
-import type { CustomerAction, CustomerState } from "../CustomerTypes";
+import type {
+  CustomerAction,
+  CustomerState,
+  CustomerCollection
+} from "../CustomerTypes";
 
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
@@ -9,7 +13,7 @@ const logActionTypes = action =>
 
 const initialState: CustomerState = {
   customers: null,
-  addedItem: null,
+  newItem: null,
   searchResults: null,
   error: null,
   isLoading: false
@@ -19,6 +23,7 @@ export default function customerReducer(
   state: CustomerState = initialState,
   action: CustomerAction
 ) {
+  let customers: CustomerCollection;
   switch (action.type) {
     case "GET_CUSTOMERS_SUCCESS":
       return { ...state, customers: action.customers, isLoading: false };
@@ -26,31 +31,31 @@ export default function customerReducer(
       return { ...state, error: action.error, isLoading: false };
     case "NEW_CUSTOMER_START":
     case "CUSTOMER_ADD_REVIEW_START":
-      return { ...state, addedItem: null, error: null, isLoading: true };
+      return { ...state, newItem: null, error: null, isLoading: true };
     case "NEW_CUSTOMER_SUCCESS":
-      console.log(action.customer);
+      customers = {
+        ...state.customers,
+        [action.customer.id]: action.customer
+      };
       return {
         ...state,
-        addedItem: action.customer,
-        customers: {
-          ...state.customers,
-          [action.customer.id]: action.customer,
-          isLoading: false
-        }
+        customers,
+        newItem: action.customer,
+        isLoading: false
       };
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results, isLoading: false };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
-      const review = action.review;
-      const id: number = review.customerId;
-      const oldCustomer = state.customers[id];
-      const newReviews = [review, ...oldCustomer.reviews];
-      const newCustomer = new Customer({ ...oldCustomer, reviews: newReviews });
-      const customers = { ...state.customers, [id]: newCustomer };
-      debugger;
+      const newCustomer = customerWithReview(action.review);
+      customers = {
+        ...state.customers,
+        [action.review.customerId]: newCustomer
+      };
+      // debugger;
       return {
         ...state,
         customers,
+        newItem: newCustomer,
         isLoading: false
       };
     case "NEW_CUSTOMER_FAILURE":
@@ -59,11 +64,19 @@ export default function customerReducer(
       console.log("from reducer:", action.error);
       return {
         ...state,
-        addedItem: null,
+        newItem: null,
         error: action.error,
         isLoading: false
       };
     default:
       return state;
+  }
+
+  function customerWithReview(review: Review): Customer {
+    const id: number = review.customerId;
+    const oldCustomer = state.customers[id];
+    const newReviews = [review, ...oldCustomer.reviews];
+    const newCustomer = new Customer({ ...oldCustomer, reviews: newReviews });
+    return newCustomer;
   }
 }

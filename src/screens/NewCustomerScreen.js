@@ -113,7 +113,7 @@ class NewCustomerScreen extends Component {
 export default connect(
   ({ customerReducer, authReducer }) => ({
     customers: customerReducer.customers,
-    currentCustomer: customerReducer.addedItem,
+    currentCustomer: customerReducer.newItem,
     error: customerReducer.error,
     user: authReducer.user.user
   }),
