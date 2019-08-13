@@ -75,10 +75,17 @@ export default function customerReducer(
   }
 
   function customerWithReview(review: Review): Customer {
-    const id: number = review.customerId;
-    const oldCustomer = state.customers[id];
-    const newReviews = [review, ...oldCustomer.reviews];
-    const newCustomer = new Customer({ ...oldCustomer, reviews: newReviews });
-    return newCustomer;
+    if (!state.customers) {
+      return new Customer();
+    } else {
+      const id: number = review.customerId;
+      const oldCustomer: Customer = state.customers[id];
+      const newReviews: Review[] = [review, ...oldCustomer.reviews];
+      return Object.assign(oldCustomer, { reviews: newReviews });
+    }
+
+    // const oldCustomer: Customer = state.customers[id];
+    // const newReviews: Review[] = [review, ...oldCustomer.reviews];
+    // return Object.assign(oldCustomer, { reviews: newReviews });
   }
 }
