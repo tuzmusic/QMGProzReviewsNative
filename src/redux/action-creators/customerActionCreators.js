@@ -1,6 +1,7 @@
 // @flow
 
 import * as Types from "../CustomerTypes";
+import * as RevTypes from "../ReviewTypes";
 
 import type Review from "../../models/Review";
 import type Customer from "../../models/Customer";
@@ -14,7 +15,9 @@ export function searchCustomers(
   };
 }
 
-export function addNewReview(review: Review): Types.CUSTOMER_ADD_REVIEW_START {
+export function addNewReview(
+  review: RevTypes.ReviewFormObject
+): Types.CUSTOMER_ADD_REVIEW_START {
   return {
     type: "CUSTOMER_ADD_REVIEW_START",
     review
@@ -29,4 +32,8 @@ export function createCustomer(
 
 export function getCustomers(): Types.GET_CUSTOMERS_START {
   return { type: "GET_CUSTOMERS_START" };
+}
+
+export function clearNewItem(): Types.CLEAR_NEW_ITEM {
+  return { type: "CLEAR_NEW_ITEM" };
 }

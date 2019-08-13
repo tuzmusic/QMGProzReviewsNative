@@ -87,6 +87,8 @@ export type CUSTOMER_ADD_REVIEW_FAILURE = FailureActionType<
   "CUSTOMER_ADD_REVIEW_FAILURE"
 >;
 
+export type CLEAR_NEW_ITEM = { type: "CLEAR_NEW_ITEM" };
+
 type SuccessActionType<T: string, K: string, Y: mixed> = { type: T, [K]: Y };
 type FailureActionType<T: string> = { type: T, error: string };
 
@@ -101,4 +103,5 @@ export type CustomerAction =
   | CUSTOMER_SEARCH_FAILURE
   | CUSTOMER_ADD_REVIEW_START
   | CUSTOMER_ADD_REVIEW_SUCCESS
-  | CUSTOMER_ADD_REVIEW_FAILURE;
+  | CUSTOMER_ADD_REVIEW_FAILURE
+  | CLEAR_NEW_ITEM;

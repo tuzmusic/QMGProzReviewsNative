@@ -20,60 +20,70 @@ import User from "../models/User";
 import ReviewView from "../subviews/ReviewView";
 import ReviewsList from "../subviews/ReviewsList";
 import NewReviewScreen from "./NewReviewScreen";
-import { addNewReview } from "../redux/action-creators/customerActionCreators";
+import { addNewReview, clearNewItem } from "../redux/action-creators/customerActionCreators";
 import * as Types from "../redux/CustomerTypes"
+import * as RevTypes from "../redux/ReviewTypes";
 
 type Props = { customer: Customer,
-  addNewReview: function, allCustomers: Types.CustomerCollection, user: User, isLoading: boolean
+  addNewReview: (RevTypes.ReviewFormObject)=>Object, 
+  allCustomers: Types.CustomerCollection, 
+  user: User, 
+  isLoading: boolean, 
+  newReview: Review, 
+  clearNewItem: function
  };
-type State = { isReviewing: boolean, isLoading: boolean };
+type State = { isReviewing: boolean };
 
 export class CustomerScreen extends Component<Props, State> {
-  state = { isReviewing: false, isLoading: false };
 
-  automate = async() => await setTimeout(this.startReview.bind(this), 10)
-
+  state = { isReviewing: false };
+  
+  automate = async () => await setTimeout(this.startReview.bind(this), 10);
+  
   componentDidMount = () => this.automate()
-
-  createReview({ content, rating }: Review) {
-    const review = {
-      customerId: this.props.customer.id, userId: this.props.user.id, content, rating,
-      userId: 8
+  
+  startReview = () => this.setState({ isReviewing: true });
+  cancelReview = () => this.setState({ isReviewing: false });
+  createReview({content, rating}: Review) {
+      const review = {
+        customerId: this.props.customer.id,
+        userId: this.props.user.id,
+        content, rating,
+        userId: 8,
+      };
+      this.props.addNewReview(review);
     }
-    this.props.addNewReview(review);
-    // this.setState({ isReviewing: false });
-  }
-
-  startReview = () => this.setState({ isReviewing: true })
-
-  cancelReview = () => this.setState({ isReviewing: false })
-
+    
+  componentDidUpdate = async () => {
+    if (this.props.newReview) {
+      this.props.clearNewItem()
+      this.setState({isReviewing: false})
+    }
+  };
+  
   render() {
-    // const customer = this.props.customer // provided by container
-    const customer = this.props.allCustomers[this.props.customer.id]
+    const customer = this.props.allCustomers[this.props.customer.id];
+    const listProps = {
+      customer,
+      onStartReviewPress: this.startReview.bind(this),
+    };
+    const formProps = {
+      onCancel: this.cancelReview.bind(this),
+      onSubmit: this.createReview.bind(this),
+      isLoading: this.props.isLoading,
+    };
+
     return (
       <ThemeProvider theme={theme}>
         <KeyboardAvoidingView
           style={styles.container}
           enabled
-          behavior="position"
-        >
+          behavior="position">
           <ScrollView contentContainerStyle={styles.scrollView}>
             <CustomerInfo customer={customer} />
-            {!this.state.isReviewing ? (
-              <View style={{ width: "100%" }}>
-                <ReviewsList
-                  customer={customer}
-                  onStartReviewPress={this.startReview.bind(this)}
-                />
-              </View>
-            ) : (
-              <NewReviewScreen
-                onCancel={this.cancelReview.bind(this)}
-                onSubmit={this.createReview.bind(this)}
-                isLoading={this.props.isLoading}
-              />
-            )}
+            {this.state.isReviewing
+              ? <NewReviewScreen {...formProps} />
+              : <Reviews {...listProps} />}
             <Divider style={{ height: 100 }} />
           </ScrollView>
         </KeyboardAvoidingView>
@@ -81,14 +91,14 @@ export class CustomerScreen extends Component<Props, State> {
     );
   }
 }
-
 export default connect(
   ({ customerReducer, authReducer }) => ({
     allCustomers: customerReducer.customers,
     user: authReducer.user.user,
-    isLoading: customerReducer.isLoading
+    isLoading: customerReducer.isLoading,
+    newReview: customerReducer.newItem
   }),
-  { addNewReview }
+  { addNewReview, clearNewItem }
 )(CustomerScreen);
 
 const CustomerInfo = ({ customer }) => {
@@ -113,6 +123,16 @@ const CustomerInfo = ({ customer }) => {
     </View>
   );
 };
+
+type ReviewsProps = {}
+
+const Reviews = props => 
+  <View style={{ width: "100%" }}>
+    <ReviewsList
+      customer={props.customer}
+      onStartReviewPress={props.onStartReviewPress}
+    />
+  </View>
 
 const styles = {
   scrollView: {

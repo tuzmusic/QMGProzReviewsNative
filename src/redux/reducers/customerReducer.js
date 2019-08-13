@@ -68,6 +68,8 @@ export default function customerReducer(
         error: action.error,
         isLoading: false
       };
+    case "CLEAR_NEW_ITEM":
+      return { ...state, newItem: null };
     default:
       return state;
   }
