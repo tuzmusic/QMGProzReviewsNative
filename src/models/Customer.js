@@ -51,7 +51,9 @@ export default class Customer {
     customer.owner = obj.owner; // should be transformed to user, TO DO
     customer.avatarUrl = obj.galleryImage.url;
     // customer.reviews = obj.reviews || []; // should be handled correctly, not an empty array placeholder TO DO
-    customer.reviews = obj.reviews.map(r => Review.fromApi(r));
+    customer.reviews = obj.reviews
+      ? obj.reviews.map(r => Review.fromApi(r))
+      : [];
 
     return customer;
   }

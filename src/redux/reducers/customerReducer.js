@@ -9,7 +9,7 @@ const logActionTypes = action =>
 
 const initialState: CustomerState = {
   customers: null,
-  currentCustomer: null,
+  addedItem: null,
   searchResults: null,
   error: null,
   isLoading: false
@@ -26,12 +26,12 @@ export default function customerReducer(
       return { ...state, error: action.error, isLoading: false };
     case "NEW_CUSTOMER_START":
     case "CUSTOMER_ADD_REVIEW_START":
-      return { ...state, currentCustomer: null, error: null, isLoading: true };
+      return { ...state, addedItem: null, error: null, isLoading: true };
     case "NEW_CUSTOMER_SUCCESS":
       console.log(action.customer);
       return {
         ...state,
-        currentCustomer: action.customer,
+        addedItem: action.customer,
         customers: {
           ...state.customers,
           [action.customer.id]: action.customer,
@@ -59,7 +59,7 @@ export default function customerReducer(
       console.log("from reducer:", action.error);
       return {
         ...state,
-        currentCustomer: null,
+        addedItem: null,
         error: action.error,
         isLoading: false
       };
