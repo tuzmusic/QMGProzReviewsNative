@@ -3,13 +3,13 @@ import type { CustomerAction, CustomerState } from "../CustomerTypes";
 
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
-import customers from "../../../__mocks__/customers";
-function logActionTypes(action) {
-  if (action.type[0] !== "@") console.log("CustomerReducer:", action.type);
-}
-const initialState = {
+
+const logActionTypes = action =>
+  action.type[0] !== "@" && console.log("CustomerReducer:", action.type);
+
+const initialState: CustomerState = {
   customers: null,
-  currentCustomer: customers[0],
+  currentCustomer: null,
   searchResults: null,
   error: null
 };
@@ -39,11 +39,13 @@ export default function customerReducer(
       const review = action.review;
       const id: number = review.customerId;
       const oldCustomer = state.customers[id];
-      const newReviews = [...oldCustomer.reviews, review];
+      const newReviews = [review, ...oldCustomer.reviews];
       const newCustomer = new Customer({ ...oldCustomer, reviews: newReviews });
+      const customers = { ...state.customers, [id]: newCustomer };
+      debugger;
       return {
         ...state,
-        customers: { ...state.customers, [id]: newCustomer }
+        customers
       };
     case "NEW_CUSTOMER_FAILURE":
     case "CUSTOMER_SEARCH_FAILURE":

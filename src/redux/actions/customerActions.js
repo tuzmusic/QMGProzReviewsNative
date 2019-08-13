@@ -1,10 +1,11 @@
 // @flow
 import * as Types from "../CustomerTypes";
+import * as RevTypes from "../ReviewTypes";
 import { call, put, select, takeEvery, all } from "redux-saga/effects";
 import Customer from "../../models/Customer";
 import Review from "../../models/Review";
 import type { Saga } from "redux-saga";
-import { createCustomerApi } from "./customersApi";
+import { createCustomerApi, createReviewApi } from "./customersApi";
 
 export function* createCustomerSaga({
   customerInfo
@@ -52,30 +53,30 @@ export function searchApi({
   return results;
 }
 
-export function* addReviewSaga({ review }: AddReviewArgs): Saga<void> {
+export function* addReviewSaga({
+  review
+}: Types.CUSTOMER_ADD_REVIEW_START): Saga<void> {
+  let action:
+    | Types.CUSTOMER_ADD_REVIEW_SUCCESS
+    | Types.CUSTOMER_ADD_REVIEW_FAILURE;
   try {
-    // TO-DO: Check API response for failure!
-    const newReview = addReviewApi(review);
-    yield put({
+    let newReviewRequest: RevTypes.ReviewPostRequestObject;
+    let newReviewResponse: RevTypes.ReviewPostResponseObject;
+    let newReview: Review;
+    newReviewRequest = Review.toApi(review);
+    newReviewResponse = yield call(createReviewApi, newReviewRequest);
+    newReview = Review.fromApi(newReviewResponse);
+    action = {
       type: "CUSTOMER_ADD_REVIEW_SUCCESS",
       review: newReview
-    });
+    };
   } catch (error) {
-    yield put({
+    action = {
       type: "CUSTOMER_ADD_REVIEW_FAILURE",
-      error
-    });
+      error: error.message
+    };
   }
-}
-
-export function addReviewApi(review: Review) {
-  // Update the customer (with the new review) using online API
-  // Or possibly create the review using online API
-
-  const result = review;
-  // The API should return the customer (or the review, which would be dealt with differently)
-  // Convert API result to Customer object
-  return Review.fromApi(result);
+  yield put(action);
 }
 
 import { getCustomersSaga } from "./customerActions2";

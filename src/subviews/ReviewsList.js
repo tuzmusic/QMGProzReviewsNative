@@ -15,7 +15,9 @@ export default ReviewsList = ({ customer, onStartReviewPress }) => {
       ) : (
         <FlatList
           data={reviews}
-          renderItem={({ item }) => <ReviewView review={item} key={item.id} />}
+          renderItem={({ item }) => (
+            <ReviewView review={item} key={String(item.id)} />
+          )}
         />
       )}
     </View>

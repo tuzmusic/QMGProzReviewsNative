@@ -1,6 +1,10 @@
 // @flow
 import axios from "axios";
 import type { CustomerApiPostPayload } from "../CustomerTypes";
+import type {
+  ReviewPostResponseObject,
+  ReviewPostRequestObject
+} from "../ReviewTypes";
 import { ApiUrls } from "../../constants/apiConstants";
 
 // #region Custom API
@@ -20,6 +24,13 @@ export async function getCustomersApi(): Object {
     const err = error;
     console.log(err);
   }
+}
+
+export async function createReviewApi(
+  review: ReviewPostRequestObject
+): ReviewPostResponseObject {
+  const res = await axios.post(ApiUrls.reviews, review);
+  return res.data;
 }
 
 // #endregion

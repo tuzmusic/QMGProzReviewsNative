@@ -1,5 +1,10 @@
 // @flow
 import User from "./User";
+import {
+  ReviewFormObject,
+  ReviewPostRequestObject,
+  ReviewPostResponseObject
+} from "../redux/ReviewTypes";
 import Sugar from "sugar";
 import { dateFrom } from "../utility/functions";
 
@@ -31,7 +36,7 @@ export default class Review {
     return this.date.relative().raw;
   }
 
-  static fromApi(obj: ReviewGetApiObject): Review {
+  static fromApi(obj: ReviewPostResponseObject): Review {
     // TO-DO: Convert API properties to constructor properties
     const review = new Review();
 
@@ -43,18 +48,13 @@ export default class Review {
     review.date = dateFrom(obj.date);
     return review;
   }
-}
 
-type ReviewGetApiObject = {
-  id: string,
-  customer_id: string,
-  content: string,
-  date: string,
-  rating: string,
-  rating_info: {
-    review_stars: string[],
-    review_average: string[],
-    rate: string[]
-  },
-  author: User
-};
+  static toApi(obj: ReviewFormObject): ReviewPostRequestObject {
+    return {
+      post_id: obj.customerId,
+      user_id: obj.userId,
+      rating: obj.rating,
+      content: obj.content
+    };
+  }
+}

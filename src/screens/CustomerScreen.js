@@ -39,14 +39,10 @@ export class CustomerScreen extends Component<Props, State> {
   }
 
   createReview({ content, rating }: Review) {
-    const review = new Review({
-      id: Math.floor(1000 + Math.random() * 9000),
-      user: { firstName: "Sample", lastName: "User" },
-      user: this.props.user,
-      customerId: this.props.customer.id,
-      content,
-      rating
-    });
+    const review = {
+      customerId: this.props.customer.id, userId: this.props.user.id, content, rating,
+      userId: 8
+    }
     this.props.addNewReview(review);
     this.setState({ isReviewing: false });
   }
@@ -56,7 +52,6 @@ export class CustomerScreen extends Component<Props, State> {
   cancelReview = () => this.setState({ isReviewing: false })
 
   render() {
-    // const customer = this.props.allCustomers[this.props.customer.id];
     const customer = this.props.customer // provided by container
     return (
       <ThemeProvider theme={theme}>

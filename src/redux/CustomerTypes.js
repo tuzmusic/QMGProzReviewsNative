@@ -1,6 +1,7 @@
 // @flow
 import Customer from "../models/Customer";
 import Review from "../models/Review";
+import type { ReviewFormObject } from "./ReviewTypes";
 
 export type CustomerCollection = { [number]: Customer };
 
@@ -75,7 +76,7 @@ export type CUSTOMER_SEARCH_FAILURE = FailureActionType<
 
 export type CUSTOMER_ADD_REVIEW_START = {
   type: "CUSTOMER_ADD_REVIEW_START",
-  review: Review
+  review: ReviewFormObject
 };
 export type CUSTOMER_ADD_REVIEW_SUCCESS = {
   type: "CUSTOMER_ADD_REVIEW_SUCCESS",
