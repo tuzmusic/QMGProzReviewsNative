@@ -45,12 +45,13 @@ export class CustomerScreen extends Component<Props, State> {
   startReview = () => this.setState({ isReviewing: true });
   cancelReview = () => this.setState({ isReviewing: false });
   createReview({content, rating}: Review) {
+      if (!content) return
       const review = {
         customerId: this.props.customer.id,
         userId: this.props.user.id,
         content, rating,
-        userId: 8,
       };
+      if (__DEV__) review.userId = 8
       this.props.addNewReview(review);
     }
     
@@ -123,8 +124,6 @@ const CustomerInfo = ({ customer }) => {
     </View>
   );
 };
-
-type ReviewsProps = {}
 
 const Reviews = props => 
   <View style={{ width: "100%" }}>

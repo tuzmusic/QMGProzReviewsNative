@@ -15,24 +15,29 @@ import {
 
 export default class NewReviewScreen extends Component {
   state = {
-    content: " ",
-    content: __DEV__ ? "review posted at 1565652383" : "",
-    rating: 4
+    review: {
+      content: "",
+      content: __DEV__ ? "review posted at 1565652383" : "",
+      rating: 4
+    }
   };
 
   static defaultProps = {
     showButtons: true
   };
   render() {
+    // if (this.state.content === "") debugger;
     const context = this.props.parent || this;
     return (
       <View style={styles.container}>
         <View style={styles.ratingContainer}>
           <Text style={styles.ratingLabel}>Rating</Text>
           <AirbnbRating
-            defaultRating={context.state.rating || context.state.review.rating}
+            defaultRating={context.state.review.rating}
             showRating={false}
-            onFinishRating={rating => context.setState({ rating })}
+            onFinishRating={rating =>
+              context.setState({ review: { ...this.state.review, rating } })
+            }
             imageSize={10}
           />
         </View>
@@ -42,8 +47,10 @@ export default class NewReviewScreen extends Component {
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
           placeholder={"Enter your review"}
-          value={context.state.content || context.state.review.content}
-          onChangeText={content => context.setState({ content })}
+          value={context.state.review.content}
+          onChangeText={content =>
+            context.setState({ review: { ...this.state.review, content } })
+          }
           multiline={true}
           textAlignVertical={"top"}
           numberOfLines={100}
@@ -53,7 +60,7 @@ export default class NewReviewScreen extends Component {
           <View style={styles.buttonsContainer}>
             <Button
               title="Submit"
-              onPress={() => context.props.onSubmit(this.state)}
+              onPress={() => context.props.onSubmit(this.state.review)}
               style={{ marginBottom: 10 }}
               loading={this.props.isLoading}
             />
