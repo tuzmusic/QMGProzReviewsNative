@@ -54,6 +54,8 @@ export default class NewReviewScreen extends Component {
             <Button
               title="Submit"
               onPress={() => context.props.onSubmit(this.state)}
+              style={{ marginBottom: 10 }}
+              loading={this.props.isLoading}
             />
             <Button
               title="Cancel"
@@ -78,9 +80,9 @@ const styles = {
     marginTop: 30
   },
   buttonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "50%"
+    // flexDirection: "row",
+    // justifyContent: "space-between",
+    width: "70%"
   },
   input: {
     borderColor: "grey",

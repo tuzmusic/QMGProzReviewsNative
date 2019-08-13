@@ -7,7 +7,7 @@ export default ReviewsList = ({ customer, onStartReviewPress }) => {
   return (
     <View>
       <View style={styles.headerSection(reviews)}>
-        <Text h2>Reviews</Text>
+        <Text h4>Reviews ({reviews.length})</Text>
         <Button title="Leave a Review" onPress={onStartReviewPress} />
       </View>
       {!reviews.length ? (

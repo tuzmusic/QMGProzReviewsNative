@@ -24,12 +24,12 @@ import { addNewReview } from "../redux/action-creators/customerActionCreators";
 import * as Types from "../redux/CustomerTypes"
 
 type Props = { customer: Customer,
-  addNewReview: function, allCustomers: Types.CustomerCollection, user: User
+  addNewReview: function, allCustomers: Types.CustomerCollection, user: User, isLoading: boolean
  };
-type State = { isReviewing: boolean };
+type State = { isReviewing: boolean, isLoading: boolean };
 
 export class CustomerScreen extends Component<Props, State> {
-  state = { isReviewing: false };
+  state = { isReviewing: false, isLoading: false };
 
   async automate() {
     await setTimeout(this.startReview.bind(this), 10);
@@ -44,7 +44,7 @@ export class CustomerScreen extends Component<Props, State> {
       userId: 8
     }
     this.props.addNewReview(review);
-    this.setState({ isReviewing: false });
+    // this.setState({ isReviewing: false });
   }
 
   startReview = () => this.setState({ isReviewing: true })
@@ -52,7 +52,8 @@ export class CustomerScreen extends Component<Props, State> {
   cancelReview = () => this.setState({ isReviewing: false })
 
   render() {
-    const customer = this.props.customer // provided by container
+    // const customer = this.props.customer // provided by container
+    const customer = this.props.allCustomers[this.props.customer.id]
     return (
       <ThemeProvider theme={theme}>
         <KeyboardAvoidingView
@@ -73,6 +74,7 @@ export class CustomerScreen extends Component<Props, State> {
               <NewReviewScreen
                 onCancel={this.cancelReview.bind(this)}
                 onSubmit={this.createReview.bind(this)}
+                isLoading={this.props.isLoading}
               />
             )}
             <Divider style={{ height: 100 }} />
@@ -86,7 +88,8 @@ export class CustomerScreen extends Component<Props, State> {
 export default connect(
   ({ customerReducer, authReducer }) => ({
     allCustomers: customerReducer.customers,
-    user: authReducer.user.user
+    user: authReducer.user.user,
+    isLoading: customerReducer.isLoading
   }),
   { addNewReview }
 )(CustomerScreen);

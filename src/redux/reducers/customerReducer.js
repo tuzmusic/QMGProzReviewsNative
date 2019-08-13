@@ -11,7 +11,8 @@ const initialState: CustomerState = {
   customers: null,
   currentCustomer: null,
   searchResults: null,
-  error: null
+  error: null,
+  isLoading: false
 };
 
 export default function customerReducer(
@@ -20,21 +21,25 @@ export default function customerReducer(
 ) {
   switch (action.type) {
     case "GET_CUSTOMERS_SUCCESS":
-      return { ...state, customers: action.customers };
+      return { ...state, customers: action.customers, isLoading: false };
     case "GET_CUSTOMERS_FAILURE":
-      return { ...state, error: action.error };
-
+      return { ...state, error: action.error, isLoading: false };
     case "NEW_CUSTOMER_START":
-      return { ...state, currentCustomer: null, error: null };
+    case "CUSTOMER_ADD_REVIEW_START":
+      return { ...state, currentCustomer: null, error: null, isLoading: true };
     case "NEW_CUSTOMER_SUCCESS":
       console.log(action.customer);
       return {
         ...state,
         currentCustomer: action.customer,
-        customers: { ...state.customers, [action.customer.id]: action.customer }
+        customers: {
+          ...state.customers,
+          [action.customer.id]: action.customer,
+          isLoading: false
+        }
       };
     case "CUSTOMER_SEARCH_SUCCESS":
-      return { ...state, searchResults: action.results };
+      return { ...state, searchResults: action.results, isLoading: false };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
       const review = action.review;
       const id: number = review.customerId;
@@ -45,13 +50,19 @@ export default function customerReducer(
       debugger;
       return {
         ...state,
-        customers
+        customers,
+        isLoading: false
       };
     case "NEW_CUSTOMER_FAILURE":
     case "CUSTOMER_SEARCH_FAILURE":
     case "CUSTOMER_ADD_REVIEW_FAILURE":
       console.log("from reducer:", action.error);
-      return { ...state, currentCustomer: null, error: action.error };
+      return {
+        ...state,
+        currentCustomer: null,
+        error: action.error,
+        isLoading: false
+      };
     default:
       return state;
   }

@@ -9,7 +9,8 @@ export type CustomerState = {
   +customers: ?CustomerCollection,
   +currentCustomer: ?Customer,
   +searchResults: ?(Customer[]),
-  +error: ?string
+  +error: ?string,
+  +isLoading: boolean
 };
 
 export type CustomerApiGetPayload = {
@@ -98,5 +99,6 @@ export type CustomerAction =
   | NEW_CUSTOMER_FAILURE
   | CUSTOMER_SEARCH_SUCCESS
   | CUSTOMER_SEARCH_FAILURE
+  | CUSTOMER_ADD_REVIEW_START
   | CUSTOMER_ADD_REVIEW_SUCCESS
   | CUSTOMER_ADD_REVIEW_FAILURE;
