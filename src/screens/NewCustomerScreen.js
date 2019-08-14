@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+// @flow
+import * as React from "react";
 import { connect } from "react-redux";
 import { View, KeyboardAvoidingView, ScrollView } from "react-native";
 import {
@@ -14,13 +15,24 @@ import ControlledInput from "../subviews/ControlledInput";
 import { createCustomer } from "../redux/action-creators/customerActionCreators";
 import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
 
-const automate = {
-  testDescriptionField() {
-    this.descriptionField.focus();
-  }
+type Props = {};
+type State = {
+  name: string,
+  description: string,
+  address: string,
+  isLoading: boolean,
+  error: string
 };
+export class NewCustomerScreen extends React.Component<Props, State> {
+  descriptionField: React.ElementRef<Input>;
+  nameField: React.ElementRef<Input>;
 
-export class NewCustomerScreen extends Component {
+  automate = {
+    testDescriptionField() {
+      this.descriptionField.focus();
+    }
+  };
+
   state = {
     name: "",
     description: "",
@@ -36,7 +48,7 @@ export class NewCustomerScreen extends Component {
   };
   componentDidMount = () => {
     if (__DEV__) {
-      if (this.descriptionField) automate.testDescriptionField.call(this);
+      if (this.descriptionField) this.automate.testDescriptionField.call(this);
       // this.setState(this.sampleState);
     }
   };
@@ -47,7 +59,7 @@ export class NewCustomerScreen extends Component {
   saveCustomer() {
     console.log(this.state);
   }
-  selectPrediction(address) {
+  selectPrediction(address: string) {
     // console.log(address);
     this.setState({ address });
   }

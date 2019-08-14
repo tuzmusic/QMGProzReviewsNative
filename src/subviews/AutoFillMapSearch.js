@@ -16,10 +16,10 @@ type State = {
 };
 
 type Props = {
-  style: Object,
-  beforeOnPress: function,
-  label: string,
-  searchAddress: string => Object,
+  style?: Object,
+  beforeOnPress?: function,
+  label?: string,
+  searchAddress?: string => Object,
   onPredictionSelect: string => void
 };
 // #endregion
