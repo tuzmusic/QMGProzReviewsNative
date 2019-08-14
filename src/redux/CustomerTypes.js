@@ -35,8 +35,8 @@ export type CustomerApiGetPayload = {
 
 export type CustomerApiPostPayload = {
   name: string,
-  description: string,
   address: string,
+  description?: string,
   review?: Review[]
 };
 

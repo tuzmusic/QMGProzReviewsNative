@@ -14,14 +14,23 @@ import { SafeAreaView } from "react-native";
 import ControlledInput from "../subviews/ControlledInput";
 import { createCustomer } from "../redux/action-creators/customerActionCreators";
 import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
+import Customer from "../models/Customer";
+import User from "../models/User";
+import * as Types from "../redux/CustomerTypes";
 
-type Props = {};
+type Props = {
+  currentCustomer: Customer,
+  error: string,
+  user: User,
+  createCustomer: Types.CustomerApiPostPayload => void
+};
 type State = {
   name: string,
-  description: string,
   address: string,
   isLoading: boolean,
-  error: string
+  errors: string[],
+  description?: string,
+  review?: Object
 };
 export class NewCustomerScreen extends React.Component<Props, State> {
   descriptionField: React.ElementRef<Input>;
@@ -35,11 +44,11 @@ export class NewCustomerScreen extends React.Component<Props, State> {
 
   state = {
     name: "",
-    description: "",
     address: "",
-    // review: {},
     isLoading: false,
-    error: ""
+    errors: []
+    // description: "",
+    // review: {},
   };
   sampleState = {
     name: "Mr. Google",
@@ -56,14 +65,35 @@ export class NewCustomerScreen extends React.Component<Props, State> {
   static navigationOptions = {
     drawerLabel: "New Customer"
   };
-  saveCustomer() {
+
+  async fieldsValid(): Promise<boolean> {
+    let isValid = true;
+    if (!this.state.name) {
+      isValid = false;
+      await this.setState({
+        errors: this.state.errors.concat("Please enter a name.")
+      });
+    }
+    if (!this.state.address) {
+      isValid = false;
+      await this.setState({
+        errors: this.state.errors.concat("Please enter an address.")
+      });
+    }
+    return isValid;
+  }
+  async saveCustomer() {
     console.log(this.state);
+    if (!(await this.fieldsValid())) return;
+    await this.props.createCustomer(this.state);
   }
-  selectPrediction(address: string) {
-    // console.log(address);
-    this.setState({ address });
-  }
+
+  selectPrediction = (address: string) => this.setState({ address });
+
   render() {
+    const inputProps = {
+      onFocus: () => this.setState({ errors: [] })
+    };
     return (
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
@@ -73,6 +103,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
       >
         <Text h2>New Customer</Text>
         <Input
+          {...inputProps}
           value={this.state.name}
           clearButtonMode={"while-editing"}
           ref={x => (this.nameField = x)}
@@ -81,6 +112,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
           containerStyle={styles.formItem}
         />
         <AutoFillMapSearch
+          {...inputProps}
           placeholder="Address"
           onPredictionSelect={this.selectPrediction.bind(this)}
           _submitForm={this.saveCustomer.bind(this)}
@@ -97,6 +129,9 @@ export class NewCustomerScreen extends React.Component<Props, State> {
           onPress={this.saveCustomer.bind(this)}
           containerStyle={[styles.formItem, styles.buttonContainer]}
         />
+        <Text style={styles.errorText}>
+          {this.state.errors.concat(this.props.error).join("\n")}
+        </Text>
         <Divider style={{ height: 0 }} />
       </KeyboardAvoidingView>
     );
@@ -107,13 +142,13 @@ const styles = {
   keyboardAvoidingView: {
     flex: 1,
     justifyContent: "flex-start",
-    borderWidth: 5,
+    // borderWidth: 5,
     padding: 20
   },
   formItem: { marginTop: 25 },
   buttonContainer: {
     marginHorizontal: 40,
-    marginVertical: 25
+    marginTop: 25
   },
   errorText: {
     color: "red",
@@ -125,7 +160,6 @@ const styles = {
 
 export default connect(
   ({ customerReducer, authReducer }) => ({
-    customers: customerReducer.customers,
     currentCustomer: customerReducer.newItem,
     error: customerReducer.error,
     user: authReducer.user.user
