@@ -7,7 +7,7 @@ import {
   login,
   register,
   cancelLogin,
-  clearAuthError
+  clearError
 } from "../redux/actions/authActions";
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
@@ -38,7 +38,7 @@ class LoginView extends Component {
     if (!password) errors.push("Password required");
 
     if (errors.length) {
-      this.props.clearAuthError();
+      this.props.clearError();
       return this.setState({ errors });
     }
 
@@ -63,7 +63,7 @@ class LoginView extends Component {
     if (password && passwordConfirmation && password !== passwordConfirmation)
       errors.push("Passwords don't match");
 
-    this.props.clearAuthError();
+    this.props.clearError();
     this.setState({ errors });
     if (errors.length) return;
     await this.props.register({ username, email, password });
@@ -84,7 +84,7 @@ class LoginView extends Component {
   }
 
   toggleForm() {
-    this.props.clearAuthError();
+    this.props.clearError();
     this.setState({
       errors: [],
       loggingIn: !this.state.loggingIn,
@@ -148,7 +148,7 @@ export default connect(
     user: authReducer.user,
     error: authReducer.error
   }),
-  { login, register, cancelLogin, clearAuthError }
+  { login, register, cancelLogin, clearError }
 )(LoginView);
 
 const styles = {

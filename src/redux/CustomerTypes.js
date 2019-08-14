@@ -88,11 +88,13 @@ export type CUSTOMER_ADD_REVIEW_FAILURE = FailureActionType<
 >;
 
 export type CLEAR_NEW_ITEM = { type: "CLEAR_NEW_ITEM" };
+export type CLEAR_ERROR = { type: "CLEAR_ERROR" };
 
 type SuccessActionType<T: string, K: string, Y: mixed> = { type: T, [K]: Y };
 type FailureActionType<T: string> = { type: T, error: string };
 
 export type CustomerAction =
+  | CLEAR_ERROR
   | GET_CUSTOMERS_START
   | GET_CUSTOMERS_SUCCESS
   | GET_CUSTOMERS_FAILURE

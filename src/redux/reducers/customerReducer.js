@@ -25,6 +25,8 @@ export default function customerReducer(
 ) {
   let customers: CustomerCollection;
   switch (action.type) {
+    case "CLEAR_ERROR":
+      return { ...state, error: null };
     case "GET_CUSTOMERS_SUCCESS":
       return { ...state, customers: action.customers, isLoading: false };
     case "GET_CUSTOMERS_FAILURE":

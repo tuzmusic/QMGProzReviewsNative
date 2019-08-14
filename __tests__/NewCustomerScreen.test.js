@@ -10,31 +10,44 @@ import {
 import { setupMapsMock } from "../__mocks__/axiosMocks";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-native/extend-expect";
+import User from "../src/models/User";
+import Customer from "../src/models/Customer";
 
 describe("NewCustomerScreen", () => {
-  const component = render(<NewCustomerScreen />);
+  const mockProps = {
+    currentCustomer: new Customer(),
+    error: "",
+    user: new User(),
+    createCustomer: jest.fn()
+  };
+  const component = render(<NewCustomerScreen {...mockProps} />);
+  const nameField = component.getByPlaceholder("Name");
+  const addressField = component.getByPlaceholder("Address");
+  const saveButton = component.getByText("Save Customer");
+  // const descriptionField = component.getByPlaceholder("Description");
+
   describe("the basics", () => {
-    it("renders the screen title", () => {
+    it("renders the screen title, fields and buttons", () => {
       expect(component.getByText("New Customer")).toBeDefined();
       expect(component.queryByText("Not there")).toBeNull();
+      expect(nameField).toBeDefined();
+      expect(addressField).toBeDefined();
+      expect(saveButton).toBeDefined();
     });
 
-    const nameField = component.getByPlaceholder("Name");
-    expect(nameField).toBeVisible();
-    const descriptionField = component.getByPlaceholder("Description");
+    // expect(nameField).toBeVisible();
     it("updates the state from the name and description fields", () => {
       fireEvent.changeText(nameField, "John Doe");
       expect(nameField.props.value).toEqual("John Doe");
-      fireEvent.changeText(descriptionField, "Some guy");
-      expect(descriptionField.props.value).toEqual("Some guy");
+      // fireEvent.changeText(descriptionField, "Some guy");
+      // expect(descriptionField.props.value).toEqual("Some guy");
     });
   });
 
   describe("address field", () => {
     const mock = new MockAdapter(axios);
     setupMapsMock(mock);
-    const addressField = component.getByPlaceholder("Address");
     const mockAddress = "123 Mountain Road, Concord, NH, USA";
     const mockString = "This is the mock map response";
 
@@ -54,10 +67,16 @@ describe("NewCustomerScreen", () => {
       expect(component.queryByText(mockString)).toBeNull();
       expect(addressField.props.value).toEqual(mockAddress);
     });
+  });
 
-    it("can clear", () => {
-      fireEvent(addressField);
-      expect(component.queryByText(mockString)).toBeNull();
+  describe("errors", () => {
+    xit("should show an error if the name is absent", async () => {
+      fireEvent.changeText(nameField, "");
+      fireEvent.press(saveButton);
+      const message = await waitForElement(() =>
+        component.getByText("Please enter a name.")
+      );
+      expect(message).toExist();
     });
   });
 });

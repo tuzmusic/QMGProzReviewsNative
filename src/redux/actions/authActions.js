@@ -94,8 +94,8 @@ export default function* authSaga() {
 }
 
 // ACTION CREATORS
-export function clearAuthError() {
-  return { type: "CLEAR_AUTH_ERROR" };
+export function clearError() {
+  return { type: "CLEAR_ERROR" };
 }
 
 export function setUser(user) {

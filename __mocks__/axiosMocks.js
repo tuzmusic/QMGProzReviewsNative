@@ -116,9 +116,9 @@ export function setupAuthMockAdapter(mock) {
 export function setupCustomersMockAdapter(mock) {
   const params = {
     name: "Mr. Google",
-    description: "This dude knows everything!",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
-    reviews: []
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+    // description: "This dude knows everything!",
+    // reviews: []
   };
   mock.onGet(ApiUrls.customers).reply(200, customerIndexResponse);
   mock.onPost(ApiUrls.customers, params).reply(200, createCustomerResponse);

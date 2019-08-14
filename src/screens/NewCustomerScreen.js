@@ -17,12 +17,13 @@ import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
 import Customer from "../models/Customer";
 import User from "../models/User";
 import * as Types from "../redux/CustomerTypes";
-
+import { clearError } from "../redux/actions/authActions";
 type Props = {
   currentCustomer: Customer,
   error: string,
   user: User,
-  createCustomer: Types.CustomerApiPostPayload => void
+  createCustomer: Types.CustomerApiPostPayload => void,
+  clearError: function
 };
 type State = {
   name: string,
@@ -77,7 +78,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     if (!this.state.address) {
       isValid = false;
       await this.setState({
-        errors: this.state.errors.concat("Please enter an address.")
+        errors: this.state.errors.concat("Please select an address.")
       });
     }
     return isValid;
@@ -89,10 +90,13 @@ export class NewCustomerScreen extends React.Component<Props, State> {
   }
 
   selectPrediction = (address: string) => this.setState({ address });
-
+  clearAllErrors = () => {
+    this.props.clearError();
+    this.setState({ errors: [] });
+  };
   render() {
     const inputProps = {
-      onFocus: () => this.setState({ errors: [] })
+      onFocus: this.clearAllErrors.bind(this)
     };
     return (
       <KeyboardAvoidingView
@@ -161,8 +165,8 @@ const styles = {
 export default connect(
   ({ customerReducer, authReducer }) => ({
     currentCustomer: customerReducer.newItem,
-    error: customerReducer.error,
+    error: customerReducer.error && "Something went wrong. Try again later.",
     user: authReducer.user.user
   }),
-  { createCustomer }
+  { createCustomer, clearError }
 )(NewCustomerScreen);

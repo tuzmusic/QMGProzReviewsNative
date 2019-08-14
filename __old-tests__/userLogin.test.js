@@ -9,7 +9,7 @@ import {
   register,
   registerSaga,
   registerWithApi,
-  clearAuthError
+  clearError
 } from "../src/redux/actions/authActions";
 import { ApiUrls } from "../src/constants/apiConstants";
 import {
@@ -290,7 +290,7 @@ describe("authReducer", () => {
 
   it("can clear the error remotely", () => {
     const errorState = { ...initialState, error: "Some error" };
-    expect(authReducer(errorState, clearAuthError()).error).toBe(null);
+    expect(authReducer(errorState, clearError()).error).toBe(null);
   });
 
   describe("login", () => {

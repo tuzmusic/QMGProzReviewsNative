@@ -1055,6 +1055,18 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
+"@testing-library/jest-native@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-3.0.2.tgz#0faf8f00065f236ba9c3f379c3964c016fdff927"
+  integrity sha512-Bhkz81+CBCddSr4dmaTnBJRu6sA9ZjgI54m1CXt15NzJPh77/Ebp9gP1VXhP+5hHAilmefPMwwrN0sNuGY6LHQ==
+  dependencies:
+    chalk "^2.4.1"
+    jest-diff "^24.0.0"
+    jest-matcher-utils "^24.0.0"
+    pretty-format "^24.0.0"
+    ramda "^0.26.1"
+    redent "^2.0.0"
+
 "@testing-library/react@^9.1.1":
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.1.1.tgz#ee5b15c02b64cfbd14cdcad87fee2ed5f28fc2d1"
@@ -3661,7 +3673,7 @@ imurmurhash@^0.1.4:
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
 
-indent-string@^3.2.0:
+indent-string@^3.0.0, indent-string@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-3.2.0.tgz#4a5fd6d27cc332f37e5419a504dbb837105c9289"
   integrity sha1-Sl/W0nzDMvN+VBmlBNu4NxBckok=
@@ -6057,6 +6069,11 @@ query-string@^6.4.2:
     split-on-first "^1.0.0"
     strict-uri-encode "^2.0.0"
 
+ramda@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"
+  integrity sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
@@ -6364,6 +6381,14 @@ rechoir@^0.6.2:
   integrity sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q=
   dependencies:
     resolve "^1.1.6"
+
+redent@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/redent/-/redent-2.0.0.tgz#c1b2007b42d57eb1389079b3c8333639d5e1ccaa"
+  integrity sha1-wbIAe0LVfrE4kHmzyDM2OdXhzKo=
+  dependencies:
+    indent-string "^3.0.0"
+    strip-indent "^2.0.0"
 
 redent@^3.0.0:
   version "3.0.0"
@@ -7130,6 +7155,11 @@ strip-eof@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/strip-eof/-/strip-eof-1.0.0.tgz#bb43ff5598a6eb05d89b59fcd129c983313606bf"
   integrity sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=
+
+strip-indent@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
+  integrity sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=
 
 strip-indent@^3.0.0:
   version "3.0.0"
