@@ -84,13 +84,12 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     }
     return isValid;
   }
-  async saveCustomer() {
+  async saveCustomer(customer: Types.CustomerApiPostPayload) {
     console.log(this.state);
     Keyboard.dismiss()
     await this.setState({isLoading: true})
     if (!(await this.fieldsValid())) return;
-    const { name, address } = this.state;
-    await this.props.createCustomer({name, address});
+    await this.props.createCustomer(customer);
   }
 
   selectPrediction = (address: string) => this.setState({ address });
@@ -107,9 +106,8 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     if (this.props.error && this.state.isLoading) {
       this.setState({ isLoading: false });
     }
-
   }
-  
+  customerFromState = () => ({name:this.state.name, address:this.state.address})
   render() {
     const inputProps = {
       onFocus: this.clearAllErrors.bind(this), containerStyle:styles.formItem 
@@ -136,7 +134,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
           address={this.state.address}
           placeholder="Address"
           onPredictionSelect={this.selectPrediction.bind(this)}
-          _submitForm={this.saveCustomer.bind(this)}
+          _submitForm={this.saveCustomer.bind(this, this.customerFromState())}
         />
         {/*  <Input
           value={this.state.description}
@@ -146,7 +144,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
         /> */}
         <Button
           title="Save Customer"
-          onPress={this.saveCustomer.bind(this)}
+          onPress={this.saveCustomer.bind(this, this.customerFromState())}
           containerStyle={[styles.formItem, styles.buttonContainer]}
           loading={this.state.isLoading}
         />

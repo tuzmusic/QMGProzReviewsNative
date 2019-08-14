@@ -22,13 +22,14 @@ describe("NewCustomerScreen", () => {
     user: new User(),
     createCustomer: jest.fn(),
     clearError: jest.fn(),
-    navigation: {}
+    navigation: { navigate: jest.fn() }
   };
   const component = render(<NewCustomerScreen {...mockProps} />);
   const nameField = component.getByPlaceholder("Name");
   const addressField = component.getByPlaceholder("Address");
   const saveButton = component.getByText("Save Customer");
   // const descriptionField = component.getByPlaceholder("Description");
+  const mockAddress = "123 Mountain Road, Concord, NH, USA";
 
   describe("the basics", () => {
     it("renders the screen title, fields and buttons", () => {
@@ -51,7 +52,6 @@ describe("NewCustomerScreen", () => {
   describe("address field", () => {
     const mock = new MockAdapter(axios);
     setupMapsMock(mock);
-    const mockAddress = "123 Mountain Road, Concord, NH, USA";
     const mockString = "This is the mock map response";
 
     let result;
@@ -74,7 +74,16 @@ describe("NewCustomerScreen", () => {
     });
   });
 
-  describe("errors", () => {
+  describe("form", () => {
+    it("should submit the form", () => {
+      const mockCustomer = { name: "John Doe", address: mockAddress };
+      const saveSpy = jest.spyOn(NewCustomerScreen.prototype, "saveCustomer");
+      fireEvent.changeText(nameField, "John Doe");
+      fireEvent.changeText(addressField, mockAddress);
+      fireEvent.press(saveButton);
+      expect(saveSpy).toHaveBeenCalledWith(mockCustomer);
+      saveSpy.mockRestore();
+    });
     xit("should show an error if the name is absent", async () => {
       fireEvent.changeText(nameField, "");
       fireEvent.press(saveButton);
@@ -105,7 +114,7 @@ describe("SearchCustomerScreen", () => {
     });
   });
 
-  describe("address field", () => {
+  xdescribe("address field", () => {
     const mock = new MockAdapter(axios);
     setupMapsMock(mock);
     const mockAddress = "123 Mountain Road, Concord, NH, USA";
