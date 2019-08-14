@@ -60,7 +60,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
   componentDidMount = () => {
     if (__DEV__) {
       // if (this.descriptionField) this.automate.testDescriptionField.call(this);
-      this.setState(this.sampleState);
+      // this.setState(this.sampleState);
     }
   };
 
@@ -68,15 +68,15 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     drawerLabel: "New Customer"
   };
 
-  async fieldsValid(): Promise<boolean> {
+  async fieldsValid(customer: Types.CustomerApiPostPayload): Promise<boolean> {
     let isValid = true;
-    if (!this.state.name) {
+    if (!customer.name) {
       isValid = false;
       await this.setState({
         errors: this.state.errors.concat("Please enter a name.")
       });
     }
-    if (!this.state.address) {
+    if (!customer.address) {
       isValid = false;
       await this.setState({
         errors: this.state.errors.concat("Please select an address.")
@@ -85,10 +85,10 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     return isValid;
   }
   async saveCustomer(customer: Types.CustomerApiPostPayload) {
-    console.log(this.state);
+    console.log(customer);
     Keyboard.dismiss()
     await this.setState({isLoading: true})
-    if (!(await this.fieldsValid())) return;
+    if (!(await this.fieldsValid(customer))) return;
     await this.props.createCustomer(customer);
   }
 
@@ -98,12 +98,13 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     this.setState({ errors: [] });
   };
   componentDidUpdate() {
+    if (!this.state.isLoading) return
     let customer
-    if ((customer = this.props.currentCustomer) && this.state.isLoading) {
+    if ((customer = this.props.currentCustomer)) {
       this.setState({ isLoading: false });
       this.props.navigation.navigate("Customer", { customer });
     }
-    if (this.props.error && this.state.isLoading) {
+    if (this.props.error || this.state.errors.length) {
       this.setState({ isLoading: false });
     }
   }

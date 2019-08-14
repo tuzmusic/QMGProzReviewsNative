@@ -116,7 +116,7 @@ export function setupAuthMockAdapter(mock) {
 export function setupCustomersMockAdapter(mock) {
   const params = {
     name: "Mr. Google",
-    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+    address: "123 Mountain Road, Concord, NH, USA"
     // description: "This dude knows everything!",
     // reviews: []
   };
