@@ -66,6 +66,7 @@ export class CustomerScreen extends Component<Props, State> {
   
   render() {
     const customer = this.props.allCustomers[this.props.customer.id];
+    debugger
     const listProps = {
       customer,
       onStartReviewPress: this.startReview.bind(this),
@@ -74,6 +75,7 @@ export class CustomerScreen extends Component<Props, State> {
       onCancel: this.cancelReview.bind(this),
       onSubmit: this.createReview.bind(this),
       isLoading: this.props.isLoading,
+      error: this.props.error
     };
 
     return (
@@ -99,7 +101,8 @@ export default connect(
     allCustomers: customerReducer.customers,
     user: authReducer.user.user,
     isLoading: customerReducer.isLoading,
-    newReview: customerReducer.newItem
+    newReview: customerReducer.newItem,
+    error: customerReducer.error && "Something went wrong. Try again later.",
   }),
   { addNewReview, clearNewItem }
 )(CustomerScreen);

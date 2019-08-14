@@ -71,6 +71,7 @@ export default class NewReviewScreen extends Component {
             />
           </View>
         )}
+        <Text style={styles.errorText}>{this.props.error}</Text>
       </View>
     );
   }
@@ -111,5 +112,11 @@ const styles = {
     color: "grey",
     fontWeight: "bold",
     fontSize: 16
+  },
+  errorText: {
+    color: "red",
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 15
   }
 };

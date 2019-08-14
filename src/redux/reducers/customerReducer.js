@@ -53,7 +53,8 @@ export default function customerReducer(
         ...state.customers,
         [action.review.customerId]: newCustomer
       };
-      // debugger;
+      console.log(customers[action.review.customerId].reviews.length);
+
       return {
         ...state,
         customers,

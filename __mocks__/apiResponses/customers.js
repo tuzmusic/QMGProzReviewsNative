@@ -489,7 +489,7 @@ export const customerIndexResponse = [
     id: 15352,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "123 Mountain Road, Concord, NH, USA",
+    address: "Another Address",
     galleryImage: {
       url: ""
     },
@@ -513,7 +513,7 @@ export const customerIndexResponse = [
     id: 15351,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "123 Mountain Road, Concord, NH, USA",
+    address: "Another Address",
     galleryImage: {
       url: ""
     },
@@ -537,7 +537,7 @@ export const customerIndexResponse = [
     id: 15350,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "123 Mountain Road, Concord, NH, USA",
+    address: "Another Address",
     galleryImage: {
       url: ""
     },
@@ -561,7 +561,7 @@ export const customerIndexResponse = [
     id: 15349,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "123 Mountain Road, Concord, NH, USA",
+    address: "Another Address",
     galleryImage: {
       url: ""
     },
@@ -585,7 +585,7 @@ export const customerIndexResponse = [
     id: 15348,
     title: "Mr. Google",
     description: "This dude knows everything!",
-    address: "123 Mountain Road, Concord, NH, USA",
+    address: "Another Address",
     galleryImage: {
       url: ""
     },
