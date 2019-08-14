@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { connect } from "react-redux";
-import { View, KeyboardAvoidingView, ScrollView } from "react-native";
+import { View, KeyboardAvoidingView, ScrollView, Keyboard } from "react-native";
 import {
   ThemeProvider,
   Text,
@@ -23,7 +23,8 @@ type Props = {
   error: string,
   user: User,
   createCustomer: Types.CustomerApiPostPayload => void,
-  clearError: function
+  clearError: function,
+  navigation: Object
 };
 type State = {
   name: string,
@@ -53,13 +54,13 @@ export class NewCustomerScreen extends React.Component<Props, State> {
   };
   sampleState = {
     name: "Mr. Google",
-    description: "This dude knows everything!"
-    // address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
+    // description: "This dude knows everything!"
+    address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
   };
   componentDidMount = () => {
     if (__DEV__) {
-      if (this.descriptionField) this.automate.testDescriptionField.call(this);
-      // this.setState(this.sampleState);
+      // if (this.descriptionField) this.automate.testDescriptionField.call(this);
+      this.setState(this.sampleState);
     }
   };
 
@@ -85,8 +86,11 @@ export class NewCustomerScreen extends React.Component<Props, State> {
   }
   async saveCustomer() {
     console.log(this.state);
+    Keyboard.dismiss()
+    await this.setState({isLoading: true})
     if (!(await this.fieldsValid())) return;
-    await this.props.createCustomer(this.state);
+    const { name, address } = this.state;
+    await this.props.createCustomer({name, address});
   }
 
   selectPrediction = (address: string) => this.setState({ address });
@@ -94,9 +98,21 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     this.props.clearError();
     this.setState({ errors: [] });
   };
+  componentDidUpdate() {
+    let customer
+    if ((customer = this.props.currentCustomer) && this.state.isLoading) {
+      this.setState({ isLoading: false });
+      this.props.navigation.navigate("Customer", { customer });
+    }
+    if (this.props.error && this.state.isLoading) {
+      this.setState({ isLoading: false });
+    }
+
+  }
+  
   render() {
     const inputProps = {
-      onFocus: this.clearAllErrors.bind(this)
+      onFocus: this.clearAllErrors.bind(this), containerStyle:styles.formItem 
     };
     return (
       <KeyboardAvoidingView
@@ -113,14 +129,14 @@ export class NewCustomerScreen extends React.Component<Props, State> {
           ref={x => (this.nameField = x)}
           onChangeText={name => this.setState({ name })}
           placeholder="Name"
-          containerStyle={styles.formItem}
+          
         />
         <AutoFillMapSearch
           {...inputProps}
+          address={this.state.address}
           placeholder="Address"
           onPredictionSelect={this.selectPrediction.bind(this)}
           _submitForm={this.saveCustomer.bind(this)}
-          containerStyle={styles.formItem}
         />
         {/*  <Input
           value={this.state.description}
@@ -132,6 +148,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
           title="Save Customer"
           onPress={this.saveCustomer.bind(this)}
           containerStyle={[styles.formItem, styles.buttonContainer]}
+          loading={this.state.isLoading}
         />
         <Text style={styles.errorText}>
           {this.state.errors.concat(this.props.error).join("\n")}
