@@ -53,7 +53,7 @@ export class CustomerScreen extends Component<Props, State> {
         userId: this.props.user.id,
         content, rating,
       };
-      if (__DEV__) review.userId = 8
+      if (__DEV__) {review.userId = 8; review.customerId = 15353}
       this.props.addNewReview(review);
     }
     
