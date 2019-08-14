@@ -114,7 +114,7 @@ describe("SearchCustomerScreen", () => {
     });
   });
 
-  xdescribe("address field", () => {
+  describe("address field", () => {
     const mock = new MockAdapter(axios);
     setupMapsMock(mock);
     const mockAddress = "123 Mountain Road, Concord, NH, USA";
@@ -122,19 +122,28 @@ describe("SearchCustomerScreen", () => {
     let result;
     beforeEach(async () => {
       // the mock returns the same results for for *any* text value
-      fireEvent.changeText(addressField, "123");
-      expect(component.getByDisplayValue("123")).toBeDefined();
-      result = await waitForElement(() => component.getByText(mockAddress));
-    });
-    it("shows map results for searching", async () => {
-      expect(result).toBeDefined();
-      expect(component.getByText(mockString)).toBeDefined();
     });
 
     it("pressing a selection clears the predictions and sets the address field's value to the full address selected", async () => {
+      fireEvent.changeText(addressField, "123");
+      expect(component.getByDisplayValue("123")).toBeDefined();
+      result = await waitForElement(() => component.getByText(mockAddress));
       fireEvent.press(result);
       expect(component.queryByText(mockString)).toBeNull();
       expect(addressField.props.value).toEqual(mockAddress);
+    });
+
+    it("should submit the form", () => {
+      const searchSpy = jest.spyOn(
+        SearchCustomerScreen.prototype,
+        "handleSearch"
+      );
+      fireEvent.changeText(addressField, mockAddress);
+      expect(searchButton).toBeDefined();
+      fireEvent.press(searchButton);
+      expect(searchSpy).toHaveBeenCalledWith(mockAddress);
+      expect(searchSpy).toHaveBeenCalled();
+      searchSpy.mockRestore();
     });
   });
 });

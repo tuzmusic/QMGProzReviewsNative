@@ -12,7 +12,7 @@ export class CustomerSearchResultScreen extends Component {
   }
 
   componentDidMount() {
-    this.automate();
+    // if (__DEV__) this.automate();
   }
 
   render() {

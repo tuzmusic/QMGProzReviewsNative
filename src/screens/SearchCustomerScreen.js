@@ -76,7 +76,7 @@ export class SearchCustomerScreen extends Component<Props, State> {
           <Text>What's your client's address?</Text>
           <AutoFillMapSearch
             placeholder="Enter address"
-            value={this.state.text}
+            // value={this.state.text}
             inputStyle={styles.input}
             clearButtonMode={"while-editing"}
             inputContainerStyle={styles.inputContainer}
