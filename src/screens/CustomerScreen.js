@@ -109,7 +109,7 @@ const CustomerInfo = ({ customer }) => {
     <View>
       <Text h1>{customer.name}</Text>
       <Text style={styles.detailText}>{customer.address}</Text>
-      <Text style={styles.customerDescription}>{customer.description}</Text>
+      {/* <Text style={styles.customerDescription}>{customer.description}</Text> */}
       {customer.reviews.length > 0 && (
         <View>
           <Text style={styles.detailText}>
