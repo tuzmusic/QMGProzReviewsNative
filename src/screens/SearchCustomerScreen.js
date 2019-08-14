@@ -41,7 +41,7 @@ export class SearchCustomerScreen extends Component<Props, State> {
   };
 
   componentDidMount = () => {
-    // if (__DEV__) setTimeout(this.automate.executeSearch.bind(this), 1000);
+    if (__DEV__) setTimeout(this.automate.mapSearch.bind(this), 1000);
   };
 
   state = {
