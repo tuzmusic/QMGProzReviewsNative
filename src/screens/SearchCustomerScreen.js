@@ -1,9 +1,11 @@
+// @flow
 import React, { Component } from "react";
 import { View, KeyboardAvoidingView } from "react-native";
 import { Text, Input, Button, Overlay, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 import AutoFillMapSearch from "../subviews/AutoFillMapSearch";
+import Customer from "../models/Customer";
 
 const SwipeTip = props => {
   return (
@@ -13,8 +15,17 @@ const SwipeTip = props => {
     </View>
   );
 };
-
-export class SearchCustomerScreen extends Component {
+type Props = {
+  navigation: Object,
+  searchCustomers: Object => void,
+  customers: Customer[],
+  searchResults: Customer[]
+};
+type State = {
+  text: string,
+  searchField: string
+};
+export class SearchCustomerScreen extends Component<Props, State> {
   static navigationOptions = () => ({
     headerTitle: "Search"
   });

@@ -78,8 +78,8 @@ const DrawerNavigator = createDrawerNavigator(
     }
   },
   {
-    contentComponent: DrawerContentView,
-    initialRouteName: "NewCustomer"
+    contentComponent: DrawerContentView
+    // initialRouteName: "NewCustomer"
   }
 );
 
