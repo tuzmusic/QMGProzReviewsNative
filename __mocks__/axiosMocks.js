@@ -26,14 +26,21 @@ export function setupMockAdapter({
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
   setupMapsMock(mock);
-  mock.onAny().passThrough();
+  // mock.onAny().passThrough();
   return mock;
 }
 
 function setupMapsMock(mock) {
-  const mapsUrl = "https://maps.googleapis.com";
-  const addresses = ["123", "456", "789"].map(n => ({ address: n }));
-  mock.onGet(mapsUrl).reply(200, addresses);
+  const mapsUrl =
+    "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+  const addresses = [
+    "123 Mountain Road, Concord, NH, USA",
+    "This is the mock map response"
+  ].map((n, i) => ({
+    description: n,
+    id: i
+  }));
+  mock.onGet(mapsUrl).reply(200, { predictions: addresses });
 }
 
 function setupLetMeIn(mock) {
