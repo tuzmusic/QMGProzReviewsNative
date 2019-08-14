@@ -18,7 +18,7 @@ sagaMiddleware.run(rootSaga);
 setupMockAdapter({ letMeIn: true, auth: true, customers: __DEV__ });
 
 console.disableYellowBox = true;
-
+import { NewCustomerScreen } from "./src/screens/NewCustomerScreen";
 export default function App() {
   return (
     <Provider store={store}>

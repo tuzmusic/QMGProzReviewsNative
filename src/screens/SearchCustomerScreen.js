@@ -30,12 +30,12 @@ export class SearchCustomerScreen extends Component {
   };
 
   componentDidMount = () => {
-    setTimeout(this.automate.executeSearch.bind(this), 1000);
+    // if (__DEV__) setTimeout(this.automate.executeSearch.bind(this), 1000);
   };
 
   state = {
     text: "",
-    text: __DEV__ ? "123 Mountain Road, Concord, NH, USA" : "",
+    // text: __DEV__ ? "123 Mountain Road, Concord, NH, USA" : "",
     searchField: "address"
   };
 

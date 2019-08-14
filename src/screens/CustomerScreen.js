@@ -40,7 +40,9 @@ export class CustomerScreen extends Component<Props, State> {
   
   automate = async () => await setTimeout(this.startReview.bind(this), 10);
   
-  componentDidMount = () => this.automate()
+  componentDidMount = () => {
+    // this.automate()
+  }
   
   startReview = () => this.setState({ isReviewing: true });
   cancelReview = () => this.setState({ isReviewing: false });

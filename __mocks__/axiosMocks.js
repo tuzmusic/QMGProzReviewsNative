@@ -25,8 +25,15 @@ export function setupMockAdapter({
   if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
-  // mock.onAny().passThrough();
+  setupMapsMock(mock);
+  mock.onAny().passThrough();
   return mock;
+}
+
+function setupMapsMock(mock) {
+  const mapsUrl = "https://maps.googleapis.com";
+  const addresses = ["123", "456", "789"].map(n => ({ address: n }));
+  mock.onGet(mapsUrl).reply(200, addresses);
 }
 
 function setupLetMeIn(mock) {

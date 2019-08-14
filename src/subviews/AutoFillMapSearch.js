@@ -24,6 +24,19 @@ type Props = {
 };
 // #endregion
 
+  async function testAddressField() {
+    if (this.textInput) { 
+      this.textInput.focus()
+      this.onChangeText("123")
+      // this.textInput.clear()
+      // setTimeout(() => {
+      //   this.selectPrediction(this.state.addressPredictions[0])
+      //   this.props.onPredictionSelect(this.state.addressPredictions[0].description)
+      //   this.props._submitForm()
+      // }, 1500);
+    }
+  }
+
 export class AutoFillMapSearch extends Component<Props, State> {
   textInput: ?TextInput;
   state: State = {
@@ -41,8 +54,9 @@ export class AutoFillMapSearch extends Component<Props, State> {
 
   async componentDidMount() {
     if (__DEV__) {
-      setTimeout(this.setSamplePrediction.bind(this), 100);
+      // setTimeout(this.setSamplePrediction.bind(this), 100);
       // this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" })
+      // testAddressField.call(this)
     }
   }
 
@@ -57,11 +71,14 @@ export class AutoFillMapSearch extends Component<Props, State> {
     } 
   }
 
-  onChangeText = (address: string) => {
+  onChangeText = async (address: string) => {
+    console.log("address:", address);
     this.setState(
-      { address, showPredictions: true },
+      { address, showPredictions: !!address },
       _.debounce(this.handleAddressChange.bind(this), 800)
     );
+    console.log("state", this.state);
+    
   };
 
   async selectPrediction(prediction: Object) {
@@ -86,12 +103,12 @@ export class AutoFillMapSearch extends Component<Props, State> {
     return (
       <View>
         <Input
-          label={this.props.label}
-          ref={ref => (this.textInput = ref)}
+          // label={this.props.label}
           onChangeText={this.onChangeText}
+          ref={ref => (this.textInput = ref)}
           value={this.state.address}
           style={[styles.input, this.props.style]}
-          placeholderTextColor={"grey"}
+          // placeholderTextColor={"grey"}
           autoCorrect={false}
           clearButtonMode={"while-editing"}
           onBlur={() => {
