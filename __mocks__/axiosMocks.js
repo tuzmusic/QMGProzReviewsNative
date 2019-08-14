@@ -30,7 +30,7 @@ export function setupMockAdapter({
   return mock;
 }
 
-function setupMapsMock(mock) {
+export function setupMapsMock(mock) {
   const mapsUrl =
     "https://maps.googleapis.com/maps/api/place/autocomplete/json";
   const addresses = [

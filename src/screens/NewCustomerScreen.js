@@ -14,13 +14,20 @@ import ControlledInput from "../subviews/ControlledInput";
 import { createCustomer } from "../redux/action-creators/customerActionCreators";
 import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
 
+const automate = {
+  testDescriptionField() {
+    this.descriptionField.focus();
+  }
+};
+
 export class NewCustomerScreen extends Component {
   state = {
     name: "",
     description: "",
     address: "",
     // review: {},
-    isLoading: false
+    isLoading: false,
+    error: ""
   };
   sampleState = {
     name: "Mr. Google",
@@ -28,7 +35,10 @@ export class NewCustomerScreen extends Component {
     // address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
   };
   componentDidMount = () => {
-    // if (__DEV__) this.setState(this.sampleState);
+    if (__DEV__) {
+      if (this.descriptionField) automate.testDescriptionField.call(this);
+      // this.setState(this.sampleState);
+    }
   };
 
   static navigationOptions = {
@@ -38,7 +48,7 @@ export class NewCustomerScreen extends Component {
     console.log(this.state);
   }
   selectPrediction(address) {
-    console.log(address);
+    // console.log(address);
     this.setState({ address });
   }
   render() {
@@ -47,24 +57,34 @@ export class NewCustomerScreen extends Component {
         style={styles.keyboardAvoidingView}
         enabled
         behavior="height"
+        // keyboardVerticalOffset={40}
       >
         <Text h2>New Customer</Text>
         <Input
           value={this.state.name}
+          clearButtonMode={"while-editing"}
+          ref={x => (this.nameField = x)}
           onChangeText={name => this.setState({ name })}
           placeholder="Name"
+          containerStyle={styles.formItem}
         />
         <AutoFillMapSearch
           placeholder="Address"
           onPredictionSelect={this.selectPrediction.bind(this)}
           _submitForm={this.saveCustomer.bind(this)}
+          containerStyle={styles.formItem}
         />
-        <Input
+        {/*  <Input
           value={this.state.description}
+          ref={x => (this.descriptionField = x)}
           onChangeText={description => this.setState({ description })}
           placeholder="Description"
+        /> */}
+        <Button
+          title="Save Customer"
+          onPress={this.saveCustomer.bind(this)}
+          containerStyle={[styles.formItem, styles.buttonContainer]}
         />
-        <Button title="Save Customer" onPress={this.saveCustomer.bind(this)} />
         <Divider style={{ height: 0 }} />
       </KeyboardAvoidingView>
     );
@@ -74,23 +94,14 @@ export class NewCustomerScreen extends Component {
 const styles = {
   keyboardAvoidingView: {
     flex: 1,
-    // height: "100%",
-    justifyContent: "flex-end",
-    // justifyContent: "flex-start",
-    borderWidth: 5
+    justifyContent: "flex-start",
+    borderWidth: 5,
+    padding: 20
   },
-  inputContainer: { paddingVertical: 5 },
-  leftButton: { width: "100%", marginBottom: 20, borderWidth: 1.5 },
-  rightbutton: { width: "100%" },
-  buttonsContainer: {
+  formItem: { marginTop: 25 },
+  buttonContainer: {
     marginHorizontal: 40,
     marginVertical: 25
-  },
-  divider: {
-    margin: 15,
-    height: 4,
-    borderRadius: 15,
-    backgroundColor: "lightblue"
   },
   errorText: {
     color: "red",
