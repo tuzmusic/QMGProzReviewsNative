@@ -56,13 +56,15 @@ export class AutoFillMapSearch extends Component<Props, State> {
     if (__DEV__) {
       // setTimeout(this.setSamplePrediction.bind(this), 100);
       // this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" })
-      // testAddressField.call(this)
+      testAddressField.call(this)
     }
   }
 
   async handleAddressChange() {
     try {
-      const res = await axios.get(ApiUrls.mapsSearch(this.state.address));
+      const { url, params } = ApiUrls.mapsSearch(this.state.address)
+      const res = await axios.get(url, { params })
+      // const res = await axios.get(ApiUrls.mapsSearch(this.state.address));
       const { predictions, error_message } = res.data
       if (error_message) throw new Error(error_message);
       this.setState({ addressPredictions: predictions });

@@ -23,7 +23,7 @@ ApiUrls.customers = url(customApiBase, "customers");
 ApiUrls.reviews = url(customApiBase, "reviews");
 
 /* GOOGLE MAPS API CALLS */
-ApiUrls.mapsSearch = (address: string) =>
-  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GoogleMapsApiKey}&input=${address}&types=address`;
-ApiUrls.mapsDetails = (placeId: string) =>
-  `https://maps.googleapis.com/maps/api/place/details/json?key=${GoogleMapsApiKey}&placeid=${placeId}&fields=geometry`;
+ApiUrls.mapsSearch = (address: string): { url: string, params: Object } => ({
+  url: "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+  params: { key: GoogleMapsApiKey, input: address, types: "address" }
+});

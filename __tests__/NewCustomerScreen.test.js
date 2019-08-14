@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { NewCustomerScreen } from "../src/screens/NewCustomerScreen";
 import { render, fireEvent } from "react-native-testing-library";
