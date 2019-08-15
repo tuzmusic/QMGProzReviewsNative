@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, TouchableOpacity, Linking } from "react-native";
 import { Button, Text, Image } from "react-native-elements";
 import { DrawerItems, SafeAreaView } from "react-navigation";
 import { connect } from "react-redux";
@@ -21,16 +21,26 @@ class DrawerContentView extends Component {
   }
 
   render() {
+    const email = "info@prozreviews.com";
     return (
       <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
-          <Image
-            source={require("../../assets/images/proz-reviews-logo.png")}
-            style={styles.image}
-            containerStyle={{ alignItems: "center" }}
-          />
           <UserSection props={this.props} />
           <DrawerItems {...this.props} />
+          <View style={{ alignItems: "center" }}>
+            <Image
+              source={require("../../assets/images/proz-reviews-logo.png")}
+              style={styles.image}
+            />
+            <Text style={styles.text}>For support:</Text>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL("mailto:" + email).catch(e => console.log(e))
+              }
+            >
+              <Text style={[styles.text, styles.link]}>{email}</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
     );
@@ -79,5 +89,11 @@ const styles = {
     height: 150,
     width: 150,
     resizeMode: "contain"
+  },
+  text: { fontSize: 16 },
+  link: {
+    marginVertical: 2,
+    color: "blue",
+    textDecorationLine: "underline"
   }
 };

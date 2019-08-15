@@ -30,7 +30,8 @@ type Props = { customer: Customer,
   user: User, 
   isLoading: boolean, 
   newReview: Review, 
-  clearNewItem: function
+  clearNewItem: function, 
+  error: string
  };
 type State = { isReviewing: boolean };
 
@@ -98,7 +99,7 @@ export class CustomerScreen extends Component<Props, State> {
 }
 export default connect(
   ({ customerReducer, authReducer }) => ({
-    allCustomers: customerReducer.customers,
+    allCustomers: customerReducer.customers, // used to get the latest (local) version of the current customer
     user: authReducer.user.user,
     isLoading: customerReducer.isLoading,
     newReview: customerReducer.newItem,
