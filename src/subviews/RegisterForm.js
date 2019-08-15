@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Input, Button, ThemeProvider } from "react-native-elements";
 import { Text, TouchableOpacity } from "react-native";
+import PaymentModal from "../subviews/PaymentModal";
 import { connect } from "react-redux";
-
 class RegisterForm extends Component {
   state = {
     // username: "testuser1",
@@ -10,7 +10,8 @@ class RegisterForm extends Component {
     username: "",
     email: "",
     password: "",
-    passwordConfirmation: ""
+    passwordConfirmation: "",
+    showModal: false
   };
 
   render() {
@@ -65,8 +66,14 @@ class RegisterForm extends Component {
         <Button
           title="Register"
           disabled={this.props.isLoading}
-          onPress={() => this.props.onSubmit(this.state)}
+          // onPress={() => this.props.onSubmit(this.state)}
+          onPress={() => this.setState({ showModal: true })}
         />
+
+        {this.state.showModal && (
+          <PaymentModal onDismiss={() => this.setState({ showModal: false })} />
+        )}
+
         <TouchableOpacity onPress={this.props.onLinkClick}>
           <Text style={{ fontSize: 16 }}>
             Already have an account? <Text style={styles.link}>Click here</Text>{" "}

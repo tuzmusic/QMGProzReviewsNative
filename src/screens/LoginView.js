@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Overlay } from "react-native-elements";
+import { Image, Overlay, Button } from "react-native-elements";
 import { View, Text, TouchableOpacity } from "react-native";
 import { DotIndicator } from "react-native-indicators";
 import { connect } from "react-redux";
@@ -29,6 +29,7 @@ class LoginView extends Component {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
+    if (__DEV__) this.toggleForm();
     // automate();
   }
 
