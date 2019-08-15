@@ -27,3 +27,6 @@ ApiUrls.mapsSearch = (address: string): { url: string, params: Object } => ({
   url: "https://maps.googleapis.com/maps/api/place/autocomplete/json",
   params: { key: GoogleMapsApiKey, input: address, types: "address" }
 });
+
+/* PAYPAL */
+ApiUrls.createPaypalPayment = url(customApiBase, "create_payment");

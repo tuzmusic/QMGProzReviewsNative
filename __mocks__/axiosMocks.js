@@ -11,6 +11,8 @@ import {
   createCustomerResponse
 } from "./apiResponses/customers";
 import { postReviewResponse } from "./apiResponses/reviews";
+import { createPaymentResponse } from "./apiResponses/paypal";
+import { PaypalKeys } from "../secrets";
 
 const DELAY = 500;
 
@@ -25,9 +27,23 @@ export function setupMockAdapter({
   if (customers) setupCustomersMockAdapter(mock);
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
+
   setupMapsMock(mock);
+  setupPaypalMock(mock);
+
   // mock.onAny().passThrough();
   return mock;
+}
+
+export function setupPaypalMock(mock) {
+  const params = {
+    amount: 10,
+    client_id: PaypalKeys.clientID,
+    client_secret: PaypalKeys.clientSecret
+  };
+  mock
+    .onPost(ApiUrls.createPaypalPayment, { params })
+    .reply(200, createPaymentResponse);
 }
 
 export function setupMapsMock(mock) {
@@ -40,6 +56,7 @@ export function setupMapsMock(mock) {
     description: n,
     id: i
   }));
+
   mock.onGet(mapsUrl).reply(200, { predictions: addresses });
 }
 

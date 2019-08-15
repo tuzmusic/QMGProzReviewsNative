@@ -1,17 +1,17 @@
+// @flow
+import * as Types from "../AuthTypes";
 import { AsyncStorage } from "react-native";
 
-export const initialState = {
-  stations: [],
+export const initialState: Types.AuthState = {
   user: null,
   isLoading: false,
-  error: null,
-  users: {}
+  error: null
 };
 
-export default authReducer = (
-  state = initialState,
-  { user, users, error, ...action }
-) => {
+const authReducer = (
+  state: Types.AuthState = initialState,
+  action: Types.AuthAction
+): Types.AuthState => {
   // if (action.type[0] !== "@") console.log("AuthReducer:", action.type);
   switch (action.type) {
     case "LOGIN_START":
@@ -23,7 +23,7 @@ export default authReducer = (
     case "SET_USER":
       return {
         ...state,
-        user,
+        user: action.user,
         isLoading: false,
         error: null
       };
@@ -32,10 +32,11 @@ export default authReducer = (
     case "LOGIN_FAILURE":
     case "LOGOUT_FAILURE":
     case "REGISTRATION_FAILURE":
-      return { ...state, error, isLoading: false };
+      return { ...state, error: action.error, isLoading: false };
     case "CLEAR_ERROR":
       return { ...state, error: null };
     default:
       return state;
   }
 };
+export default authReducer;

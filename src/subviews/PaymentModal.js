@@ -1,7 +1,9 @@
 // @flow
 import React, { Component } from "react";
-import { View, Text, Modal } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import { Overlay } from "react-native-elements";
+import { WebView } from 'react-native-webview';
+
 type Props = {
   onDismiss: function
 };
@@ -11,9 +13,9 @@ export default class PaymentModal extends Component<Props, State> {
   render() {
     return (
       <Overlay overlayStyle={styles.overlay} onBackdropPress={this.props.onDismiss}>
-        <View>
-          <Text> PaymentModal </Text>
-        </View>
+        <WebView source={{uri:"https://google.com"}}
+        startInLoadingState={true}
+        renderLoading={() => <ActivityIndicator/>}/>
       </Overlay>
     );
   }

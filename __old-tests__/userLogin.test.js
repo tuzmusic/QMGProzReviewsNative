@@ -2,13 +2,13 @@ import { put } from "redux-saga/effects";
 import {
   login,
   loginSaga,
-  loginWithApi,
+  loginApi,
   logout,
-  logoutWithApi,
+  logoutApi,
   logoutSaga,
   register,
   registerSaga,
-  registerWithApi,
+  registerApi,
   clearError
 } from "../src/redux/actions/authActions";
 import { ApiUrls } from "../src/constants/apiConstants";
@@ -28,18 +28,18 @@ let mock = setupAuthMockAdapter();
 describe("API Calls", () => {
   describe("register api call", () => {
     it("calls the API and simply returns the response", async () => {
-      let res = await registerWithApi(registration.userInfo);
+      let res = await registerApi(registration.userInfo);
       expect(res).toEqual(registerResponse.success);
     });
 
     it("returns the response, without throwing an error, even for invalid credentials", async () => {
-      const error = await registerWithApi(registration.badUserInfo);
+      const error = await registerApi(registration.badUserInfo);
       expect(error).toEqual(registerResponse.usernameTaken);
     });
 
     it("throws an error if the API fetch fails", async () => {
       try {
-        await registerWithApi(registration.unhandledInfo);
+        await registerApi(registration.unhandledInfo);
       } catch (error) {
         expect(error.message).toEqual("Request failed with status code 404");
       }
@@ -48,18 +48,18 @@ describe("API Calls", () => {
 
   describe("login api call", () => {
     it("calls the API and simply returns the response", async () => {
-      let res = await loginWithApi(creds.success);
+      let res = await loginApi(creds.success);
       expect(res).toEqual(loginResponse.apiResponse);
     });
 
     it("returns the response, without throwing an error, even for invalid credentials", async () => {
-      const res = await loginWithApi(creds.badUser);
+      const res = await loginApi(creds.badUser);
       expect(res).toEqual(loginResponse.failure);
     });
 
     it("throws an error if the API fetch fails", async () => {
       try {
-        await loginWithApi(registration.unhandledInfo);
+        await loginApi(registration.unhandledInfo);
       } catch (error) {
         expect(error.message).toEqual("Request failed with status code 404");
       }
@@ -68,7 +68,7 @@ describe("API Calls", () => {
 
   describe("logout api call", () => {
     xit("should return a logout message when successful", async () => {
-      let res = await logoutWithApi();
+      let res = await logoutApi();
       expect(res).toEqual(loginResponse.logout);
     });
 
@@ -76,7 +76,7 @@ describe("API Calls", () => {
       mock.resetHandlers();
       mock.onGet(ApiUrls.logout).networkErrorOnce();
       try {
-        const res = await logoutWithApi();
+        const res = await logoutApi();
         expect(res).toBe(undefined);
         setupAuthMockAdapter();
       } catch (error) {
