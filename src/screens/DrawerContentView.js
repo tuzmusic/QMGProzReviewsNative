@@ -69,10 +69,13 @@ const UserSection = ({ props }) => {
 };
 
 export default connect(
-  ({ authReducer }) => ({
-    user: authReducer.user?.user,
-    isLoading: authReducer.isLoading
-  }),
+  ({ authReducer }) => {
+    debugger;
+    return {
+      user: authReducer.user?.user || authReducer.user,
+      isLoading: authReducer.isLoading
+    };
+  },
   { logout }
 )(DrawerContentView);
 
