@@ -130,11 +130,11 @@ export function clearError() {
   return { type: "CLEAR_ERROR" };
 }
 
-export function setUser(user) {
+export function setUser(user: User) {
   return { type: "SET_USER", user };
 }
 
-export function login(creds) {
+export function login(creds: Types.LoginApiPostParams) {
   return { type: "LOGIN_START", creds };
 }
 
@@ -146,6 +146,10 @@ export function logout() {
   return { type: "LOGOUT_START" };
 }
 
-export function register({ username, email, password }) {
+export function register({
+  username,
+  email,
+  password
+}: Types.RegisterApiPostParams) {
   return { type: "REGISTRATION_START", info: { username, email, password } };
 }

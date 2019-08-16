@@ -4,7 +4,8 @@ import User from "../models/User";
 export type AuthState = {
   user: ?User,
   isLoading: boolean,
-  error: ?string
+  error: ?string,
+  redirectUrl: ?string
 };
 
 export type RegisterApiPostParams = {
@@ -20,15 +21,18 @@ export type LoginApiPostParams = {
 
 export type AuthAction =
   | LOGIN_START
-  | LOGOUT_START
-  | REGISTRATION_START
   | LOGIN_SUCCESS
-  | REGISTRATION_SUCCESS
-  | SET_USER
-  | LOGOUT_SUCCESS
   | LOGIN_FAILURE
-  | LOGOUT_FAILURE
+  | REGISTRATION_START
+  | REGISTRATION_SUCCESS
   | REGISTRATION_FAILURE
+  | LOGOUT_START
+  | LOGOUT_SUCCESS
+  | LOGOUT_FAILURE
+  | PAYMENT_START
+  | PAYMENT_SUCCESS
+  | PAYMENT_FAILURE
+  | SET_USER
   | CLEAR_ERROR;
 
 export type PAYMENT_START = { type: "PAYMENT_START", amount: number };

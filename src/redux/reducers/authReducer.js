@@ -5,7 +5,8 @@ import { AsyncStorage } from "react-native";
 export const initialState: Types.AuthState = {
   user: null,
   isLoading: false,
-  error: null
+  error: null,
+  redirectUrl: null
 };
 
 const authReducer = (
@@ -17,7 +18,7 @@ const authReducer = (
     case "LOGIN_START":
     case "LOGOUT_START":
     case "REGISTRATION_START":
-      return { ...state, isLoading: true, error: null };
+      return { ...state, isLoading: true, error: null, redirectUrl: null };
     case "LOGIN_SUCCESS":
     case "REGISTRATION_SUCCESS":
     case "SET_USER":
@@ -32,7 +33,12 @@ const authReducer = (
     case "LOGIN_FAILURE":
     case "LOGOUT_FAILURE":
     case "REGISTRATION_FAILURE":
+    case "PAYMENT_FAILURE":
       return { ...state, error: action.error, isLoading: false };
+    case "PAYMENT_START":
+      return { ...state, redirectUrl: null };
+    case "PAYMENT_SUCCESS":
+      return { ...state, redirectUrl: action.redirectUrl };
     case "CLEAR_ERROR":
       return { ...state, error: null };
     default:

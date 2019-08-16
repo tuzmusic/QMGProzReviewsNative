@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import * as Types from "../src/redux/AuthTypes";
 import { ApiUrls } from "../src/constants/apiConstants";
 import { createPaymentResponse } from "../__mocks__/apiResponses/paypal";
 import MockAdapter from "axios-mock-adapter";
@@ -8,6 +9,9 @@ import { setupMockAdapter, setupPaypalMock } from "../__mocks__/axiosMocks";
 import { GoogleMapsApiKey, PaypalKeys } from "../secrets";
 import { paymentApi } from "../src/redux/actions/authActions";
 import SagaTester from "redux-saga-tester";
+import authReducer, {
+  initialState as initialAuthState
+} from "../src/redux/reducers/authReducer";
 
 const mock = new MockAdapter(axios);
 setupPaypalMock(mock);
@@ -17,6 +21,8 @@ const params = {
   client_secret: PaypalKeys.clientSecret
 };
 const url = ApiUrls.createPaypalPayment;
+const mockRedirectUrl =
+  "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-17V121172D891330P";
 
 describe("payment - setup", () => {
   describe("ApiUrl", () => {
@@ -38,19 +44,36 @@ describe("payment - setup", () => {
 describe("redux", () => {
   describe("paymentApi", () => {
     it("calls the paypal api and returns the redirect url for the payment", async () => {
-      const mockRedirectUrl =
-        "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-17V121172D891330P";
       expect(await paymentApi(10)).toEqual(mockRedirectUrl);
+    });
+  });
+
+  const startAction: Types.PAYMENT_START = {
+    type: "PAYMENT_START",
+    amount: 10
+  };
+
+  const successAction: Types.PAYMENT_SUCCESS = {
+    type: "PAYMENT_SUCCESS",
+    redirectUrl: mockRedirectUrl
+  };
+
+  describe("reducer", () => {
+    const urlState = {
+      ...initialAuthState,
+      redirectUrl: mockRedirectUrl
+    };
+    it("sets the redirectUrl to null in response to a start action", () => {
+      expect(authReducer(urlState, startAction)).toEqual(initialAuthState);
+    });
+    it("takes a payment success action and writes the redirectUrl to the store", () => {
+      expect(authReducer(initialAuthState, successAction)).toEqual(urlState);
     });
   });
 
   describe("paymentSaga", () => {
     xit("calls the paymentApi and dispatches an action with the redirectUrl", () => {});
     xit("can't be tested very well though. boo hoo.", () => {});
-  });
-
-  describe("reducer", () => {
-    xit("takes a payment success action and writes the redirectUrl to the store", () => {});
   });
 
   xdescribe("UI flow", () => {
