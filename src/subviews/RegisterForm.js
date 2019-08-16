@@ -1,9 +1,28 @@
+// @flow
 import React, { Component } from "react";
 import { Input, Button, ThemeProvider } from "react-native-elements";
 import { Text, TouchableOpacity } from "react-native";
 import PaymentModal from "../subviews/PaymentModal";
 import { connect } from "react-redux";
-class RegisterForm extends Component {
+import {startPayment} from "../redux/action-creators/authActionCreators"
+
+type State = {
+  username: string,
+  email: string,
+  password: string,
+  passwordConfirmation: string,
+  showModal: boolean,
+};
+
+type Props = {
+  isLoading: boolean,
+  onChangeText: function, // resets errors in LoginView
+  onLinkClick: function,
+  redirectUrl: ?string,
+  startPayment: number=>void
+};
+
+export class RegisterForm extends Component<Props, State> {
   state = {
     // username: "testuser1",
     // email: "123123",
@@ -11,67 +30,89 @@ class RegisterForm extends Component {
     email: "",
     password: "",
     passwordConfirmation: "",
-    showModal: false
+    showModal: false,
   };
+
+  button: any // bullshit. just for automating
+  
+  automate = async () => {
+    // await this.setState({showModal:true})
+    this.button && this.button.props.onPress()
+  }
+
+  componentDidMount = () => {
+    this.automate()
+  };
+  
 
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Input
-          placeholder="Username"
-          label={this.state.username && "Username"}
-          value={this.state.username}
-          autoCorrect={false}
-          autoCapitalize={"none"}
-          onChangeText={username => {
-            this.props.onChangeText();
-            this.setState({ username });
-          }}
-        />
-        <Input
-          placeholder="Email"
-          label={this.state.email && "Email"}
-          value={this.state.email}
-          autoCorrect={false}
-          autoCapitalize={"none"}
-          onChangeText={email => {
-            this.props.onChangeText();
-            this.setState({ email });
-          }}
-        />
-        <Input
-          placeholder="Password"
-          label={this.state.password && "Password"}
-          secureTextEntry
-          value={this.state.password}
-          autoCorrect={false}
-          autoCapitalize={"none"}
-          onChangeText={password => {
-            this.props.onChangeText();
-            this.setState({ password });
-          }}
-        />
-        <Input
-          placeholder="Retype password"
-          label={this.state.passwordConfirmation && "Retype password"}
-          secureTextEntry
-          value={this.state.passwordConfirmation}
-          autoCorrect={false}
-          autoCapitalize={"none"}
-          onChangeText={passwordConfirmation => {
-            this.props.onChangeText();
-            this.setState({ passwordConfirmation });
-          }}
-        />
+        <React.Fragment key="INPUT FIELDS">
+          <Input
+            placeholder="Username"
+            label={this.state.username && "Username"}
+            value={this.state.username}
+            autoCorrect={false}
+            autoCapitalize={"none"}
+            onChangeText={username => {
+              this.props.onChangeText();
+              this.setState({ username });
+            }}
+          />
+          <Input
+            placeholder="Email"
+            label={this.state.email && "Email"}
+            value={this.state.email}
+            autoCorrect={false}
+            autoCapitalize={"none"}
+            onChangeText={email => {
+              this.props.onChangeText();
+              this.setState({ email });
+            }}
+          />
+          <Input
+            placeholder="Password"
+            label={this.state.password && "Password"}
+            secureTextEntry
+            value={this.state.password}
+            autoCorrect={false}
+            autoCapitalize={"none"}
+            onChangeText={password => {
+              this.props.onChangeText();
+              this.setState({ password });
+            }}
+          />
+          <Input
+            placeholder="Retype password"
+            label={this.state.passwordConfirmation && "Retype password"}
+            secureTextEntry
+            value={this.state.passwordConfirmation}
+            autoCorrect={false}
+            autoCapitalize={"none"}
+            onChangeText={passwordConfirmation => {
+              this.props.onChangeText();
+              this.setState({ passwordConfirmation });
+            }}
+          />
+        </ React.Fragment >
+
         <Button
+          ref={(x) => this.button=x}
           title="Register"
           disabled={this.props.isLoading}
           // onPress={() => this.props.onSubmit(this.state)}
-          onPress={() => this.setState({ showModal: true })}
+          onPress={async () => {
+            await this.setState({ showModal: true })
+            this.props.startPayment(10)
+          }}
         />
 
         {this.state.showModal && (
-          <PaymentModal onDismiss={() => this.setState({ showModal: false })} />
+          <PaymentModal 
+          url={this.props.redirectUrl}
+          onDismiss={() => this.setState({ showModal: false })} 
+          />
         )}
 
         <TouchableOpacity onPress={this.props.onLinkClick}>
@@ -86,8 +127,9 @@ class RegisterForm extends Component {
 }
 
 export default connect(({ authReducer }) => ({
-  isLoading: authReducer.isLoading
-}))(RegisterForm);
+  isLoading: authReducer.isLoading, 
+  redirectUrl: authReducer.redirectUrl
+}), {startPayment})(RegisterForm);
 
 const theme = {
   Input: {

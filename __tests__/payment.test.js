@@ -99,24 +99,78 @@ describe("redux", () => {
       expect(sagaTester.getState()).toEqual(urlState);
     });
   });
+});
 
-  xdescribe("UI flow", () => {
-    describe("register button press", () => {
-      it("shows the webview with a spinner", () => {});
-      it("starts the payment saga", () => {});
-      it("navigates to the redirectUrl when the payment saga returns it", () => {});
+import {
+  render,
+  fireEvent,
+  waitForElement,
+  debug
+} from "react-native-testing-library";
+import "@testing-library/jest-native/extend-expect";
+import { RegisterForm } from "../src/subviews/RegisterForm";
+import { Overlay } from "react-native-elements";
+import WebView from "react-native-webview";
+import PaymentModal from "../src/subviews/PaymentModal";
+
+fdescribe("UI flow", () => {
+  let component;
+
+  describe("PaymentModal", () => {
+    it("should render a spinner when url is null", () => {
+      component = render(<PaymentModal onDismiss={jest.fn} url={null} />);
+      expect(component.getByTestId("spinner")).toBeDefined();
+      expect(component.queryByTestId("payment-webview")).toBeNull();
     });
-    describe("payment success", () => {
-      it("hides the overlay", () => {});
-      it("starts the actual registration registerSaga", () => {});
+
+    it("should render a webview when url is given", () => {
+      component = render(
+        <PaymentModal onDismiss={jest.fn} url={mockRedirectUrl} />
+      );
+      expect(component.getByTestId("payment-webview")).toBeDefined();
+      expect(component.queryByTestId("spinner")).toBeNull();
     });
-    describe("payment failure", () => {
-      it("hides the overlay", () => {});
-      it("doesn't create a new user at all", () => {});
-      it("reports an error", () => {});
+  });
+
+  describe("register button press", () => {
+    const registerButton = c => c.getByText("Register");
+    const mockProps = {
+      isLoading: false,
+      onChangeText: jest.fn(),
+      onLinkClick: jest.fn(),
+      redirectUrl: null,
+      startPayment: jest.fn()
+    };
+
+    it("shows the webview with a spinner", () => {
+      component = render(<RegisterForm {...mockProps} />);
+      fireEvent.press(registerButton(component));
+      expect(component.getByTestId("spinner")).toBeDefined();
     });
-    describe("registration success", () => {
-      it("creates a registered, subscribed user (more of a server thing, really)", () => {});
+
+    it("starts the payment saga", () => {
+      const wrapper = render(
+        <React.Fragment>
+          <RegisterForm testID="register-form" {...mockProps} />
+        </React.Fragment>
+      );
+      const form = wrapper.getByTestId("register-form");
+      fireEvent.press(registerButton(wrapper));
+      expect(form.props.startPayment).toHaveBeenCalled();
     });
+
+    xit("navigates to the redirectUrl when the payment saga returns it", () => {});
+  });
+  xdescribe("payment success", () => {
+    it("hides the overlay", () => {});
+    it("starts the actual registration registerSaga", () => {});
+  });
+  xdescribe("payment failure", () => {
+    it("hides the overlay", () => {});
+    it("doesn't create a new user at all", () => {});
+    it("reports an error", () => {});
+  });
+  xdescribe("registration success", () => {
+    it("creates a registered, subscribed user (more of a server thing, really)", () => {});
   });
 });
