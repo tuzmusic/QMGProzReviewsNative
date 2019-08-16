@@ -19,6 +19,7 @@ type Props = {
   isLoading: boolean,
   onChangeText: function, // resets errors in LoginView
   onLinkClick: function,
+  registrationHandler: function,
   redirectUrl: ?string,
   startPayment: number=>void
 };
@@ -31,6 +32,14 @@ export class RegisterForm extends Component<Props, State> {
     passwordConfirmation: "",
     showModal: false,
   };
+
+  mockState = {
+        username: "testuser1",
+        email: "api1@prozreviews.com",
+        nonce: "29a63be176",
+        display_name: "testuser1",
+        user_pass: "123123"
+      }
 
   button: any // type is bullshit. just for automating
   
@@ -124,11 +133,11 @@ export class RegisterForm extends Component<Props, State> {
 
         {this.state.showModal && (
           <PaymentModal 
-          testID="payment-modal"
-          source={source}
-          onPaymentSuccess={this.handlePaymentSuccess.bind(this)}
-          onPaymentCancel={this.handlePaymentCancel.bind(this)}
-          // onDismiss={() => this.setState({ showModal: false })} 
+            testID="payment-modal"
+            source={source}
+            onPaymentSuccess={this.handlePaymentSuccess.bind(this)}
+            onPaymentCancel={this.handlePaymentCancel.bind(this)}
+            // onDismiss={() => this.setState({ showModal: false })} 
           />
         )}
 

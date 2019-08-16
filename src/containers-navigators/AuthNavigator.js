@@ -3,7 +3,7 @@ import { createSwitchNavigator } from "react-navigation";
 import LoginScreen from "../screens/LoginView";
 import { connect } from "react-redux";
 import { AsyncStorage } from "react-native";
-import { setUser } from "../redux/actions/authActions";
+import { setUser } from "../redux/action-creators/authActionCreators";
 
 const AuthStack = createSwitchNavigator({ Login: LoginScreen });
 
@@ -13,7 +13,6 @@ export class AuthNavigator extends Component {
   async componentDidMount() {
     const user = await AsyncStorage.getItem("prozreviews_logged_in_user");
     if (user) {
-      // console.log("User found in storage:", user);
       this.props.setUser(JSON.parse(user));
       this.props.navigation.navigate("Main");
     }

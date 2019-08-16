@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { Image, Overlay, Button } from "react-native-elements";
 import { View, Text, TouchableOpacity } from "react-native";
@@ -6,20 +7,29 @@ import { connect } from "react-redux";
 import {
   login,
   register,
-  cancelLogin,
   clearError
 } from "../redux/action-creators/authActionCreators";
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
 import { validate } from "email-validator";
 import { AsyncStorage, KeyboardAvoidingView } from "react-native";
+import * as Types from "../redux/AuthTypes";
+import User from "../models/User"
 
-class LoginView extends Component {
+type State = { loggingIn: boolean, registering: boolean, errors: string[] };
+type Props = {  login: Types.LoginApiPostParams=>Types.LOGIN_START,  
+                register: Types.RegisterApiPostParams=>Types.REGISTRATION_START,
+                clearError: function, 
+                isLoading: boolean,
+                user: User,
+                error: string,
+                navigation: Object
+              };
+
+class LoginView extends Component<Props, State> {
   state = {
     loggingIn: true,
     registering: false,
-    // loggingIn: false,
-    // registering: true,
     errors: []
   };
 
@@ -29,7 +39,7 @@ class LoginView extends Component {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    if (__DEV__) this.toggleForm();
+    // if (__DEV__) this.toggleForm();
     // automate();
   }
 
@@ -43,7 +53,7 @@ class LoginView extends Component {
       return this.setState({ errors });
     }
 
-    let creds = { password };
+    let creds: Types.LoginApiPostParams = { password };
     if (username.includes("@")) {
       creds.email = username;
     } else {
@@ -70,17 +80,25 @@ class LoginView extends Component {
     await this.props.register({ username, email, password });
   }
 
-  async shouldComponentUpdate(nextProps, nextState) {
+  // async shouldComponentUpdate(nextProps, nextState) {
+  //   if (!nextProps.user) return true;
+  //   try {
+  //     await AsyncStorage.setItem(
+  //       "prozreviews_logged_in_user",
+  //       JSON.stringify(nextProps.user)
+  //     );
+  //   } catch (error) {
+  //     console.warn("Couldn't write user to storage.", error);
+  //   }
+  //   this.props.navigation.navigate("Main");
+  //   return false;
+  // }
+
+   shouldComponentUpdate(nextProps, nextState) {
     if (!nextProps.user) return true;
-    try {
-      await AsyncStorage.setItem(
-        "prozreviews_logged_in_user",
-        JSON.stringify(nextProps.user)
-      );
-    } catch (error) {
-      console.warn("Couldn't write user to storage.", error);
-    }
-    this.props.navigation.navigate("Main");
+    AsyncStorage.setItem("prozreviews_logged_in_user",JSON.stringify(nextProps.user))
+      .then(() => this.props.navigation.navigate("Main"))
+      .catch((error) => console.error("Couldn't write user to storage.", error))
     return false;
   }
 
@@ -149,7 +167,7 @@ export default connect(
     user: authReducer.user,
     error: authReducer.error
   }),
-  { login, register, cancelLogin, clearError }
+  { login, register,  clearError }
 )(LoginView);
 
 const styles = {

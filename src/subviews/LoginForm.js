@@ -51,12 +51,12 @@ class LoginForm extends Component {
           disabled={this.props.isLoading}
           onPress={() => this.props.onSubmit(this.state)}
         />
-        {/* <Text style={styles.text}>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => Linking.openURL(regUrl)}>
+        <Text style={styles.text}>Don't have an account?</Text>
+        <TouchableOpacity onPress={this.props.onLinkClick}>
           <Text style={[styles.text, styles.link]}>
-            Register on our website.
+            Click here to register.
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </ThemeProvider>
     );
   }
