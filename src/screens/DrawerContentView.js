@@ -3,7 +3,7 @@ import { ScrollView, View, TouchableOpacity, Linking } from "react-native";
 import { Button, Text, Image } from "react-native-elements";
 import { DrawerItems, SafeAreaView } from "react-navigation";
 import { connect } from "react-redux";
-import { logout } from "../redux/actions/authActions";
+import { logout } from "../redux/action-creators/authActionCreators";
 import { AsyncStorage } from "react-native";
 
 class DrawerContentView extends Component {

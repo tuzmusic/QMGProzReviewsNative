@@ -8,7 +8,7 @@ import {
   register,
   cancelLogin,
   clearError
-} from "../redux/actions/authActions";
+} from "../redux/action-creators/authActionCreators";
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
 import { validate } from "email-validator";

@@ -7,7 +7,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { setupMockAdapter, setupPaypalMock } from "../__mocks__/axiosMocks";
 import { GoogleMapsApiKey, PaypalKeys } from "../secrets";
-import { paymentApi } from "../src/redux/actions/authActions";
+import { paymentApi, paymentSaga } from "../src/redux/actions/authActions";
 import SagaTester from "redux-saga-tester";
 import authReducer, {
   initialState as initialAuthState
@@ -58,11 +58,12 @@ describe("redux", () => {
     redirectUrl: mockRedirectUrl
   };
 
+  const urlState = {
+    ...initialAuthState,
+    redirectUrl: mockRedirectUrl
+  };
+
   describe("reducer", () => {
-    const urlState = {
-      ...initialAuthState,
-      redirectUrl: mockRedirectUrl
-    };
     it("sets the redirectUrl to null in response to a start action", () => {
       expect(authReducer(urlState, startAction)).toEqual(initialAuthState);
     });
@@ -72,8 +73,15 @@ describe("redux", () => {
   });
 
   describe("paymentSaga", () => {
-    xit("calls the paymentApi and dispatches an action with the redirectUrl", () => {});
-    xit("can't be tested very well though. boo hoo.", () => {});
+    let sagaTester;
+    beforeEach(() => {
+      sagaTester = new SagaTester({ initialAuthState });
+      sagaTester.start(paymentSaga(10));
+    });
+
+    it("calls the paymentApi and dispatches an action with the redirectUrl", async () => {
+      sagaTester.dispatch(startPayment(10));
+    });
   });
 
   xdescribe("UI flow", () => {
