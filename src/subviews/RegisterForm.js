@@ -50,7 +50,7 @@ export class RegisterForm extends Component<Props, State> {
 
   componentDidMount = async () => {
     await this.setState(this.mockState)
-    // this.automate()
+    this.automate()
   };
   
   handlePaymentSuccess = () => {
@@ -66,8 +66,8 @@ export class RegisterForm extends Component<Props, State> {
   
   render() {
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
-    if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
+    // if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
+    // if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
 
     return (
       <ThemeProvider theme={theme}>

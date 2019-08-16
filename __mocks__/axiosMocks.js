@@ -28,10 +28,13 @@ export function setupMockAdapter({
   if (auth) setupAuthMockAdapter(mock);
   if (letMeIn) setupLetMeIn(mock);
 
-  setupMapsMock(mock);
-  setupPaypalMock(mock);
+  if (__DEV__) {
+    mock.onAny().passThrough(); // uncomment this line to disable the below mocks
+    setupMapsMock(mock);
+    setupPaypalMock(mock);
+  }
 
-  // mock.onAny().passThrough();
+  if (!__DEV__) mock.onAny().passThrough();
   return mock;
 }
 

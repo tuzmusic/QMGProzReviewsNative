@@ -14,9 +14,19 @@ export async function paymentApi(amount: number): Promise<string> {
     client_id: PaypalKeys.clientID,
     client_secret: PaypalKeys.clientSecret
   };
-  const res = await axios.post(url, { params });
-  const redirectUrl = res.data.links[1].href;
-  return redirectUrl;
+  try {
+    const res = await axios.post(url, params);
+    const dataString = res.data.split("\nRedirect")[0];
+    const data = JSON.parse(dataString);
+    const redirectUrl = data.links[1].href;
+    debugger;
+    return redirectUrl;
+  } catch (error) {
+    const err = error;
+    console.log(err.config);
+    console.warn(error);
+    debugger;
+  }
 }
 
 export function* paymentSaga({ amount }: Types.PAYMENT_START): Saga<void> {
@@ -25,6 +35,7 @@ export function* paymentSaga({ amount }: Types.PAYMENT_START): Saga<void> {
   try {
     action = { type: "PAYMENT_SUCCESS", redirectUrl };
   } catch (error) {
+    debugger;
     action = { type: "PAYMENT_FAILURE", error: error.message };
   }
   yield put(action);
