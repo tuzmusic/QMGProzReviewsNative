@@ -39,7 +39,7 @@ class LoginView extends Component<Props, State> {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    // if (__DEV__) this.toggleForm();
+    if (__DEV__) this.toggleForm();
     // automate();
   }
 
@@ -63,7 +63,7 @@ class LoginView extends Component<Props, State> {
     await this.props.login(creds);
   }
 
-  async handleRegister({ username, email, password, passwordConfirmation }) {
+  handleRegister({ username, email, password, passwordConfirmation }) {
     let errors = [];
     if (!username) errors.push("Username required");
     if (!email) errors.push("Email required");
@@ -77,24 +77,11 @@ class LoginView extends Component<Props, State> {
     this.props.clearError();
     this.setState({ errors });
     if (errors.length) return;
-    await this.props.register({ username, email, password });
+    this.props.register({ username, email, password });
   }
 
-  // async shouldComponentUpdate(nextProps, nextState) {
-  //   if (!nextProps.user) return true;
-  //   try {
-  //     await AsyncStorage.setItem(
-  //       "prozreviews_logged_in_user",
-  //       JSON.stringify(nextProps.user)
-  //     );
-  //   } catch (error) {
-  //     console.warn("Couldn't write user to storage.", error);
-  //   }
-  //   this.props.navigation.navigate("Main");
-  //   return false;
-  // }
 
-   shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     if (!nextProps.user) return true;
     AsyncStorage.setItem("prozreviews_logged_in_user",JSON.stringify(nextProps.user))
       .then(() => this.props.navigation.navigate("Main"))
@@ -150,7 +137,7 @@ class LoginView extends Component<Props, State> {
           )}
           {this.state.registering && (
             <RegisterForm
-              onSubmit={this.handleRegister.bind(this)}
+              registrationHandler={this.handleRegister.bind(this)}
               onLinkClick={this.toggleForm.bind(this)}
               onChangeText={() => this.setState({ errors: [] })}
             />

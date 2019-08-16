@@ -34,12 +34,11 @@ export class RegisterForm extends Component<Props, State> {
   };
 
   mockState = {
-        username: "testuser1",
-        email: "api1@prozreviews.com",
-        nonce: "29a63be176",
-        display_name: "testuser1",
-        user_pass: "123123"
-      }
+    username: "testuser1",
+    email: "api1@prozreviews.com",
+    password: "123123",
+    passwordConfirmation: "123123"
+  }
 
   button: any // type is bullshit. just for automating
   
@@ -48,13 +47,15 @@ export class RegisterForm extends Component<Props, State> {
     this.button && this.button.props.onPress()
   }
 
-  componentDidMount = () => {
-    this.automate()
+  componentDidMount = async () => {
+    await this.setState(this.mockState)
+    // this.automate()
   };
   
   handlePaymentSuccess = () => {
     console.log("payment successful");
     this.setState({showModal:false})    
+    this.props.registrationHandler(this.state)
   }
   
   handlePaymentCancel = () => {
@@ -63,11 +64,8 @@ export class RegisterForm extends Component<Props, State> {
   }
   
   render() {
-    const source = !this.props.redirectUrl 
-      ? null 
-      : __DEV__ 
-        ? { html: htmlMock } 
-        : { uri: this.props.redirectUrl }
+    let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
+    if (__DEV__) source = !this.props.redirectUrl ? null : { html: htmlMock } 
 
     return (
       <ThemeProvider theme={theme}>
