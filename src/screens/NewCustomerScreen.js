@@ -17,7 +17,7 @@ import { AutoFillMapSearch } from "../subviews/AutoFillMapSearch";
 import Customer from "../models/Customer";
 import User from "../models/User";
 import * as Types from "../redux/CustomerTypes";
-import { clearError } from "../redux/actions/authActions";
+import { clearError } from "../redux/action-creators/authActionCreators";
 type Props = {
   currentCustomer: Customer,
   error: string,
