@@ -14,10 +14,11 @@ type Props = {
 type State = {};
 
 export default class PaymentModal extends Component<Props, State> {
+  
   handleResponse = (data: Object) => {
-    if (data.title === "prozreviews-payment-success") 
+    if (data.title.startsWith("prozreviews-payment-success") )
       this.props.onPaymentSuccess()
-     else if (data.title === "prozreviews-payment-cancelled") 
+     else if (data.title.startsWith("prozreviews-payment-cancelled") )
       this.props.onPaymentCancel()
   }
 

@@ -5,10 +5,10 @@ export default `<!DOCTYPE html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>prozreviews-payment-success – ProzReviews</title>
+    <title>prozreviews-payment-cancelled – ProzReviews</title>
   </head>
   <body>
-    Paypal Success
+    Paypal Cancelled
   </body>
 </html>
 `;

@@ -5,7 +5,8 @@ import { Text, TouchableOpacity } from "react-native";
 import PaymentModal from "../subviews/PaymentModal";
 import { connect } from "react-redux";
 import {startPayment} from "../redux/action-creators/authActionCreators"
-import htmlMock from "../../__mocks__/apiResponses/PaypalSuccess"
+import paypalSuccessHtml from "../../__mocks__/apiResponses/PaypalSuccess"
+import paypalCancelHtml from "../../__mocks__/apiResponses/PaypalCancel"
 
 type State = {
   username: string,
@@ -59,13 +60,14 @@ export class RegisterForm extends Component<Props, State> {
   }
   
   handlePaymentCancel = () => {
-    console.log("payment successful");
+    console.log("payment cancelled");
     this.setState({showModal:false})    
   }
   
   render() {
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    if (__DEV__) source = !this.props.redirectUrl ? null : { html: htmlMock } 
+    if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
+    if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
 
     return (
       <ThemeProvider theme={theme}>
