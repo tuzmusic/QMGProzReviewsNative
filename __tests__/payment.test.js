@@ -17,6 +17,7 @@ import authReducer, {
   initialState as initialAuthState
 } from "../src/redux/reducers/authReducer";
 import { startPayment } from "../src/redux/action-creators/authActionCreators";
+import successHtml from "../__mocks__/apiResponses/PaypalSuccess";
 
 const mock = new MockAdapter(axios);
 setupPaypalMock(mock);
@@ -114,56 +115,66 @@ import WebView from "react-native-webview";
 import PaymentModal from "../src/subviews/PaymentModal";
 
 fdescribe("UI flow", () => {
-  let component;
-
+  let component, webView;
+  const registerButton = c => c.getByText("Register");
+  const mockProps = {
+    isLoading: false,
+    onChangeText: jest.fn(),
+    onLinkClick: jest.fn(),
+    redirectUrl: null,
+    startPayment: jest.fn()
+  };
+  const wrapper = render(
+    <React.Fragment>
+      <RegisterForm testID="register-form" {...mockProps} />
+    </React.Fragment>
+  );
+  const form = wrapper.getByTestId("register-form");
   describe("PaymentModal", () => {
     it("should render a spinner when url is null", () => {
-      component = render(<PaymentModal onDismiss={jest.fn} source={null} />);
+      component = render(<PaymentModal source={null} />);
       expect(component.getByTestId("spinner")).toBeDefined();
       expect(component.queryByTestId("payment-webview")).toBeNull();
     });
 
     it("should render a webview when url is given", () => {
-      component = render(
-        <PaymentModal onDismiss={jest.fn} source={{ uri: mockRedirectUrl }} />
-      );
+      component = render(<PaymentModal source={{ uri: mockRedirectUrl }} />);
       expect(component.getByTestId("payment-webview")).toBeDefined();
       expect(component.queryByTestId("spinner")).toBeNull();
     });
   });
 
   describe("register button press", () => {
-    const registerButton = c => c.getByText("Register");
-    const mockProps = {
-      isLoading: false,
-      onChangeText: jest.fn(),
-      onLinkClick: jest.fn(),
-      redirectUrl: null,
-      startPayment: jest.fn()
-    };
-
     it("shows the webview with a spinner", () => {
-      component = render(<RegisterForm {...mockProps} />);
-      fireEvent.press(registerButton(component));
-      expect(component.getByTestId("spinner")).toBeDefined();
+      fireEvent.press(registerButton(wrapper));
+      expect(wrapper.getByTestId("spinner")).toBeDefined();
     });
 
-    it("starts the payment saga", () => {
-      const wrapper = render(
-        <React.Fragment>
-          <RegisterForm testID="register-form" {...mockProps} />
-        </React.Fragment>
-      );
+    xit("starts the payment saga", () => {
       const form = wrapper.getByTestId("register-form");
       fireEvent.press(registerButton(wrapper));
       expect(form.props.startPayment).toHaveBeenCalled();
     });
-
-    xit("navigates to the redirectUrl when the payment saga returns it", () => {});
   });
-  xdescribe("payment success", () => {
-    it("hides the overlay", () => {});
-    it("starts the actual registration registerSaga", () => {});
+
+  describe("payment success", () => {
+    let modal;
+    beforeEach(() => {
+      fireEvent.press(registerButton(wrapper));
+      modal = wrapper.getByTestId("payment-modal");
+    });
+
+    it("hides the overlay", async () => {
+      // show webview with whatever url
+      modal.props.source = { html: successHtml };
+      const result = await waitForElement(() =>
+        component.getByText("Paypal Success")
+      );
+
+      expect(result).toBeDefined();
+      // navigate webview to succcess url
+    });
+    xit("starts the actual registration registerSaga", () => {});
   });
   xdescribe("payment failure", () => {
     it("hides the overlay", () => {});

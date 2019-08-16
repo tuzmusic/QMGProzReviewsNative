@@ -25,8 +25,6 @@ type Props = {
 
 export class RegisterForm extends Component<Props, State> {
   state = {
-    // username: "testuser1",
-    // email: "123123",
     username: "",
     email: "",
     password: "",
@@ -34,7 +32,7 @@ export class RegisterForm extends Component<Props, State> {
     showModal: false,
   };
 
-  button: any // bullshit. just for automating
+  button: any // type is bullshit. just for automating
   
   automate = async () => {
     // await this.setState({showModal:true})
@@ -116,9 +114,9 @@ export class RegisterForm extends Component<Props, State> {
 
         {this.state.showModal && (
           <PaymentModal 
+          testID="payment-modal"
           source={source}
-          // url={source}
-          onDismiss={() => this.setState({ showModal: false })} 
+          // onDismiss={() => this.setState({ showModal: false })} 
           />
         )}
 

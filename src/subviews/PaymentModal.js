@@ -6,7 +6,7 @@ import { WebView } from 'react-native-webview';
 import { MaterialIndicator } from "react-native-indicators";
 
 type Props = {
-  onDismiss: function,
+  onDismiss?: function,
   source: ?{["html"|"uri"]: string}
 };
 type State = {};
