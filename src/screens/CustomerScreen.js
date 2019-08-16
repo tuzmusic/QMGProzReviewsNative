@@ -67,7 +67,6 @@ export class CustomerScreen extends Component<Props, State> {
   
   render() {
     const customer = this.props.allCustomers[this.props.customer.id];
-    debugger
     const listProps = {
       customer,
       onStartReviewPress: this.startReview.bind(this),
@@ -100,7 +99,7 @@ export class CustomerScreen extends Component<Props, State> {
 export default connect(
   ({ customerReducer, authReducer }) => ({
     allCustomers: customerReducer.customers, // used to get the latest (local) version of the current customer
-    user: authReducer.user.user,
+    user: authReducer.user?.user || authReducer.user,
     isLoading: customerReducer.isLoading,
     newReview: customerReducer.newItem,
     error: customerReducer.error && "Something went wrong. Try again later.",

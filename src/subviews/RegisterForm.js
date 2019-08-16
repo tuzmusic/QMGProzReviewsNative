@@ -41,16 +41,15 @@ export class RegisterForm extends Component<Props, State> {
     passwordConfirmation: "123123"
   }
 
-  button: any // type is bullshit. just for automating
+  button: any // type is bullshit. should be some complicated ref type. but this is just for automating
   
   automate = async () => {
-    // await this.setState({showModal:true})
-    this.button && this.button.props.onPress()
+    await this.setState(this.mockState)
+    // this.button && this.button.props.onPress()
   }
 
   componentDidMount = async () => {
-    await this.setState(this.mockState)
-    this.automate()
+    // if (__DEV__) this.automate()
   };
   
   handlePaymentSuccess = () => {
@@ -122,7 +121,7 @@ export class RegisterForm extends Component<Props, State> {
 
         <Button
           ref={(x) => this.button=x}
-          title="Register"
+          title="Register with PayPal ($10/mo)"
           disabled={this.props.isLoading}
           // onPress={() => this.props.onSubmit(this.state)}
           onPress={async () => {

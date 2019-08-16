@@ -7,7 +7,7 @@ import { ApiUrls } from "../../constants/apiConstants";
 import User from "../../models/User";
 import { PaypalKeys } from "../../../secrets";
 
-export async function paymentApi(amount: number): Promise<string> {
+export async function paymentApi(amount: number): Promise<?string> {
   const url = ApiUrls.createPaypalPayment;
   const params = {
     amount,
@@ -19,13 +19,11 @@ export async function paymentApi(amount: number): Promise<string> {
     const dataString = res.data.split("\nRedirect")[0];
     const data = JSON.parse(dataString);
     const redirectUrl = data.links[1].href;
-    debugger;
     return redirectUrl;
   } catch (error) {
     const err = error;
     console.log(err.config);
     console.warn(error);
-    debugger;
   }
 }
 
@@ -46,17 +44,28 @@ export async function registerApi({
   username,
   password
 }: Types.RegisterApiPostParams): Promise<Object> {
-  const nonce = (await axios.get(ApiUrls.nonce)).data.nonce;
-  if (!nonce) throw Error("Could not get nonce");
-  const params = {
-    username,
-    email,
-    nonce,
-    display_name: username,
-    user_pass: password
-  };
-  const res = await axios.get(ApiUrls.register, { params });
-  return res.data;
+  try {
+    console.log("nonce url:", ApiUrls.nonce);
+    const { data } = await axios.get(ApiUrls.nonce);
+    const nonce = data.nonce;
+    console.log("NONCE:", nonce);
+    // debugger;
+    if (!nonce) throw Error("Could not get nonce");
+    const params = {
+      username,
+      email,
+      nonce,
+      display_name: username,
+      user_pass: password
+    };
+    const res = await axios.get(ApiUrls.register, { params });
+    return res.data;
+  } catch (error) {
+    console.log(error.config);
+    const err = error;
+    throw error;
+    // debugger;
+  }
 }
 
 type RegArgs = {

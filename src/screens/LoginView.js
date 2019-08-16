@@ -39,7 +39,7 @@ class LoginView extends Component<Props, State> {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    if (__DEV__) this.toggleForm();
+    // if (__DEV__) this.toggleForm();
     // automate();
   }
 

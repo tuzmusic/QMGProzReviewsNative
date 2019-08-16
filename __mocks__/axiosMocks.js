@@ -16,6 +16,14 @@ import { PaypalKeys } from "../secrets";
 
 const DELAY = 500;
 
+export function setupProductionAdapter() {
+  let mock = new MockAdapter(axios, { delayResponse: DELAY });
+
+  setupAuthMockAdapter(mock);
+  setupLetMeIn(mock);
+  mock.onAny().passThrough();
+}
+
 export function setupMockAdapter({
   customers = false,
   auth = false,
@@ -38,14 +46,17 @@ export function setupMockAdapter({
   return mock;
 }
 
-export function setupPaypalMock(mock) {
+export function setupPaypalMock(
+  mock = new MockAdapter(axios, { delayResponse: DELAY })
+) {
   const params = {
     amount: 10,
     client_id: PaypalKeys.clientID,
     client_secret: PaypalKeys.clientSecret
   };
   mock
-    .onPost(ApiUrls.createPaypalPayment, { params })
+    .onPost(ApiUrls.createPaypalPayment, params)
+    // .onPost(ApiUrls.createPaypalPayment, { params })
     .reply(200, createPaymentResponse);
 }
 
@@ -126,7 +137,12 @@ export function setupAuthMockAdapter(mock) {
       }
     })
     .reply(200, loginResponse.apiResponse)
-    .onGet(ApiUrls.login)
+    .onGet(ApiUrls.login, {
+      params: {
+        username: "baduser",
+        password: "123123"
+      }
+    })
     .reply(200, loginResponse.failure)
     // logout
     .onGet(ApiUrls.logout)

@@ -7,7 +7,11 @@ import customerSaga from "./src/redux/actions/customerActions";
 import authSaga from "./src/redux/actions/authActions";
 import customerReducer from "./src/redux/reducers/customerReducer";
 import authReducer from "./src/redux/reducers/authReducer";
-import { setupMockAdapter } from "./__mocks__/axiosMocks";
+import {
+  setupMockAdapter,
+  setupProductionAdapter,
+  setupPaypalMock
+} from "./__mocks__/axiosMocks";
 import { all } from "redux-saga/effects";
 
 const combinedReducer = combineReducers({ customerReducer, authReducer });
@@ -15,10 +19,11 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
-setupMockAdapter({ letMeIn: true, auth: true, customers: __DEV__ });
+setupProductionAdapter();
+// setupMockAdapter({ letMeIn: true, auth: true, customers: __DEV__ });
 
 console.disableYellowBox = true;
-import { NewCustomerScreen } from "./src/screens/NewCustomerScreen";
+
 export default function App() {
   return (
     <Provider store={store}>

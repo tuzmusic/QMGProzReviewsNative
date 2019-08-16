@@ -10,13 +10,14 @@ class LoginForm extends Component {
     // username: "testuser1",
     // password: "123123"
   };
-
+  automate() {
+    this.setState({
+      username: "testuser2",
+      password: "123123"
+    });
+  }
   componentDidMount() {
-    if (__DEV__)
-      this.setState({
-        username: "testuser1",
-        password: "123123"
-      });
+    if (__DEV__) this.automate();
   }
 
   render() {

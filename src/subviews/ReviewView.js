@@ -13,7 +13,7 @@ export default ReviewView = ({ review }) => {
         style={styles.rating}
         imageSize={20}
       />
-      {<Text style={styles.dateText}>{review.timePast}</Text>}
+      {/* <Text style={styles.dateText}>{review.timePast}</Text> */}
       <Text style={styles.contentText}>{review.content}</Text>
       <Text style={styles.userText}>
         – {author.fullName || author.username}
