@@ -7,11 +7,16 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { setupMockAdapter, setupPaypalMock } from "../__mocks__/axiosMocks";
 import { GoogleMapsApiKey, PaypalKeys } from "../secrets";
-import { paymentApi, paymentSaga } from "../src/redux/actions/authActions";
+import authSaga, {
+  paymentApi,
+  paymentSaga,
+  registerSaga
+} from "../src/redux/actions/authActions";
 import SagaTester from "redux-saga-tester";
 import authReducer, {
   initialState as initialAuthState
 } from "../src/redux/reducers/authReducer";
+import { startPayment } from "../src/redux/action-creators/authActionCreators";
 
 const mock = new MockAdapter(axios);
 setupPaypalMock(mock);
@@ -75,12 +80,23 @@ describe("redux", () => {
   describe("paymentSaga", () => {
     let sagaTester;
     beforeEach(() => {
-      sagaTester = new SagaTester({ initialAuthState });
-      sagaTester.start(paymentSaga(10));
+      sagaTester = new SagaTester({
+        initialState: initialAuthState,
+        reducers: authReducer
+      });
+      sagaTester.start(authSaga);
+      jest.setTimeout(1000);
     });
 
     it("calls the paymentApi and dispatches an action with the redirectUrl", async () => {
       sagaTester.dispatch(startPayment(10));
+      expect(sagaTester.wasCalled("PAYMENT_START")).toBe(true);
+      await sagaTester.waitFor(successAction.type);
+      expect(sagaTester.getCalledActions()).toEqual([
+        startAction,
+        successAction
+      ]);
+      expect(sagaTester.getState()).toEqual(urlState);
     });
   });
 

@@ -19,7 +19,7 @@ export async function paymentApi(amount: number): Promise<string> {
   return redirectUrl;
 }
 
-export function* paymentSaga(amount: number): Saga<void> {
+export function* paymentSaga({ amount }: Types.PAYMENT_START): Saga<void> {
   let action: Types.PAYMENT_FAILURE | Types.PAYMENT_SUCCESS;
   const redirectUrl = yield call(paymentApi, amount);
   try {
@@ -48,11 +48,10 @@ export async function registerApi({
   return res.data;
 }
 
-export function* registerSaga({
-  info
-}: {
+type RegArgs = {
   info: Types.RegisterApiPostParams
-}): Saga<void> {
+};
+export function* registerSaga({ info }: RegArgs): Saga<void> {
   let action: Types.REGISTRATION_FAILURE | Types.REGISTRATION_SUCCESS;
   try {
     let { error, cookie, user_id } = yield call(registerApi, info);
@@ -121,6 +120,7 @@ export default function* authSaga(): Saga<void> {
   yield all([
     yield takeEvery("LOGIN_START", loginSaga),
     yield takeEvery("LOGOUT_START", logoutSaga),
-    yield takeEvery("REGISTRATION_START", registerSaga)
+    yield takeEvery("REGISTRATION_START", registerSaga),
+    yield takeEvery("PAYMENT_START", paymentSaga)
   ]);
 }
