@@ -1,11 +1,11 @@
 // @flow
+import * as Types from "../AuthTypes";
+import type { Saga } from "redux-saga";
 import axios from "axios";
 import { put, call, takeEvery, all } from "redux-saga/effects";
 import { ApiUrls } from "../../constants/apiConstants";
 import User from "../../models/User";
 import { PaypalKeys } from "../../../secrets";
-// import Sugar from "sugar";
-// Sugar.extend();
 
 export async function paymentApi(amount: number): Promise<string> {
   const url = ApiUrls.createPaypalPayment;
@@ -19,7 +19,22 @@ export async function paymentApi(amount: number): Promise<string> {
   return redirectUrl;
 }
 
-export async function registerApi({ email, username, password }) {
+export function* paymentSaga(amount: number): Saga<void> {
+  let action: Types.PAYMENT_FAILURE | Types.PAYMENT_SUCCESS;
+  const redirectUrl = yield call(paymentApi, amount);
+  try {
+    action = { type: "PAYMENT_SUCCESS", redirectUrl };
+  } catch (error) {
+    action = { type: "PAYMENT_FAILURE", error: error.message };
+  }
+  yield put(action);
+}
+
+export async function registerApi({
+  email,
+  username,
+  password
+}: Types.RegisterApiPostParams): Promise<Object> {
   const nonce = (await axios.get(ApiUrls.nonce)).data.nonce;
   if (!nonce) throw Error("Could not get nonce");
   const params = {
@@ -33,28 +48,32 @@ export async function registerApi({ email, username, password }) {
   return res.data;
 }
 
-export function* registerSaga({ info }) {
+export function* registerSaga({
+  info
+}: {
+  info: Types.RegisterApiPostParams
+}): Saga<void> {
+  let action: Types.REGISTRATION_FAILURE | Types.REGISTRATION_SUCCESS;
   try {
     let { error, cookie, user_id } = yield call(registerApi, info);
-    yield put(
-      error
-        ? { type: "REGISTRATION_FAILURE", error }
-        : {
-            type: "REGISTRATION_SUCCESS",
-            user: {
-              username: info.username,
-              email: info.email,
-              userId: user_id,
-              cookie
-            }
+    action = error
+      ? { type: "REGISTRATION_FAILURE", error }
+      : {
+          type: "REGISTRATION_SUCCESS",
+          user: {
+            username: info.username,
+            email: info.email,
+            userId: user_id,
+            cookie
           }
-    );
+        };
   } catch (error) {
-    yield put({ type: "REGISTRATION_FAILURE", error: error.message(error) });
+    action = { type: "REGISTRATION_FAILURE", error: error.message };
   }
+  yield put(action);
 }
 
-export async function loginApi(creds) {
+export async function loginApi(creds: Types.LoginApiPostParams) {
   const url = ApiUrls.login;
   const res = await axios.get(ApiUrls.login, { params: creds });
   return res.data;
@@ -65,34 +84,40 @@ export async function logoutApi() {
   return res.data;
 }
 
-export function* loginSaga({ creds }) {
+export function* loginSaga({
+  creds
+}: {
+  creds: Types.LoginApiPostParams
+}): Saga<void> {
+  let action: Types.LOGIN_FAILURE | Types.LOGIN_SUCCESS;
   try {
     const { error, ...user } = yield call(loginApi, creds);
     if (error) {
-      yield put({ type: "LOGIN_FAILURE", error });
+      action = { type: "LOGIN_FAILURE", error };
     } else {
-      const newUser = fromJsonApi(user.user);
-      yield put({
+      const newUser = User.fromJsonApi(user.user);
+      action = {
         type: "LOGIN_SUCCESS",
-        // user
         user: { ...user, user: newUser }
-      });
+      };
     }
   } catch (error) {
-    yield put({ type: "LOGIN_FAILURE", error: error.message(error) });
+    action = { type: "LOGIN_FAILURE", error: error.message };
   }
+  yield put(action);
 }
 
-export function* logoutSaga() {
+export function* logoutSaga(): Saga<void> {
+  let action: Types.LOGOUT_FAILURE | Types.LOGOUT_SUCCESS;
   try {
-    // yield call(logoutApi);
-    yield put({ type: "LOGOUT_SUCCESS" });
+    action = { type: "LOGOUT_SUCCESS" };
   } catch (error) {
-    yield put({ type: "LOGOUT_FAILURE", error: error.message(error) });
+    action = { type: "LOGOUT_FAILURE", error: error.message };
   }
+  yield put(action);
 }
 
-export default function* authSaga() {
+export default function* authSaga(): Saga<void> {
   yield all([
     yield takeEvery("LOGIN_START", loginSaga),
     yield takeEvery("LOGOUT_START", logoutSaga),
