@@ -118,14 +118,14 @@ fdescribe("UI flow", () => {
 
   describe("PaymentModal", () => {
     it("should render a spinner when url is null", () => {
-      component = render(<PaymentModal onDismiss={jest.fn} url={null} />);
+      component = render(<PaymentModal onDismiss={jest.fn} source={null} />);
       expect(component.getByTestId("spinner")).toBeDefined();
       expect(component.queryByTestId("payment-webview")).toBeNull();
     });
 
     it("should render a webview when url is given", () => {
       component = render(
-        <PaymentModal onDismiss={jest.fn} url={mockRedirectUrl} />
+        <PaymentModal onDismiss={jest.fn} source={{ uri: mockRedirectUrl }} />
       );
       expect(component.getByTestId("payment-webview")).toBeDefined();
       expect(component.queryByTestId("spinner")).toBeNull();

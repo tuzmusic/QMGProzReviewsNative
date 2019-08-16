@@ -5,6 +5,7 @@ import { Text, TouchableOpacity } from "react-native";
 import PaymentModal from "../subviews/PaymentModal";
 import { connect } from "react-redux";
 import {startPayment} from "../redux/action-creators/authActionCreators"
+import htmlMock from "../../__mocks__/apiResponses/PaypalSuccess"
 
 type State = {
   username: string,
@@ -44,8 +45,13 @@ export class RegisterForm extends Component<Props, State> {
     this.automate()
   };
   
-
   render() {
+    const source = !this.props.redirectUrl 
+      ? null 
+      : __DEV__ 
+        ? { html: htmlMock } 
+        : { uri: this.props.redirectUrl }
+
     return (
       <ThemeProvider theme={theme}>
         <React.Fragment key="INPUT FIELDS">
@@ -110,7 +116,8 @@ export class RegisterForm extends Component<Props, State> {
 
         {this.state.showModal && (
           <PaymentModal 
-          url={this.props.redirectUrl}
+          source={source}
+          // url={source}
           onDismiss={() => this.setState({ showModal: false })} 
           />
         )}
