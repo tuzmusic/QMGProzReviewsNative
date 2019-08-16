@@ -7,23 +7,32 @@ import { MaterialIndicator } from "react-native-indicators";
 
 type Props = {
   onDismiss?: function,
-  source: ?{["html"|"uri"]: string}
+  source: ?{["html"|"uri"]: string},
+  onPaymentSuccess: function,
+  onPaymentCancel: function
 };
 type State = {};
 
 export default class PaymentModal extends Component<Props, State> {
-  render() {
-    
+  handleResponse = (data: Object) => {
+    if (data.title === "prozreviews-payment-success") 
+      this.props.onPaymentSuccess()
+     else if (data.title === "prozreviews-payment-cancelled") 
+      this.props.onPaymentCancel()
+  }
+
+  render() {    
     return (
       <Overlay isVisible overlayStyle={styles.overlay} 
-      >
-      
+      >    
       { 
         // the webview should show its own loader (as well)
         !this.props.source ? 
           <MaterialIndicator testID="spinner"/> : 
           <WebView source={this.props.source} 
-            testID="payment-webview" />
+            testID="payment-webview" 
+            onNavigationStateChange={data => this.handleResponse(data)}
+            />
       } 
       </Overlay>
     );

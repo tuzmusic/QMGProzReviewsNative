@@ -43,6 +43,16 @@ export class RegisterForm extends Component<Props, State> {
     this.automate()
   };
   
+  handlePaymentSuccess = () => {
+    console.log("payment successful");
+    this.setState({showModal:false})    
+  }
+  
+  handlePaymentCancel = () => {
+    console.log("payment successful");
+    this.setState({showModal:false})    
+  }
+  
   render() {
     const source = !this.props.redirectUrl 
       ? null 
@@ -116,6 +126,8 @@ export class RegisterForm extends Component<Props, State> {
           <PaymentModal 
           testID="payment-modal"
           source={source}
+          onPaymentSuccess={this.handlePaymentSuccess.bind(this)}
+          onPaymentCancel={this.handlePaymentCancel.bind(this)}
           // onDismiss={() => this.setState({ showModal: false })} 
           />
         )}
