@@ -7,6 +7,9 @@ import _ from "lodash";
 import { Platform } from "react-native";
 import { ApiUrls } from "../constants/apiConstants";
 import axios from "axios"
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true
 
 // #region TYPES
 type State = {
@@ -52,7 +55,7 @@ export class AutoFillMapSearch extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    if (__DEV__) {
+    if (AUTOMATE) {
       // setTimeout(this.setSamplePrediction.bind(this), 100);
       // this.setState({ address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043" })
       // automate.testAddressField.call(this)

@@ -14,6 +14,8 @@ import {
 } from "./__mocks__/axiosMocks";
 import { all } from "redux-saga/effects";
 
+export const DEV_MODE = __DEV__ && true;
+
 const combinedReducer = combineReducers({ customerReducer, authReducer });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));

@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 import {startPayment} from "../redux/action-creators/authActionCreators"
 import paypalSuccessHtml from "../../__mocks__/apiResponses/PaypalSuccess"
 import paypalCancelHtml from "../../__mocks__/apiResponses/PaypalCancel"
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true
 
 type State = {
   username: string,
@@ -49,7 +52,7 @@ export class RegisterForm extends Component<Props, State> {
   }
 
   componentDidMount = async () => {
-    // if (__DEV__) this.automate()
+    if (AUTOMATE) this.automate()
   };
   
   handlePaymentSuccess = () => {
@@ -65,8 +68,8 @@ export class RegisterForm extends Component<Props, State> {
   
   render() {
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    // if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
-    // if (__DEV__) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
+    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
+    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
 
     return (
       <ThemeProvider theme={theme}>

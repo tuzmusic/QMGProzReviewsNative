@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 import AutoFillMapSearch from "../subviews/AutoFillMapSearch";
 import Customer from "../models/Customer";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true;
 
 const SwipeTip = props => {
   return (
@@ -41,12 +44,11 @@ export class SearchCustomerScreen extends Component<Props, State> {
   };
 
   componentDidMount = () => {
-    // if (__DEV__) setTimeout(this.automate.mapSearch.bind(this), 1000);
+    // if (AUTOMATE) setTimeout(this.automate.mapSearch.bind(this), 1000);
   };
 
   state = {
     text: "",
-    // text: __DEV__ ? "123 Mountain Road, Concord, NH, USA" : "",
     searchField: "address"
   };
 

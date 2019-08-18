@@ -12,12 +12,15 @@ import {
   StyleSheet,
   KeyboardAvoidingView
 } from "react-native";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true;
 
 export default class NewReviewScreen extends Component {
   state = {
     review: {
       content: "",
-      content: __DEV__ ? "review posted at 1565652383" : "",
+      content: AUTOMATE ? "review posted at 1565652383" : "",
       rating: 4
     }
   };

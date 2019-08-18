@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text, ListItem } from "react-native-elements";
 import pluralize from "pluralize";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true;
 
 export class CustomerSearchResultScreen extends Component {
   automate() {
@@ -12,7 +15,7 @@ export class CustomerSearchResultScreen extends Component {
   }
 
   componentDidMount() {
-    // if (__DEV__) this.automate();
+    if (DEV_MODE) this.automate();
   }
 
   render() {

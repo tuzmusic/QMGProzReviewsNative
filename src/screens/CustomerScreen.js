@@ -23,6 +23,9 @@ import NewReviewScreen from "./NewReviewScreen";
 import { addNewReview, clearNewItem } from "../redux/action-creators/customerActionCreators";
 import * as Types from "../redux/CustomerTypes"
 import * as RevTypes from "../redux/ReviewTypes";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true
 
 type Props = { customer: Customer,
   addNewReview: (RevTypes.ReviewFormObject)=>Object, 
@@ -54,7 +57,7 @@ export class CustomerScreen extends Component<Props, State> {
         userId: this.props.user.id,
         content, rating,
       };
-      // if (__DEV__) {review.userId = 8; review.customerId = 15353}
+      if (AUTOMATE) {review.userId = 8; review.customerId = 15353}
       this.props.addNewReview(review);
     }
     

@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import { Input, Button, ThemeProvider } from "react-native-elements";
 import { Text, TouchableOpacity, Linking } from "react-native";
 import { connect } from "react-redux";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true;
 
 class LoginForm extends Component {
-  state = {
-    username: "",
-    email: ""
-    // username: "testuser1",
-    // password: "123123"
-  };
+  state = { username: "", email: "" };
+
   automate() {
     this.setState({
       username: "testuser2",
       password: "123123"
     });
   }
+
   componentDidMount() {
-    if (__DEV__) this.automate();
+    if (AUTOMATE) this.automate();
   }
 
   render() {

@@ -18,6 +18,10 @@ import Customer from "../models/Customer";
 import User from "../models/User";
 import * as Types from "../redux/CustomerTypes";
 import { clearError } from "../redux/action-creators/authActionCreators";
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true
+
 type Props = {
   currentCustomer: Customer,
   error: string,
@@ -58,7 +62,7 @@ export class NewCustomerScreen extends React.Component<Props, State> {
     address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043"
   };
   componentDidMount = () => {
-    if (__DEV__) {
+    if (AUTOMATE) {
       // if (this.descriptionField) this.automate.testDescriptionField.call(this);
       // this.setState(this.sampleState);
     }

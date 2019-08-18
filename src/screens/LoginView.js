@@ -15,6 +15,9 @@ import { validate } from "email-validator";
 import { AsyncStorage, KeyboardAvoidingView } from "react-native";
 import * as Types from "../redux/AuthTypes";
 import User from "../models/User"
+import { DEV_MODE } from "../../App";
+
+const AUTOMATE = DEV_MODE && true
 
 type State = { loggingIn: boolean, registering: boolean, errors: string[] };
 type Props = {  login: Types.LoginApiPostParams=>Types.LOGIN_START,  
@@ -39,7 +42,7 @@ class LoginView extends Component<Props, State> {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    // if (__DEV__) this.toggleForm();
+    if (AUTOMATE) this.toggleForm();
     // automate();
   }
 
