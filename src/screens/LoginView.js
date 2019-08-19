@@ -105,14 +105,25 @@ export class LoginView extends Component<Props, State> {
   shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
     if (!nextProps.user) return true;
 
+    // 1. We have a user
+    // 1a. The user is ready (paid) so log in 
     if (nextProps.userReady) {
       AsyncStorage.setItem("prozreviews_logged_in_user",JSON.stringify(nextProps.user))
         .then(() => this.props.navigation.navigate("Main"))
         .catch((error) => console.error("Couldn't write user to storage.", error))
       return false;
-    } else if (!this.state.paymentInProgress) {
+    } 
+
+    // 1b. The user is not ready (not paid), so start the payment process
+    if (!this.state.paymentInProgress) {
+      console.log("ready to begin payment");      
       this.beginPayment()
       return true
+    }
+
+    // 2. We're ready to go to paypal
+    if (this.props.redirectUrl) {
+      
     }
     return true
   }
@@ -141,15 +152,15 @@ export class LoginView extends Component<Props, State> {
     }
 
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
     if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
+    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
 
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
           <Loader isVisible={this.props.isLoading} />
 
-          {this.state.paymentInProgress && (
+          {this.props.redirectUrl && (
             <PaymentModal 
               testID="payment-modal"
               source={source}

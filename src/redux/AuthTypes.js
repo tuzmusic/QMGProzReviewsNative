@@ -30,15 +30,24 @@ export type AuthAction =
   | LOGOUT_START
   | LOGOUT_SUCCESS
   | LOGOUT_FAILURE
-  | PAYMENT_START
-  | PAYMENT_SUCCESS
-  | PAYMENT_FAILURE
+  | CREATE_PAYMENT_START
+  | CREATE_PAYMENT_SUCCESS
+  | CREATE_PAYMENT_FAILURE
   | SET_USER
   | CLEAR_ERROR;
 
-export type PAYMENT_START = { type: "PAYMENT_START", amount: number };
-export type PAYMENT_SUCCESS = { type: "PAYMENT_SUCCESS", redirectUrl: string };
-export type PAYMENT_FAILURE = { type: "PAYMENT_FAILURE", error: string };
+export type CREATE_PAYMENT_START = {
+  type: "CREATE_PAYMENT_START",
+  amount: number
+};
+export type CREATE_PAYMENT_SUCCESS = {
+  type: "CREATE_PAYMENT_SUCCESS",
+  redirectUrl: string
+};
+export type CREATE_PAYMENT_FAILURE = {
+  type: "CREATE_PAYMENT_FAILURE",
+  error: string
+};
 
 export type LOGIN_START = { type: "LOGIN_START" };
 export type LOGOUT_START = { type: "LOGOUT_START" };

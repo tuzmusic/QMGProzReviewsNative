@@ -21,13 +21,22 @@ const authReducer = (
     case "REGISTRATION_START":
       return { ...state, isLoading: true, error: null, redirectUrl: null };
     case "LOGIN_SUCCESS":
-    case "REGISTRATION_SUCCESS":
     case "SET_USER":
       return {
         ...state,
         user: action.user,
-        userReady: action.type !== "REGISTRATION_SUCCESS",
+        userReady: true,
         isLoading: false,
+        error: null
+      };
+    case "REGISTRATION_SUCCESS":
+      console.log("user registered");
+
+      return {
+        ...state,
+        user: action.user,
+        userReady: false, // needs payment
+        isLoading: true, // show the same spinner until we have a redirectUrl
         error: null
       };
     case "LOGOUT_SUCCESS":
@@ -35,12 +44,12 @@ const authReducer = (
     case "LOGIN_FAILURE":
     case "LOGOUT_FAILURE":
     case "REGISTRATION_FAILURE":
-    case "PAYMENT_FAILURE":
+    case "CREATE_PAYMENT_FAILURE":
       return { ...state, error: action.error, isLoading: false };
-    case "PAYMENT_START":
-      return { ...state, redirectUrl: null };
-    case "PAYMENT_SUCCESS":
-      return { ...state, redirectUrl: action.redirectUrl };
+    case "CREATE_PAYMENT_START":
+      return { ...state, isLoading: true, redirectUrl: null };
+    case "CREATE_PAYMENT_SUCCESS":
+      return { ...state, redirectUrl: action.redirectUrl, isLoading: false };
     case "CLEAR_ERROR":
       return { ...state, error: null };
     default:

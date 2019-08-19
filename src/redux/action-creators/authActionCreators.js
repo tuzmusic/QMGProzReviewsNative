@@ -2,8 +2,8 @@
 import * as Types from "../AuthTypes";
 import User from "../../models/User";
 
-export function startPayment(amount: number): Types.PAYMENT_START {
-  return { type: "PAYMENT_START", amount };
+export function startPayment(amount: number): Types.CREATE_PAYMENT_START {
+  return { type: "CREATE_PAYMENT_START", amount };
 }
 
 // ACTION CREATORS

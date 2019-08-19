@@ -54,13 +54,13 @@ describe("redux", () => {
     });
   });
 
-  const startAction: Types.PAYMENT_START = {
-    type: "PAYMENT_START",
+  const startAction: Types.CREATE_PAYMENT_START = {
+    type: "CREATE_PAYMENT_START",
     amount: 10
   };
 
-  const successAction: Types.PAYMENT_SUCCESS = {
-    type: "PAYMENT_SUCCESS",
+  const successAction: Types.CREATE_PAYMENT_SUCCESS = {
+    type: "CREATE_PAYMENT_SUCCESS",
     redirectUrl: mockRedirectUrl
   };
 
@@ -91,7 +91,7 @@ describe("redux", () => {
 
     it("calls the paymentApi and dispatches an action with the redirectUrl", async () => {
       sagaTester.dispatch(startPayment(10));
-      expect(sagaTester.wasCalled("PAYMENT_START")).toBe(true);
+      expect(sagaTester.wasCalled("CREATE_PAYMENT_START")).toBe(true);
       await sagaTester.waitFor(successAction.type);
       expect(sagaTester.getCalledActions()).toEqual([
         startAction,

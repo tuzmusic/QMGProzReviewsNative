@@ -27,14 +27,16 @@ export async function paymentApi(amount: number): Promise<?string> {
   }
 }
 
-export function* paymentSaga({ amount }: Types.PAYMENT_START): Saga<void> {
-  let action: Types.PAYMENT_FAILURE | Types.PAYMENT_SUCCESS;
+export function* paymentSaga({
+  amount
+}: Types.CREATE_PAYMENT_START): Saga<void> {
+  let action: Types.CREATE_PAYMENT_FAILURE | Types.CREATE_PAYMENT_SUCCESS;
   const redirectUrl = yield call(paymentApi, amount);
   try {
-    action = { type: "PAYMENT_SUCCESS", redirectUrl };
+    action = { type: "CREATE_PAYMENT_SUCCESS", redirectUrl };
   } catch (error) {
     debugger;
-    action = { type: "PAYMENT_FAILURE", error: error.message };
+    action = { type: "CREATE_PAYMENT_FAILURE", error: error.message };
   }
   yield put(action);
 }
@@ -45,10 +47,10 @@ export async function registerApi({
   password
 }: Types.RegisterApiPostParams): Promise<Object> {
   try {
-    console.log("nonce url:", ApiUrls.nonce);
     const { data } = await axios.get(ApiUrls.nonce);
     const nonce = data.nonce;
-    console.log("NONCE:", nonce);
+    // console.log("nonce url:", ApiUrls.nonce);
+    // console.log("NONCE:", nonce);
     // debugger;
     if (!nonce) throw Error("Could not get nonce");
     const params = {
@@ -141,6 +143,6 @@ export default function* authSaga(): Saga<void> {
     yield takeEvery("LOGIN_START", loginSaga),
     yield takeEvery("LOGOUT_START", logoutSaga),
     yield takeEvery("REGISTRATION_START", registerSaga),
-    yield takeEvery("PAYMENT_START", paymentSaga)
+    yield takeEvery("CREATE_PAYMENT_START", paymentSaga)
   ]);
 }
