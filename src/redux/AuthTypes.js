@@ -3,6 +3,7 @@ import User from "../models/User";
 
 export type AuthState = {
   user: ?User,
+  userReady: ?boolean,
   isLoading: boolean,
   error: ?string,
   redirectUrl: ?string
@@ -11,11 +12,11 @@ export type AuthState = {
 export type RegisterApiPostParams = {
   email: string,
   username: string,
-  password: string
+  password: string,
+  passwordConfirmation?: string // not an api param but more efficient than adding a new type just for the form
 };
 export type LoginApiPostParams = {
-  email?: string,
-  username?: string,
+  ["email" | "username"]: string,
   password: string
 };
 

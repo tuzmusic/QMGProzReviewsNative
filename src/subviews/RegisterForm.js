@@ -8,6 +8,7 @@ import {startPayment} from "../redux/action-creators/authActionCreators"
 import paypalSuccessHtml from "../../__mocks__/apiResponses/PaypalSuccess"
 import paypalCancelHtml from "../../__mocks__/apiResponses/PaypalCancel"
 import { DEV_MODE } from "../constants/DEV_MODE";
+
 const AUTOMATE = DEV_MODE && true
 
 type State = {
@@ -22,7 +23,8 @@ type Props = {
   isLoading: boolean,
   onChangeText: function, // resets errors in LoginView
   onLinkClick: function,
-  registrationHandler: function,
+  prePaymentRegistrationHandler: Object => boolean,
+  postPaymentRegistrationHandler: function,
   redirectUrl: ?string,
   startPayment: number=>void
 };
@@ -37,7 +39,7 @@ export class RegisterForm extends Component<Props, State> {
   };
 
   mockState = {
-    username: "testuser1",
+    username: "testuser1dupe",
     email: "api1@prozreviews.com",
     password: "123123",
     passwordConfirmation: "123123"
@@ -57,18 +59,18 @@ export class RegisterForm extends Component<Props, State> {
   handlePaymentSuccess = () => {
     console.log("payment successful");
     this.setState({showModal:false})    
-    this.props.registrationHandler(this.state)
+    this.props.postPaymentRegistrationHandler(this.state)
   }
   
   handlePaymentCancel = () => {
     console.log("payment cancelled");
     this.setState({showModal:false})    
   }
-  
+
   render() {
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
-    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
+    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
+    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
 
     return (
       <ThemeProvider theme={theme}>
@@ -125,11 +127,7 @@ export class RegisterForm extends Component<Props, State> {
           ref={(x) => this.button=x}
           title="Register with PayPal ($10/mo)"
           disabled={this.props.isLoading}
-          // onPress={() => this.props.onSubmit(this.state)}
-          onPress={async () => {
-            await this.setState({ showModal: true })
-            this.props.startPayment(10)
-          }}
+          onPress={this.props.prePaymentRegistrationHandler.bind(this, this.state)}
         />
 
         {this.state.showModal && (

@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Image, Overlay, Button } from "react-native-elements";
 import { View, Text, TouchableOpacity } from "react-native";
-import { DotIndicator } from "react-native-indicators";
+import { DotIndicator, MaterialIndicator } from "react-native-indicators";
 import { connect } from "react-redux";
 import {
   login,
@@ -16,6 +16,7 @@ import { AsyncStorage, KeyboardAvoidingView } from "react-native";
 import * as Types from "../redux/AuthTypes";
 import User from "../models/User"
 import { DEV_MODE } from "../constants/DEV_MODE";
+
 const AUTOMATE = DEV_MODE && true
 
 type State = { loggingIn: boolean, registering: boolean, errors: string[] };
@@ -28,24 +29,16 @@ type Props = {  login: Types.LoginApiPostParams=>Types.LOGIN_START,
                 navigation: Object
               };
 
-class LoginView extends Component<Props, State> {
+export class LoginView extends Component<Props, State> {
   state = {
     loggingIn: true,
     registering: false,
     errors: []
   };
 
-  componentDidMount() {
-    const automate = () => {
-      setTimeout(() => {
-        this.handleLogin({ username: "letmein", password: "123123" });
-      }, 500);
-    };
-    if (AUTOMATE) this.toggleForm();
-    // automate();
-  }
+  componentDidMount= () => AUTOMATE && this.toggleForm()
 
-  async handleLogin({ username, password }) {
+  handleLogin({ username, password }: Types.LoginApiPostParams) {
     let errors = [];
     if (!username) errors.push("Username required");
     if (!password) errors.push("Password required");
@@ -62,10 +55,12 @@ class LoginView extends Component<Props, State> {
       creds.username = username;
     }
 
-    await this.props.login(creds);
+    this.props.login(creds);
   }
 
-  handleRegister({ username, email, password, passwordConfirmation }) {
+  handleRegister({ username, email, password, passwordConfirmation }:Types.RegisterApiPostParams): boolean {
+    console.log("hello from handleRegister");
+    
     let errors = [];
     if (!username) errors.push("Username required");
     if (!email) errors.push("Email required");
@@ -83,7 +78,7 @@ class LoginView extends Component<Props, State> {
   }
 
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     if (!nextProps.user) return true;
     AsyncStorage.setItem("prozreviews_logged_in_user",JSON.stringify(nextProps.user))
       .then(() => this.props.navigation.navigate("Main"))
@@ -101,49 +96,44 @@ class LoginView extends Component<Props, State> {
   }
 
   render() {
+    const overlayProps = { 
+      height: 150,
+      width: 150,
+      overlayBackgroundColor: "lightblue",
+      style: styles.overlay,
+      borderRadius: 20
+    }
+  
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
-          <Overlay
-            containerStyle={styles.modal}
-            height={200}
-            width={200}
-            isVisible={this.props.isLoading}
-            style={styles.modal}
-            borderRadius={20}
-            overlayBackgroundColor={"lightblue"}
-          >
-            <View style={styles.modalContainer}>
-              <DotIndicator color={"darkgrey"} />
-              <Text>Logging in...</Text>
-            </View>
+          <Overlay {...overlayProps} isVisible={this.props.isLoading}>
+            <MaterialIndicator size={50} style={styles.spinner} color={"green"} />
           </Overlay>
           <Image
             source={require("../../assets/images/proz-reviews-logo.png")}
             style={styles.image}
           />
           {this.state.errors.map((e, i) => (
-            <Text style={styles.errorText} key={i}>
-              {e}
-            </Text>
+            <Text style={styles.errorText} key={i}>{e}</Text>
           ))}
-          {!this.state.errors.length && (
+          {!this.state.errors.length && 
             <Text style={styles.errorText}>{this.props.error}</Text>
-          )}
-          {this.state.loggingIn && (
+          }
+          {this.state.loggingIn && 
             <LoginForm
               onSubmit={this.handleLogin.bind(this)}
               onLinkClick={this.toggleForm.bind(this)}
               onChangeText={() => this.setState({ errors: [] })}
             />
-          )}
-          {this.state.registering && (
+          }
+          {this.state.registering && 
             <RegisterForm
-              registrationHandler={this.handleRegister.bind(this)}
+              prePaymentRegistrationHandler={this.handleRegister.bind(this)}
               onLinkClick={this.toggleForm.bind(this)}
               onChangeText={() => this.setState({ errors: [] })}
             />
-          )}
+          }
         </View>
       </KeyboardAvoidingView>
     );
@@ -175,20 +165,20 @@ const styles = {
     padding: 20
   },
   image: {
-    // borderWidth: 1,
     height: 250,
     width: 250,
     resizeMode: "contain"
   },
-  modalContainer: {
+  spinner: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     margin: 40
   },
-  modal: {
+  overlay: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    opacity: 0.5
   }
 };

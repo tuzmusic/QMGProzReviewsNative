@@ -4,6 +4,7 @@ import { AsyncStorage } from "react-native";
 
 export const initialState: Types.AuthState = {
   user: null,
+  userReady: null,
   isLoading: false,
   error: null,
   redirectUrl: null
@@ -25,6 +26,7 @@ const authReducer = (
       return {
         ...state,
         user: action.user,
+        userReady: action.type !== "REGISTRATION_SUCCESS",
         isLoading: false,
         error: null
       };
