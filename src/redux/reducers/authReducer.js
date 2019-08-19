@@ -30,8 +30,6 @@ const authReducer = (
         error: null
       };
     case "REGISTRATION_SUCCESS":
-      console.log("user registered");
-
       return {
         ...state,
         user: action.user,
@@ -50,6 +48,8 @@ const authReducer = (
       return { ...state, isLoading: true, redirectUrl: null };
     case "CREATE_PAYMENT_SUCCESS":
       return { ...state, redirectUrl: action.redirectUrl, isLoading: false };
+    case "USER_PAYMENT_COMPLETE":
+      return { ...state, isLoading: false, redirectUrl: null, userReady: true };
     case "CLEAR_ERROR":
       return { ...state, error: null };
     default:

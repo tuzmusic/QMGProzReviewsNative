@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import {
   login,
   register,
-  clearError, startPayment
+  clearError, startPayment, completePayment
 } from "../redux/action-creators/authActionCreators";
 
 import paypalSuccessHtml from "../../__mocks__/apiResponses/PaypalSuccess"
@@ -30,6 +30,7 @@ type Props = {  login: Types.LoginApiPostParams => Types.LOGIN_START,
                 register: Types.RegisterApiPostParams => Types.REGISTRATION_START,
                 clearError: function, 
                 startPayment: number => void,
+                completePayment: function,
                 isLoading: boolean,
                 user: User,
                 userReady: boolean,
@@ -86,20 +87,21 @@ export class LoginView extends Component<Props, State> {
     this.props.register({ username, email, password });
   }
 
-  beginPayment() {
-    this.setState({ paymentInProgress: true })
+  async beginPayment() {
+    await this.setState({ paymentInProgress: true })
     this.props.startPayment(10)
   }
   
-  handlePaymentSuccess = () => {
+   handlePaymentSuccess = async () => {
     console.log("payment successful");
-    this.setState({ paymentInProgress: false })    
-    // this.props.postPaymentRegistrationHandler(this.state)
+    await this.setState({ paymentInProgress: false })    
+    this.props.completePayment()
   }
   
   handlePaymentCancel = () => {
     console.log("payment cancelled");
     this.setState({ paymentInProgress: false })    
+    // Don't need to show an error because the user has already interacted with the cancellation in one way or another.
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
@@ -115,14 +117,16 @@ export class LoginView extends Component<Props, State> {
     } 
 
     // 1b. The user is not ready (not paid), so start the payment process
+    // note: this happens 
     if (!this.state.paymentInProgress) {
-      console.log("ready to begin payment");      
+      console.log("ready to create payment");      
       this.beginPayment()
       return true
     }
 
     // 2. We're ready to go to paypal
     if (this.props.redirectUrl) {
+      console.log("ready to go to paypal");
       
     }
     return true
@@ -137,6 +141,8 @@ export class LoginView extends Component<Props, State> {
     });
   }
 
+  get shouldShowPaymentModal() { return this.props.redirectUrl && this.state.paymentInProgress }
+  
   render() {
     const Loader = props => {
       const overlayProps = { 
@@ -152,15 +158,15 @@ export class LoginView extends Component<Props, State> {
     }
 
     let source = !this.props.redirectUrl ? null : { uri: this.props.redirectUrl }
-    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
-    if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
+    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalCancelHtml } 
+    // if (DEV_MODE) source = !this.props.redirectUrl ? null : { html: paypalSuccessHtml } 
 
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
           <Loader isVisible={this.props.isLoading} />
 
-          {this.props.redirectUrl && (
+          {this.shouldShowPaymentModal && (
             <PaymentModal 
               testID="payment-modal"
               source={source}
@@ -209,7 +215,7 @@ export default connect(
     error: authReducer.error,
     redirectUrl: authReducer.redirectUrl
   }),
-  { login, register, clearError, startPayment }
+  { login, register, clearError, startPayment, completePayment }
 )(LoginView);
 
 const styles = {

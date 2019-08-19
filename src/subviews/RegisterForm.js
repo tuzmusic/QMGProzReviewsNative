@@ -49,7 +49,7 @@ export class RegisterForm extends Component<Props, State> {
   
   automate = async () => {
     await this.setState(this.mockState)
-    this.button && this.button.props.onPress()
+    // this.button && this.button.props.onPress()
   }
 
   componentDidMount = async () => {

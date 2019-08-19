@@ -2,6 +2,10 @@
 import * as Types from "../AuthTypes";
 import User from "../../models/User";
 
+export function completePayment(): Types.USER_PAYMENT_COMPLETE {
+  return { type: "USER_PAYMENT_COMPLETE" };
+}
+
 export function startPayment(amount: number): Types.CREATE_PAYMENT_START {
   return { type: "CREATE_PAYMENT_START", amount };
 }

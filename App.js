@@ -13,14 +13,15 @@ import {
   setupPaypalMock
 } from "./__mocks__/axiosMocks";
 import { all } from "redux-saga/effects";
+import { DEV_MODE } from "./src/constants/DEV_MODE";
 
 const combinedReducer = combineReducers({ customerReducer, authReducer });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
-setupProductionAdapter();
-// setupMockAdapter({ letMeIn: true, auth: true, customers: __DEV__ });
+if (!__DEV__ || !DEV_MODE) setupProductionAdapter();
+if (DEV_MODE) setupMockAdapter();
 
 console.disableYellowBox = true;
 

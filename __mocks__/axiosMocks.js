@@ -24,23 +24,15 @@ export function setupProductionAdapter() {
   mock.onAny().passThrough();
 }
 
-export function setupMockAdapter({
-  customers = false,
-  auth = false,
-  letMeIn = true
-}) {
+export function setupMockAdapter() {
   let mock = new MockAdapter(axios, { delayResponse: DELAY });
-  if (customers || auth)
-    console.log("WARNING: Using mock api - not connecting to the internet!");
-  if (customers) setupCustomersMockAdapter(mock);
-  if (auth) setupAuthMockAdapter(mock);
-  if (letMeIn) setupLetMeIn(mock);
+  setupCustomersMockAdapter(mock);
+  setupAuthMockAdapter(mock);
+  setupLetMeIn(mock);
 
-  if (__DEV__) {
-    mock.onAny().passThrough(); // uncomment this line to disable the below mocks
-    setupMapsMock(mock);
-    setupPaypalMock(mock);
-  }
+  mock.onAny().passThrough(); // uncomment this line to disable the below mocks
+  setupMapsMock(mock);
+  setupPaypalMock(mock);
 
   if (!__DEV__) mock.onAny().passThrough();
   return mock;

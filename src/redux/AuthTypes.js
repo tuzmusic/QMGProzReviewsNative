@@ -34,7 +34,8 @@ export type AuthAction =
   | CREATE_PAYMENT_SUCCESS
   | CREATE_PAYMENT_FAILURE
   | SET_USER
-  | CLEAR_ERROR;
+  | CLEAR_ERROR
+  | USER_PAYMENT_COMPLETE;
 
 export type CREATE_PAYMENT_START = {
   type: "CREATE_PAYMENT_START",
@@ -66,3 +67,4 @@ export type REGISTRATION_FAILURE = {
   error: string
 };
 export type CLEAR_ERROR = { type: "CLEAR_ERROR" };
+export type USER_PAYMENT_COMPLETE = { type: "USER_PAYMENT_COMPLETE" };

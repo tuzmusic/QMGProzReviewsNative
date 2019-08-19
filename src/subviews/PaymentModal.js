@@ -43,6 +43,7 @@ export default class PaymentModal extends Component<Props, State> {
 const styles = {
   overlay: {
     height: "85%",
-    width: "85%"
+    width: "85%",
+    borderRadius: 5,
   }
 };
