@@ -748,7 +748,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8081B0757098C5F5BB68E1D /* Pods-QMGProzReviewsNative.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "proz-icon-v1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "proz-icon-1024-v1";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = QMGProzReviewsNative/Info.plist;
@@ -768,7 +768,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33D8C2BE1AC69CD93CD21334 /* Pods-QMGProzReviewsNative.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "proz-icon-v1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "proz-icon-1024-v1";
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = QMGProzReviewsNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
