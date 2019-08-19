@@ -39,7 +39,7 @@ export class RegisterForm extends Component<Props, State> {
   };
 
   mockState = {
-    username: "testuser1dupe",
+    username: "testuser1",
     email: "api1@prozreviews.com",
     password: "123123",
     passwordConfirmation: "123123"
@@ -49,7 +49,7 @@ export class RegisterForm extends Component<Props, State> {
   
   automate = async () => {
     await this.setState(this.mockState)
-    // this.button && this.button.props.onPress()
+    this.button && this.button.props.onPress()
   }
 
   componentDidMount = async () => {
