@@ -18,8 +18,7 @@ import Customer from "../models/Customer";
 import User from "../models/User";
 import * as Types from "../redux/CustomerTypes";
 import { clearError } from "../redux/action-creators/authActionCreators";
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true
 
 type Props = {

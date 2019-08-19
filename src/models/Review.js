@@ -1,6 +1,6 @@
 // @flow
 import User from "./User";
-import {
+import type {
   ReviewFormObject,
   ReviewPostRequestObject,
   ReviewPostResponseObject

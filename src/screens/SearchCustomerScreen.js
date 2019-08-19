@@ -6,8 +6,7 @@ import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 import AutoFillMapSearch from "../subviews/AutoFillMapSearch";
 import Customer from "../models/Customer";
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true;
 
 const SwipeTip = props => {

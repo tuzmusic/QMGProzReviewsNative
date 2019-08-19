@@ -7,8 +7,7 @@ import _ from "lodash";
 import { Platform } from "react-native";
 import { ApiUrls } from "../constants/apiConstants";
 import axios from "axios"
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true
 
 // #region TYPES

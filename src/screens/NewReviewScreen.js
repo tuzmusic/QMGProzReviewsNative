@@ -12,8 +12,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView
 } from "react-native";
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true;
 
 export default class NewReviewScreen extends Component {

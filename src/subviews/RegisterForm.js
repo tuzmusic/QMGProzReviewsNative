@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import {startPayment} from "../redux/action-creators/authActionCreators"
 import paypalSuccessHtml from "../../__mocks__/apiResponses/PaypalSuccess"
 import paypalCancelHtml from "../../__mocks__/apiResponses/PaypalCancel"
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true
 
 type State = {

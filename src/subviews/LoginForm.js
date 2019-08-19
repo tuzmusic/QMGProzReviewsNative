@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Input, Button, ThemeProvider } from "react-native-elements";
 import { Text, TouchableOpacity, Linking } from "react-native";
 import { connect } from "react-redux";
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true;
 
 class LoginForm extends Component {

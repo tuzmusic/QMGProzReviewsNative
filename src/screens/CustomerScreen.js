@@ -23,7 +23,7 @@ import NewReviewScreen from "./NewReviewScreen";
 import { addNewReview, clearNewItem } from "../redux/action-creators/customerActionCreators";
 import * as Types from "../redux/CustomerTypes"
 import * as RevTypes from "../redux/ReviewTypes";
-import { DEV_MODE } from "../../App";
+import { DEV_MODE } from "../constants/DEV_MODE";
 
 const AUTOMATE = DEV_MODE && true
 

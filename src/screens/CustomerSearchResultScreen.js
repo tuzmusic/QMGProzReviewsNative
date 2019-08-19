@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text, ListItem } from "react-native-elements";
 import pluralize from "pluralize";
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true;
 
 export class CustomerSearchResultScreen extends Component {

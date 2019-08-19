@@ -15,8 +15,7 @@ import { validate } from "email-validator";
 import { AsyncStorage, KeyboardAvoidingView } from "react-native";
 import * as Types from "../redux/AuthTypes";
 import User from "../models/User"
-import { DEV_MODE } from "../../App";
-
+import { DEV_MODE } from "../constants/DEV_MODE";
 const AUTOMATE = DEV_MODE && true
 
 type State = { loggingIn: boolean, registering: boolean, errors: string[] };
