@@ -21,7 +21,7 @@ const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
 if (!__DEV__ || !DEV_MODE) setupProductionAdapter();
-if (DEV_MODE) setupMockAdapter();
+// if (DEV_MODE) setupMockAdapter();
 
 console.disableYellowBox = true;
 

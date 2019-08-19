@@ -119,15 +119,14 @@ export class LoginView extends Component<Props, State> {
     // 1b. The user is not ready (not paid), so start the payment process
     // note: this happens 
     if (!this.state.paymentInProgress) {
-      console.log("ready to create payment");      
+      // console.log("ready to create payment");      
       this.beginPayment()
       return true
     }
 
     // 2. We're ready to go to paypal
     if (this.props.redirectUrl) {
-      console.log("ready to go to paypal");
-      
+      // console.log("ready to go to paypal");     
     }
     return true
   }
