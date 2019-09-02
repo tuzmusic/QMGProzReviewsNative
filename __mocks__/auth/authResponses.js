@@ -7,7 +7,7 @@ export const loginResponse = {
       "testuser1|1560779545|rpqX0H4wlBHdQ1ww6Raon3VqRFRJBEBJjB9WC3Y631t|8a12ba20e3c71c13f1d5bac2b7eced8a13bdb999c1e364ef0f9565a6c3ca5932",
     cookie_name: "wordpress_logged_in_de35f4716c74f1f80e223057c4a2042e",
     user: {
-      id: 6,
+      id: 8,
       username: "testuser1",
       nicename: "testuser1",
       email: "testuser@prozreviews.com",
@@ -31,7 +31,7 @@ export const loginResponse = {
     cookie_name: "wordpress_logged_in_de35f4716c74f1f80e223057c4a2042e",
     // this mock ideally should be a User where every property is explicitly set; not leaving to the fromApi implementation to be correct. or, whatever or something.
     // user: fromJsonApi({
-    //   id: 6,
+    //   id: 8,
     //   username: "testuser1",
     //   nicename: "testuser1",
     //   email: "testuser@prozreviews.com",
@@ -48,7 +48,7 @@ export const loginResponse = {
     //   avatar: null
     // }),
     user: new User({
-      id: 6,
+      id: 8,
       username: "testuser1",
       email: "testuser@prozreviews.com",
       firstName: "Arthur",
@@ -73,7 +73,7 @@ export const registerResponse = {
     status: "ok",
     cookie:
       "apitestuser1|1560382602|w8L8JuhcMIAk8h5bwRmhOjVmPnNjbgNZJmBd7bcFUsL|542260b66fa2080175d9315f2a5bf3486dd174c7483913c46a2658a8d75637c1",
-    user_id: 9
+    user_id: 8
   },
   usernameTaken: {
     status: "error",
